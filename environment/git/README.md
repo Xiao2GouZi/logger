@@ -1,8 +1,72 @@
-> git clone 
+## git config
+>> git config user.name  /  git config --global user.name 查询(全局)用户名
+```
+bank@promote logger % git config user.name
+齐云猛:bank
+
+bank@promote logger % git config --global user.name
+齐云猛:bank
+```
+
+>> git config user.name XXX  /  git config --global user.name XXX  设置(全局)用户名
+```
+bank@promote logger % git config user.name 齐云猛:bank
+
+bank@promote logger % git config --global user.name 齐云猛:bank
+```
+
+>> git config user.email  /  git config --global user.email  查询(全局)用户邮箱
+```
+bank@promote logger % git config user.email
+15861097927@163.com
+
+bank@promote logger % git config --global user.email
+15861097927@163.com
+```
+
+>> git config user.email XXX  /  git config --global user.email XXX  设置(全局)用户邮箱
+```
+bank@promote logger % git config user.email 15861097927@163.com
+
+bank@promote logger % git config --global user.email 15861097927@163.com
+```
+
+>> git config --list  /  git config --list --show-origin    检查配置信息/ 检查配置信息以及所在的文件
+```
+bank@promote logger % git config --list            
+credential.helper=osxkeychain
+user.name=齐云猛:bank
+user.email=15861097927@163.com
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+...
+
+
+bank@promote logger % git config --list --show-origin                 
+file:/Applications/Xcode.app/Contents/Developer/usr/share/git-core/gitconfig    credential.helper=osxkeychain
+file:/Users/bank/.gitconfig     user.name=齐云猛:bank
+file:/Users/bank/.gitconfig     user.email=15861097927@163.com
+file:.git/config        core.repositoryformatversion=0
+file:.git/config        core.filemode=true
+file:.git/config        core.bare=false
+file:.git/config        core.logallrefupdates=true
+file:.git/config        core.ignorecase=true
+file:.git/config        core.precomposeunicode=true
+file:.git/config        remote.origin.url=git@github.com:Xiao2GouZi/logger.git
+file:.git/config        remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config        branch.master.remote=origin
+...
+```
+
+## git clone   
 
 >git init
 
-> git add
+>git add
+
+
 
 >git mv
 
@@ -21,7 +85,7 @@
 >git show  
 >git status
 
-## git branch    分支
+## git branch    分支管理
 >>git branch  
 ```
     bank@promote logger % git branch   
@@ -85,15 +149,37 @@ bank@promote logger % git checkout -b master
 
 >git switch
 
->git tag
+## git tag 标签
 
->git fetch
 
->git pull
+## git pull 远程代码合并本地分支
+>> git 远程主机名 远程分支:本地分支
+```
+bank@promote logger % git pull origin master:master
+```
 
->git push
+## git push   本地的分支上传远程仓库 
+>> git push  如果本地分支只有一个远程分支,可以省略主机名
+```
+bank@promote logger % git push
+``` 
 
-## git remote 远程分支
+>> git push 主机名 本地分支:远程分支  本地dev分支推送到主机名origin的master 分支
+```
+bank@promote logger % git push origin dev:master
+```
+
+>> git push --force 主机名 本地分支:远程分支   强制推送
+```
+bank@promote logger % git push --force origin dev:master
+```
+
+>> git push --delete 主机名 远程分支  删除origin主机的master分支   
+```
+bank@promote logger % git push --delete origin master
+```
+
+## git remote 远程仓库操作
 >>git remote -v    查看远程仓库地址
 ```
 bank@promote logger % git remote -v 

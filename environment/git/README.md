@@ -1,4 +1,4 @@
-## git config
+## `git config`
 >> git config user.name  /  git config --global user.name 查询(全局)用户名
 ```
 bank@promote logger % git config user.name

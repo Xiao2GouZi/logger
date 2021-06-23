@@ -1,7 +1,7 @@
 
 
 # 目录
-   * [git config](#git-config)
+   * [git config 设置属性](#git-config)
    * [git clone](#git-clone)
    * [git init](#git-init)
    * [git add](#git-add)
@@ -16,12 +16,12 @@
    * [git show](#git-show)
    * [git status](#git-status)
 
-   * [git branch](#git-branch)
-   * [git checkout](#git-checkout)
-   * [git tage](#git-tage)
-   * [git pull](#git-pull)
-   * [git push](#git-push)
-   * [git remote](#git-remote)
+   * [git branch 分支管理](#git-branch)
+   * [git checkout 操作文件 操作分支](#git-checkout)
+   * [git tage 标签](#git-tage) 
+   * [git pull 远程代码合并本地分支](#git-pull)
+   * [git push 本地的分支上传远程仓库](#git-push)
+   * [git remote 远程仓库查询操作](#git-remote)
 
 
 ## <a id="git-config"></a> `git config`
@@ -202,34 +202,34 @@ bank@promote logger % git push --force origin dev:master
 bank@promote logger % git push --delete origin master
 ```
 
-## <a id="git-remote"></a> `git remote 远程仓库操作`
+## <a id="git-remote"></a> `git remote 远程仓库查询操作`
 >>git remote -v    查看远程仓库地址
-```
-bank@promote logger % git remote -v 
+```sh
+$ git remote -v 
 origin  git@github.com:Xiao2GouZi/logger.git (fetch)
 origin  git@github.com:Xiao2GouZi/logger.git (push)
 ```
 
 >> git remote show [remote]   显示某个远程仓库的信息
-```
-git remote show git@github.com:Xiao2GouZi/logger.git
+```sh
+$ git remote show git@github.com:Xiao2GouZi/logger.git
 ```
 
 >>git remote add [shortname] [url]   添加远程版本库  shortname 为本地的版本库
-```
+```sh
 $ git remote add origin XXXX
 $ git push -u origin master
 ```
 
 >>git remote rm name  删除远程仓库  
-```
+```sh
 $ git remote remove XXXXX
 $ git remote
 origin
 ```
 
 >>git remote rename old_name new_name  修改仓库名
-```
+```sh
 $ git remote rename pb paul
 $ git remote
 origin

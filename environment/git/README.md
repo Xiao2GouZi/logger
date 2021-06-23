@@ -1,4 +1,30 @@
-## `git config`
+
+
+# 目录
+   * [git config](#git-config)
+   * [git clone](#git-clone)
+   * [git init](#git-init)
+   * [git add](#git-add)
+   * [git mv](#git-mv)
+   * [git restore](#git-restore)
+   * [git rm](#git-rm)
+   * [git bisect](#git-bisect)
+
+   * [git diff](#git-diff)
+   * [git grep](#git-grep)
+   * [git log](#git-log)
+   * [git show](#git-show)
+   * [git status](#git-status)
+
+   * [git branch](#git-branch)
+   * [git checkout](#git-checkout)
+   * [git tage](#git-tage)
+   * [git pull](#git-pull)
+   * [git push](#git-push)
+   * [git remote](#git-remote)
+
+
+## <a id="git-config"></a> `git config`
 >> git config user.name  /  git config --global user.name 查询(全局)用户名
 ```
 bank@promote logger % git config user.name
@@ -60,32 +86,30 @@ file:.git/config        branch.master.remote=origin
 ...
 ```
 
-## git clone   
+## <a id="git-clone"></a> `git clone`  
 
->git init
+## <a id="git-init"></a>  `git init`
 
->git add
+## <a id="git-add"></a> `git add`
 
+## <a id="git-mv"></a> `git mv`
 
+## <a id="git-restore"></a> `git restore`
 
->git mv
+## <a id="git-rm"></a> `git rm` 
 
->git restore
+## <a id="git-bisect"></a> `git bisect`
 
->git rm 
+##  <a id="git-diff"></a> `git diff`
 
->git bisect
+## <a id="git-grep"></a> `git grep`
 
->git diff
+## <a id="git-log"></a> `git log`
 
->git grep
+## <a id="git-show"></a> `git show` 
+## <a id="git-status"></a> `git status`
 
->git log  
-
->git show  
->git status
-
-## git branch    分支管理
+## <a id="git-branch"></a>   `git branch 分支管理`
 >>git branch  
 ```
     bank@promote logger % git branch   
@@ -121,7 +145,7 @@ file:.git/config        branch.master.remote=origin
     * master 49d2236 [origin/master] init
  ```
 
-## git checkout 操作文件 操作分支
+## <a id="git-checkout"></a> `git checkout 操作文件 操作分支`
 >> git checkout filename 放弃单个文件修改
 ```
 bank@promote logger % git checkout environment/git/README.md 
@@ -149,16 +173,15 @@ bank@promote logger % git checkout -b master
 
 >git switch
 
-## git tag 标签
+## <a id="git-tage"></a> `git tag 标签`
 
-
-## git pull 远程代码合并本地分支
+## <a id="git-pull"></a> `git pull 远程代码合并本地分支`
 >> git 远程主机名 远程分支:本地分支
 ```
 bank@promote logger % git pull origin master:master
 ```
 
-## git push   本地的分支上传远程仓库 
+## <a id="git-push"></a> `git push   本地的分支上传远程仓库` 
 >> git push  如果本地分支只有一个远程分支,可以省略主机名
 ```
 bank@promote logger % git push
@@ -179,7 +202,7 @@ bank@promote logger % git push --force origin dev:master
 bank@promote logger % git push --delete origin master
 ```
 
-## git remote 远程仓库操作
+## <a id="git-remote"></a> `git remote 远程仓库操作`
 >>git remote -v    查看远程仓库地址
 ```
 bank@promote logger % git remote -v 

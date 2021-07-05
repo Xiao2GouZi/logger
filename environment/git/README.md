@@ -177,9 +177,10 @@ $ git checkout .
 ```sh
 $ git checkout master
 ```
->>git checkout -b master  如果分支存在则只切换分支，若不存在则创建并切换到master分支
+>>git checkout -b dev  如果分支存在则只切换分支，若不存在则创建并切换到dev分支
 ```sh
-$ git checkout -b master
+$ git checkout -b dev
+$ git push --set-upstream origin dev  推送到远程分支
 ```
 
 ## <a id="git-commit"></a> `git commit`

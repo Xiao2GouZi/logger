@@ -4,7 +4,7 @@
    * [git config 设置属性](#git-config)
    * [git clone](#git-clone)
    * [git init](#git-init)
-   * [git add](#git-add)
+   * [git add 添加文件到仓库](#git-add)
    * [git mv](#git-mv)
    * [git restore](#git-restore)
    * [git rm](#git-rm)
@@ -98,7 +98,16 @@ file:.git/config        branch.master.remote=origin
 
 ## <a id="git-init"></a>  `git init`     //TODO: -----
 
-## <a id="git-add"></a> `git add`        //TODO: -----
+## <a id="git-add"></a> `git add`        
+>> git add [file1] [file2]
+```sh
+   git add 
+
+
+   git add 
+
+
+```
 
 ## <a id="git-mv"></a> `git mv`          //TODO: -----
 

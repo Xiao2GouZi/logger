@@ -15,51 +15,58 @@
    * [git log](#git-log)
    * [git show](#git-show)
    * [git status](#git-status)
+   * [git stash](#git-stash)
 
    * [git branch 分支管理](#git-branch)
    * [git checkout 操作文件 操作分支](#git-checkout)
+   * [git commit ](#git-commit) 
+   * [git merge ](#git-merge) 
+   * [git rebase ](#git-rebase) 
+   * [git reset 回退版本](#git-reset) 
+   * [git switch 专门用来切换分支、创建并切换分支](#git-switch) 
    * [git tage 标签](#git-tage) 
+
    * [git pull 远程代码合并本地分支](#git-pull)
    * [git push 本地的分支上传远程仓库](#git-push)
    * [git remote 远程仓库查询操作](#git-remote)
 
 
 ## <a id="git-config"></a> `git config`
->> git config user.name  /  git config --global user.name 查询(全局)用户名
-```
-bank@promote logger % git config user.name
+>> git config user.name  /  git config --global user.name   查询(全局)用户名
+```sh
+$ git config user.name
 齐云猛:bank
 
-bank@promote logger % git config --global user.name
+$ git config --global user.name
 齐云猛:bank
 ```
 
 >> git config user.name XXX  /  git config --global user.name XXX  设置(全局)用户名
-```
-bank@promote logger % git config user.name 齐云猛:bank
+```sh
+$ git config user.name 齐云猛:bank
 
-bank@promote logger % git config --global user.name 齐云猛:bank
+$ git config --global user.name 齐云猛:bank
 ```
 
 >> git config user.email  /  git config --global user.email  查询(全局)用户邮箱
-```
-bank@promote logger % git config user.email
+```sh
+$ git config user.email
 15861097927@163.com
 
-bank@promote logger % git config --global user.email
+$ git config --global user.email
 15861097927@163.com
 ```
 
 >> git config user.email XXX  /  git config --global user.email XXX  设置(全局)用户邮箱
-```
-bank@promote logger % git config user.email 15861097927@163.com
+```sh
+$ git config user.email 15861097927@163.com
 
-bank@promote logger % git config --global user.email 15861097927@163.com
+$ git config --global user.email 15861097927@163.com
 ```
 
->> git config --list  /  git config --list --show-origin    检查配置信息/ 检查配置信息以及所在的文件
-```
-bank@promote logger % git config --list            
+>> git config --list  /  git config --list --show-origin   检查配置信息/ 检查配置信息以及所在的文件
+```sh
+$ git config --list            
 credential.helper=osxkeychain
 user.name=齐云猛:bank
 user.email=15861097927@163.com
@@ -70,7 +77,7 @@ core.logallrefupdates=true
 ...
 
 
-bank@promote logger % git config --list --show-origin                 
+$ git config --list --show-origin                 
 file:/Applications/Xcode.app/Contents/Developer/usr/share/git-core/gitconfig    credential.helper=osxkeychain
 file:/Users/bank/.gitconfig     user.name=齐云猛:bank
 file:/Users/bank/.gitconfig     user.email=15861097927@163.com
@@ -86,120 +93,192 @@ file:.git/config        branch.master.remote=origin
 ...
 ```
 
-## <a id="git-clone"></a> `git clone`  
+## <a id="git-clone"></a> `git clone`    //TODO: -----
 
-## <a id="git-init"></a>  `git init`
 
-## <a id="git-add"></a> `git add`
+## <a id="git-init"></a>  `git init`     //TODO: -----
 
-## <a id="git-mv"></a> `git mv`
+## <a id="git-add"></a> `git add`        //TODO: -----
 
-## <a id="git-restore"></a> `git restore`
+## <a id="git-mv"></a> `git mv`          //TODO: -----
 
-## <a id="git-rm"></a> `git rm` 
+## <a id="git-restore"></a> `git restore`  //TODO: -----
 
-## <a id="git-bisect"></a> `git bisect`
+## <a id="git-rm"></a> `git rm`            //TODO: -----
 
-##  <a id="git-diff"></a> `git diff`
+## <a id="git-bisect"></a> `git bisect`    //TODO: -----
 
-## <a id="git-grep"></a> `git grep`
+##  <a id="git-diff"></a> `git diff`       //TODO: -----
 
-## <a id="git-log"></a> `git log`
+## <a id="git-grep"></a> `git grep`         //TODO: -----
 
-## <a id="git-show"></a> `git show` 
-## <a id="git-status"></a> `git status`
+## <a id="git-log"></a> `git log`           //TODO: -----
+
+## <a id="git-show"></a> `git show`         //TODO: -----
+## <a id="git-status"></a> `git status`      //TODO: -----
+
+## <a id="git-stash"></a> `git stash`      //TODO: -----
 
 ## <a id="git-branch"></a>   `git branch 分支管理`
 >>git branch  
-```
-    bank@promote logger % git branch   
+```sh
+    $ git branch   
     * master
  ```
- >>git branch -r  查看远程分支  
- ```
-    bank@promote logger % git branch -r
+ >>git branch -r    查看远程分支  
+ ```sh
+    $ git branch -r
     origin/HEAD -> origin/main
     origin/main
     origin/master
  ```
  >>git branch -a 查看所有分支  
- ```
-    bank@promote logger % git branch -a
+ ```sh
+    $ git branch -a
     * master
     remotes/origin/HEAD -> origin/main
     remotes/origin/main
     remotes/origin/master
  ```
  >>git branch test1  创建分支 test1  
- ```
-    bank@promote logger % git branch test1
+ ```sh
+    $ git branch test1
  ```
  >>git branch -d test1 删除分支test1
- ```
-    bank@promote logger % git branch -d test1
+ ```sh
+    $ git branch -d test1
     Deleted branch test1 (was 49d2236).
  ```
  >>git branch -vv 查看本地分支对应的远程分支
- ```
-    bank@promote logger % git branch -vv
+ ```sh
+    $ git branch -vv
     * master 49d2236 [origin/master] init
  ```
 
 ## <a id="git-checkout"></a> `git checkout 操作文件 操作分支`
 >> git checkout filename 放弃单个文件修改
-```
-bank@promote logger % git checkout environment/git/README.md 
+```sh
+$ git checkout environment/git/README.md 
 ```
 >> git checkout . 放弃所有文件修改
-```
-bank@promote logger % git checkout .
+```sh
+$ git checkout .
 ```
 >>git checkout master   将分支切换到master 
-```
-bank@promote logger % git checkout master
+```sh
+$ git checkout master
 ```
 >>git checkout -b master  如果分支存在则只切换分支，若不存在则创建并切换到master分支
+```sh
+$ git checkout -b master
 ```
-bank@promote logger % git checkout -b master
+
+## <a id="git-commit"></a> `git commit`   //TODO: -----
+
+## <a id="git-merge"></a> `git merge`    //TODO: -----
+
+## <a id="git-rebase"></a> `git rebase`     //TODO: -----
+
+## <a id="git-reset"></a> `git reset 回退版本`     
+> git reset git reset [--soft | --mixed | --hard] [HEAD]
+>> --mixed 为默认 用于重置暂存区的文件与上一次的提交(commit)保持一致，工作区文件内容保持不变
+```sh
+$ git reset HEAD^            # 回退所有内容到上一个版本  
+$ git reset HEAD^ hello.php  # 回退 hello.php 文件的版本到上一个版本  
+$ git reset 052e             # 回退到指定版本
+```
+>> --soft 回退到某个版本
+```sh
+git reset --soft HEAD
+```
+>> --hard  撤销工作区中所有未提交的修改内容，将暂存区与工作区都回到上一次版本，并删除之前的所有信息提交  
+`注意：谨慎使用 –hard 参数，它会删除回退点之前的所有信息。`
+```sh
+$ git reset –-hard HEAD~3           # 回退上上上一个版本  
+$ git reset –-hard bae128           # 回退到某个版本回退点之前的所有信息。 
+$ git reset --hard origin/master    # 将本地的状态回退到和远程的一样 
+```
+>> HEAD 说明
+* HEAD 表示当前版本
+* HEAD^ 上一个版本
+* HEAD^^ 上上一个版本
+* HEAD^^^ 上上上一个版本
+* 以此类推 ....  
+#### `等同于`
+* HEAD~0 表示当前版本
+* HEAD~1 上一个版本
+* HEAD^2 上上一个版本
+* HEAD^3 上上上一个版本
+* 以此类推...
+
+## <a id="git-switch"></a> `git switch 专门用来切换分支、创建并切换分支` 
+>>  git switch XXX 切换分支
+```sh
+$ git switch dev        # 切换到dev分支  若分支不存在,则报错
+$ git switch -c dev     # 创建一个新分支并切换到该新分支,  若分支存在,则提示分支存在错误
+$ git switch -          # 切换到上一个切换的分支
+```
+>> git switch --orphan <branchName> 创建一个没有任何提交记录的分支，删除所有跟踪的文件
+```sh
+$ git switch --orphan dev3
 ```
 
->git commit 
+## <a id="git-tage"></a> `git tag 标签 以示重要`       
+>> git tage -l/--list
+```sh
+$ git tag test                     # 创建test标签
 
->git merge
+$ git tag -l                       # 查看已经创建的标签
+test
 
->git rebase
+$ git tag -a v1.0 -m"1.0版本封板"   # 创建附注标签
 
->git reset
+$ git show v1.0                    # 查看 v1.0 标签
 
->git switch
+$ git push orgin v1.0              # 将本地tag v1.0上传远程仓库 
 
-## <a id="git-tage"></a> `git tag 标签`
+$ git push origin --tags           # 将本地tag上传至远程仓库
+
+```
+>> git tag -d xxx  删除tag
+```sh
+$ git tag -d test                    # 删除本地tag
+Deleted tag 'test' (was a54e0f2)
+
+$ git push origin :refs/tags/test    # 删除远程仓库的tag
+To github.com:Xiao2GouZi/logger.git
+ - [deleted]         test
+
+$ git push origin --delete v1.0      # 删除远程仓库的tag
+To github.com:Xiao2GouZi/logger.git
+ - [deleted]         v1.0
+```
 
 ## <a id="git-pull"></a> `git pull 远程代码合并本地分支`
 >> git 远程主机名 远程分支:本地分支
-```
-bank@promote logger % git pull origin master:master
+```sh
+$ git pull origin master:master
 ```
 
 ## <a id="git-push"></a> `git push   本地的分支上传远程仓库` 
 >> git push  如果本地分支只有一个远程分支,可以省略主机名
-```
-bank@promote logger % git push
+```sh
+$ git push
 ``` 
 
 >> git push 主机名 本地分支:远程分支  本地dev分支推送到主机名origin的master 分支
-```
-bank@promote logger % git push origin dev:master
+```sh
+$ git push origin dev:master
 ```
 
 >> git push --force 主机名 本地分支:远程分支   强制推送
-```
-bank@promote logger % git push --force origin dev:master
+```sh
+$ git push --force origin dev:master
 ```
 
 >> git push --delete 主机名 远程分支  删除origin主机的master分支   
-```
-bank@promote logger % git push --delete origin master
+```sh
+$ git push --delete origin master
 ```
 
 ## <a id="git-remote"></a> `git remote 远程仓库查询操作`

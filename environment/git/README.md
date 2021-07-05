@@ -19,7 +19,7 @@
 
    * [git branch 分支管理](#git-branch)
    * [git checkout 操作文件 操作分支](#git-checkout)
-   * [git commit ](#git-commit) 
+   * [git commit 命令将暂存区内容添加到本地仓库中](#git-commit) 
    * [git merge ](#git-merge) 
    * [git rebase ](#git-rebase) 
    * [git reset 回退版本](#git-reset) 
@@ -173,8 +173,14 @@ $ git checkout master
 $ git checkout -b master
 ```
 
-## <a id="git-commit"></a> `git commit`   //TODO: -----
-
+## <a id="git-commit"></a> `git commit`
+>>git commit -m ''  提交暂存区到本地仓库中
+```sh
+   git add .
+   git commit -m'init'
+   等于
+   git commit -am"init"
+```
 ## <a id="git-merge"></a> `git merge`    //TODO: -----
 
 ## <a id="git-rebase"></a> `git rebase`     //TODO: -----

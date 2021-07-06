@@ -103,10 +103,10 @@ file:.git/config        branch.master.remote=origin
 >>```sh
 >>$git status    
 >>Changes not staged for commit:
->>(use "git add <file>..." to update what will be committed)
->>(use "git restore <file>..." to discard changes in working directory)
-      >>modified:   environment/git/README.md
-      >>modified:   environment/npm/README.md
+>>  (use "git add <file>..." to update what will be committed)
+>>  (use "git restore <file>..." to discard changes in working directory)
+>>       modified:   environment/git/README.md
+>>       modified:   environment/npm/README.md
 >>
 >>no changes added to commit (use "git add" and/or "git commit -a")
 >>
@@ -117,9 +117,9 @@ file:.git/config        branch.master.remote=origin
 >>Your branch is up to date with 'origin/git'.
 >>
 >>Changes to be committed:
-  >>(use "git restore --staged <file>..." to unstage)
-        >>modified:   environment/git/README.md
-        >>modified:   environment/npm/README.md
+>>  (use "git restore --staged <file>..." to unstage)
+>>       modified:   environment/git/README.md
+>>       modified:   environment/npm/README.md
 >>```
 
 > git add [dir] 添加指定目录到暂存区
@@ -140,7 +140,7 @@ file:.git/config        branch.master.remote=origin
 >>Changes to be committed:
 >>  (use "git restore --staged <file>..." to unstage)
 >>       modified:   environment/git/README.md
->>   new file:   environment/git/test.md
+>>       new file:   environment/git/test.md
 >>```
 
 

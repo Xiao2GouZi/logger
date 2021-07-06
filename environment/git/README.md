@@ -10,7 +10,7 @@
    * [git rm](#git-rm)
    * [git bisect](#git-bisect)
 
-   * [git diff](#git-diff)
+   * [git diff 比较文件在暂存区和工作区的差异](#git-diff)
    * [git grep](#git-grep)
    * [git log](#git-log)
    * [git show](#git-show)
@@ -151,11 +151,101 @@
 
 ## <a id="git-bisect"></a> `git bisect`    //TODO: -----
 
-##  <a id="git-diff"></a> `git diff`       //TODO: -----
+##  <a id="git-diff"></a> `git diff 比较文件在暂存区和工作区的差异`
+> `git diff [file]` 显示暂存区和工作区的差异
+>```sh
+>$git diff environment/git/README.md
+>diff --git a/environment/git/README.md b/environment/git/README.md
+>index b825dc2..4632413 100644
+>--- a/environment/git/README.md
+>+++ b/environment/git/README.md
+>@@ -10,7 +10,7 @@
+> 
+>-   * [git diff](#git-diff)
+>+   * [git diff 比较文件在暂存区和工作区的差异](#git-diff)
+>...
+>```
+
+>`git diff --cached [file] / git diff --staged [file]` 显示暂存区和上一次提交(commit)的差异
+>```sh
+>$git diff --cached environment/git/README.md
+>diff --git a/environment/git/README.md b/environment/git/README.md
+>index b825dc2..06fb607 100644
+>--- a/environment/git/README.md
+>+++ b/environment/git/README.md
+>@@ -10,7 +10,7 @@
+>    * [git rm](#git-rm)
+>    * [git bisect](#git-bisect)
+> 
+>-   * [git diff](#git-diff)
+>+   * [git diff 比较文件在暂存区和工作区的差异](#git-diff)
+>    * [git grep](#git-grep)
+>    * [git log](#git-log)
+>    * [git show](#git-show)
+>```
+
+> `git diff HEAD` 显示工作目录(已track但未add文件)和暂存区(已add但未commit文件)与最后一次commit之间的的所有不相同文件的增删改
+>```sh
+>$git diff aa8fe367ca428e3de5116e325b0dd70b8c03ad39
+>等同于
+>$git diff HEAD ...
+>
+>diff --git a/environment/git/README.md b/environment/git/README.md
+>index b825dc2..06fb607 100644
+>--- a/environment/git/README.md
+>+++ b/environment/git/README.md
+>@@ -10,7 +10,7 @@
+>    * [git rm](#git-rm)
+>    * [git bisect](#git-bisect)
+> 
+>-   * [git diff](#git-diff)
+>+   * [git diff 比较文件在暂存区和工作区的差异](#git-diff)
+>    * [git grep](#git-grep)
+>    * [git log](#git-log)
+>    * [git show](#git-show)
+>@@ -151,7 +151,34 @@
+>```
+
+>`git diff [first-branch]...[second-branch]` 显示两次提交之间的差异
+>```sh
+>$git log --pretty=oneline --abbrev-commit
+>aa8fe36 (HEAD -> git, origin/git) git init
+>19f21e8 git init
+>
+>$git diff aa8fe36 19f21e8
+>diff --git a/environment/git/README.md b/environment/git/README.md
+>index b825dc2..2e7d08b 100644
+>--- a/environment/git/README.md
+>+++ b/environment/git/README.md
+>@@ -14,7 +14,7 @@
+>    * [git grep](#git-grep)
+>    * [git log](#git-log)
+>    * [git show](#git-show)
+>-   * [git status 查看上次提交之后是否有对文件进行再次修改](#git-status)
+>+   * [git status](#git-status)
+>    * [git stash](#git-stash)
+> 
+>    * [git branch 分支管理](#git-branch)
+>@@ -32,65 +32,66 @@
+>...
+>```
 
 ## <a id="git-grep"></a> `git grep`         //TODO: -----
 
 ## <a id="git-log"></a> `git log`           //TODO: -----
+> `git log --pretty=oneline --abbrev-commit` 当前分支的提交记录
+>```sh
+>$git log --pretty=oneline --abbrev-commit
+>aa8fe36 (HEAD -> git, origin/git) git init
+>19f21e8 git init
+>2f6ddf8 git init
+>d81c1e5 git init
+>90ccafe git init
+>f6447aa git init
+>7355a58 git init
+>7cd4503 git init
+>...
+>```
 
 ## <a id="git-show"></a> `git show`         //TODO: -----
 ## <a id="git-status"></a> `git status 查看上次提交之后是否有对文件进行再次修改`  

@@ -34,39 +34,39 @@
 ## <a id="git-config"></a> `git config`
 >> git config user.name  /  git config --global user.name   查询(全局)用户名
 ```sh
-$ git config user.name
+$git config user.name
 齐云猛:bank
 
-$ git config --global user.name
+$git config --global user.name
 齐云猛:bank
 ```
 
 >> git config user.name XXX  /  git config --global user.name XXX  设置(全局)用户名
 ```sh
-$ git config user.name 齐云猛:bank
+$git config user.name 齐云猛:bank
 
-$ git config --global user.name 齐云猛:bank
+$git config --global user.name 齐云猛:bank
 ```
 
 >> git config user.email  /  git config --global user.email  查询(全局)用户邮箱
 ```sh
-$ git config user.email
+$git config user.email
 15861097927@163.com
 
-$ git config --global user.email
+$git config --global user.email
 15861097927@163.com
 ```
 
 >> git config user.email XXX  /  git config --global user.email XXX  设置(全局)用户邮箱
 ```sh
-$ git config user.email 15861097927@163.com
+$git config user.email 15861097927@163.com
 
-$ git config --global user.email 15861097927@163.com
+$git config --global user.email 15861097927@163.com
 ```
 
 >> git config --list  /  git config --list --show-origin   检查配置信息/ 检查配置信息以及所在的文件
 ```sh
-$ git config --list            
+$git config --list            
 credential.helper=osxkeychain
 user.name=齐云猛:bank
 user.email=15861097927@163.com
@@ -77,7 +77,7 @@ core.logallrefupdates=true
 ...
 
 
-$ git config --list --show-origin                 
+$git config --list --show-origin                 
 file:/Applications/Xcode.app/Contents/Developer/usr/share/git-core/gitconfig    credential.helper=osxkeychain
 file:/Users/bank/.gitconfig     user.name=齐云猛:bank
 file:/Users/bank/.gitconfig     user.email=15861097927@163.com
@@ -99,15 +99,51 @@ file:.git/config        branch.master.remote=origin
 ## <a id="git-init"></a>  `git init`     //TODO: -----
 
 ## <a id="git-add"></a> `git add`        
->> git add [file1] [file2]
-```sh
-   git add 
+> git add [file1] [file2]  添加一个或多个文件到暂存区
+>>```sh
+>>$git status    
+>>Changes not staged for commit:
+>>(use "git add <file>..." to update what will be committed)
+>>(use "git restore <file>..." to discard changes in working directory)
+      >>`modified:   environment/git/README.md`
+      >>`modified:   environment/npm/README.md`
+>>
+>>no changes added to commit (use "git add" and/or "git commit -a")
+>>
+>>$git add environment/git/README.md environment/npm/README.md
+>>
+>>$git status                                                 
+>>On branch git
+>>Your branch is up to date with 'origin/git'.
+>>
+>>Changes to be committed:
+  >>(use "git restore --staged <file>..." to unstage)
+        >>modified:   environment/git/README.md
+        >>modified:   environment/npm/README.md
+>>```
 
+> git add [dir] 添加指定目录到暂存区
+>>```sh
+>>$git status
+>>Changes not staged for commit:
+  >>(use "git add <file>..." to update what will be committed)
+  >>(use "git restore <file>..." to discard changes in working >>directory)
+        >>modified:   environment/git/README.md
+>>
+>>Untracked files:
+  >>(use "git add <file>..." to include in what will be committed)
+        >>`environment/git/test.md`
+>>
+>>$git add environment/git
+>>$git status             
+>>
+>>Changes to be committed:
+  >>(use "git restore --staged <file>..." to unstage)
+        >>`modified:   environment/git/README.md`
+        >>`new file:   environment/git/test.md`
+>>
+>>```
 
-   git add 
-
-
-```
 
 ## <a id="git-mv"></a> `git mv`          //TODO: -----
 
@@ -131,19 +167,19 @@ file:.git/config        branch.master.remote=origin
 ## <a id="git-branch"></a>   `git branch 分支管理`
 >>git branch  
 ```sh
-    $ git branch   
+    $git branch   
     * master
  ```
  >>git branch -r    查看远程分支  
  ```sh
-    $ git branch -r
+    $git branch -r
     origin/HEAD -> origin/main
     origin/main
     origin/master
  ```
  >>git branch -a 查看所有分支  
  ```sh
-    $ git branch -a
+    $git branch -a
     * master
     remotes/origin/HEAD -> origin/main
     remotes/origin/main
@@ -151,36 +187,36 @@ file:.git/config        branch.master.remote=origin
  ```
  >>git branch test1  创建分支 test1  
  ```sh
-    $ git branch test1
+    $git branch test1
  ```
  >>git branch -d test1 删除分支test1
  ```sh
-    $ git branch -d test1
+    $git branch -d test1
     Deleted branch test1 (was 49d2236).
  ```
  >>git branch -vv 查看本地分支对应的远程分支
  ```sh
-    $ git branch -vv
+    $git branch -vv
     * master 49d2236 [origin/master] init
  ```
 
 ## <a id="git-checkout"></a> `git checkout 操作文件 操作分支`
 >> git checkout filename 放弃单个文件修改
 ```sh
-$ git checkout environment/git/README.md 
+$git checkout environment/git/README.md 
 ```
 >> git checkout . 放弃所有文件修改
 ```sh
-$ git checkout .
+$git checkout .
 ```
 >>git checkout master   将分支切换到master 
 ```sh
-$ git checkout master
+$git checkout master
 ```
 >>git checkout -b dev  如果分支存在则只切换分支，若不存在则创建并切换到dev分支
 ```sh
-$ git checkout -b dev
-$ git push --set-upstream origin dev  推送到远程分支
+$git checkout -b dev
+$git push --set-upstream origin dev  推送到远程分支
 ```
 
 ## <a id="git-commit"></a> `git commit`
@@ -199,9 +235,9 @@ $ git push --set-upstream origin dev  推送到远程分支
 > git reset git reset [--soft | --mixed | --hard] [HEAD]
 >> --mixed 为默认 用于重置暂存区的文件与上一次的提交(commit)保持一致，工作区文件内容保持不变
 ```sh
-$ git reset HEAD^            # 回退所有内容到上一个版本  
-$ git reset HEAD^ hello.php  # 回退 hello.php 文件的版本到上一个版本  
-$ git reset 052e             # 回退到指定版本
+$git reset HEAD^            # 回退所有内容到上一个版本  
+$git reset HEAD^ hello.php  # 回退 hello.php 文件的版本到上一个版本  
+$git reset 052e             # 回退到指定版本
 ```
 >> --soft 回退到某个版本
 ```sh
@@ -210,9 +246,9 @@ git reset --soft HEAD
 >> --hard  撤销工作区中所有未提交的修改内容，将暂存区与工作区都回到上一次版本，并删除之前的所有信息提交  
 `注意：谨慎使用 –hard 参数，它会删除回退点之前的所有信息。`
 ```sh
-$ git reset –-hard HEAD~3           # 回退上上上一个版本  
-$ git reset –-hard bae128           # 回退到某个版本回退点之前的所有信息。 
-$ git reset --hard origin/master    # 将本地的状态回退到和远程的一样 
+$git reset –-hard HEAD~3           # 回退上上上一个版本  
+$git reset –-hard bae128           # 回退到某个版本回退点之前的所有信息。 
+$git reset --hard origin/master    # 将本地的状态回退到和远程的一样 
 ```
 >> HEAD 说明
 * HEAD 表示当前版本
@@ -230,42 +266,42 @@ $ git reset --hard origin/master    # 将本地的状态回退到和远程的一
 ## <a id="git-switch"></a> `git switch 专门用来切换分支、创建并切换分支` 
 >>  git switch XXX 切换分支
 ```sh
-$ git switch dev        # 切换到dev分支  若分支不存在,则报错
-$ git switch -c dev     # 创建一个新分支并切换到该新分支,  若分支存在,则提示分支存在错误
-$ git switch -          # 切换到上一个切换的分支
+$git switch dev        # 切换到dev分支  若分支不存在,则报错
+$git switch -c dev     # 创建一个新分支并切换到该新分支,  若分支存在,则提示分支存在错误
+$git switch -          # 切换到上一个切换的分支
 ```
 >> git switch --orphan <branchName> 创建一个没有任何提交记录的分支，删除所有跟踪的文件
 ```sh
-$ git switch --orphan dev3
+$git switch --orphan dev3
 ```
 
 ## <a id="git-tage"></a> `git tag 标签 以示重要`       
 >> git tage -l/--list
 ```sh
-$ git tag test                     # 创建test标签
+$git tag test                     # 创建test标签
 
-$ git tag -l                       # 查看已经创建的标签
+$git tag -l                       # 查看已经创建的标签
 test
 
-$ git tag -a v1.0 -m"1.0版本封板"   # 创建附注标签
+$git tag -a v1.0 -m"1.0版本封板"   # 创建附注标签
 
-$ git show v1.0                    # 查看 v1.0 标签
+$git show v1.0                    # 查看 v1.0 标签
 
-$ git push orgin v1.0              # 将本地tag v1.0上传远程仓库 
+$git push orgin v1.0              # 将本地tag v1.0上传远程仓库 
 
-$ git push origin --tags           # 将本地tag上传至远程仓库
+$git push origin --tags           # 将本地tag上传至远程仓库
 
 ```
 >> git tag -d xxx  删除tag
 ```sh
-$ git tag -d test                    # 删除本地tag
+$git tag -d test                    # 删除本地tag
 Deleted tag 'test' (was a54e0f2)
 
-$ git push origin :refs/tags/test    # 删除远程仓库的tag
+$git push origin :refs/tags/test    # 删除远程仓库的tag
 To github.com:Xiao2GouZi/logger.git
  - [deleted]         test
 
-$ git push origin --delete v1.0      # 删除远程仓库的tag
+$git push origin --delete v1.0      # 删除远程仓库的tag
 To github.com:Xiao2GouZi/logger.git
  - [deleted]         v1.0
 ```
@@ -273,60 +309,60 @@ To github.com:Xiao2GouZi/logger.git
 ## <a id="git-pull"></a> `git pull 远程代码合并本地分支`
 >> git 远程主机名 远程分支:本地分支
 ```sh
-$ git pull origin master:master
+$git pull origin master:master
 ```
 
 ## <a id="git-push"></a> `git push   本地的分支上传远程仓库` 
 >> git push  如果本地分支只有一个远程分支,可以省略主机名
 ```sh
-$ git push
+$git push
 ``` 
 
 >> git push 主机名 本地分支:远程分支  本地dev分支推送到主机名origin的master 分支
 ```sh
-$ git push origin dev:master
+$git push origin dev:master
 ```
 
 >> git push --force 主机名 本地分支:远程分支   强制推送
 ```sh
-$ git push --force origin dev:master
+$git push --force origin dev:master
 ```
 
 >> git push --delete 主机名 远程分支  删除origin主机的master分支   
 ```sh
-$ git push --delete origin master
+$git push --delete origin master
 ```
 
 ## <a id="git-remote"></a> `git remote 远程仓库查询操作`
 >>git remote -v    查看远程仓库地址
 ```sh
-$ git remote -v 
+$git remote -v 
 origin  git@github.com:Xiao2GouZi/logger.git (fetch)
 origin  git@github.com:Xiao2GouZi/logger.git (push)
 ```
 
 >> git remote show [remote]   显示某个远程仓库的信息
 ```sh
-$ git remote show git@github.com:Xiao2GouZi/logger.git
+$git remote show git@github.com:Xiao2GouZi/logger.git
 ```
 
 >>git remote add [shortname] [url]   添加远程版本库  shortname 为本地的版本库
 ```sh
-$ git remote add origin XXXX
-$ git push -u origin master
+$git remote add origin XXXX
+$git push -u origin master
 ```
 
 >>git remote rm name  删除远程仓库  
 ```sh
-$ git remote remove XXXXX
-$ git remote
+$git remote remove XXXXX
+$git remote
 origin
 ```
 
 >>git remote rename old_name new_name  修改仓库名
 ```sh
-$ git remote rename pb paul
-$ git remote
+$git remote rename pb paul
+$git remote
 origin
 paul
 ```

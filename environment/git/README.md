@@ -126,22 +126,21 @@ file:.git/config        branch.master.remote=origin
 >>```sh
 >>$git status
 >>Changes not staged for commit:
-  >>(use "git add <file>..." to update what will be committed)
-  >>(use "git restore <file>..." to discard changes in working >>directory)
-        >>modified:   environment/git/README.md
+>>  (use "git add <file>..." to update what will be committed)
+>>  (use "git restore <file>..." to discard changes in working directory)
+>>       modified:   environment/git/README.md
 >>
 >>Untracked files:
-  >>(use "git add <file>..." to include in what will be committed)
-        >>`environment/git/test.md`
+>>  (use "git add <file>..." to include in what will be committed)
+>>       environment/git/test.md
 >>
 >>$git add environment/git
 >>$git status             
 >>
 >>Changes to be committed:
-  >>(use "git restore --staged <file>..." to unstage)
-        >>`modified:   environment/git/README.md`
-        >>`new file:   environment/git/test.md`
->>
+>>  (use "git restore --staged <file>..." to unstage)
+>>       modified:   environment/git/README.md
+>>   new file:   environment/git/test.md
 >>```
 
 

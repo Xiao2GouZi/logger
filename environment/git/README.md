@@ -99,7 +99,7 @@ file:.git/config        branch.master.remote=origin
 ## <a id="git-init"></a>  `git init`     //TODO: -----
 
 ## <a id="git-add"></a> `git add`        
-> git add [file1] [file2]  添加一个或多个文件到暂存区
+> `git add [file1] [file2] / git add .` 添加一个或多个文件到暂存区
 >>```sh
 >>$git status    
 >>Changes not staged for commit:
@@ -111,7 +111,8 @@ file:.git/config        branch.master.remote=origin
 >>no changes added to commit (use "git add" and/or "git commit -a")
 >>
 >>$git add environment/git/README.md environment/npm/README.md
->>
+>>等同于
+>>$git add .
 >>$git status                                                 
 >>On branch git
 >>Your branch is up to date with 'origin/git'.
@@ -122,7 +123,7 @@ file:.git/config        branch.master.remote=origin
 >>       modified:   environment/npm/README.md
 >>```
 
-> git add [dir] 添加指定目录到暂存区
+> `git add [dir]` 添加指定目录到暂存区
 >>```sh
 >>$git status
 >>Changes not staged for commit:

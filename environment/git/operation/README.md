@@ -15,7 +15,7 @@
    * [git log](#git-log)
    * [git show](#git-show)
    * [git status 查看上次提交之后是否有对文件进行再次修改](#git-status)
-   * [git stash](#git-stash)
+   * [git stash 将更改保存在一个工作目录中](#git-stash)
 
    * [git branch 分支管理](#git-branch)
    * [git checkout 操作文件 操作分支](#git-checkout)
@@ -266,7 +266,99 @@
 > M environment/git/README.md
 >```
 
-## <a id="git-stash"></a> `git stash`      //TODO: -----
+## <a id="git-stash"></a> `git stash 将更改保存在一个工作目录中` 
+>`git stash save 'message' `保存，save为可选项，message为本次保存的注释
+>```sh
+>$git stash save "git init"
+>Saved working directory and index state On git: git init
+>$git stash list           
+>stash@{0}: On git: git init
+>stash@{1}: On git: save message
+>stash@{2}: On main: init
+>```
+
+> `git stash list` 查看stash列表
+>```sh
+>$git stash list               
+>stash@{0}: On git: save message
+>stash@{1}: On main: init
+>```
+
+> `git stash show stash@{num}` 显示做了哪些改动
+>```sh
+>$git stash list     
+>stash@{0}: On git: git init
+>stash@{1}: On git: save message
+>stash@{2}: On main: init
+>$git stash show stash@{1}
+>  environment/git/operation/README.md | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+>```
+
+>`git stash show stash@{num} -p` 显示存储的改动
+>```sh
+>$git stash list
+>stash@{0}: On git: git init
+>stash@{1}: On git: save message
+>stash@{2}: On main: init
+>$git stash show stash@{0}                  
+>  environment/git/operation/README.md | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
+>$git stash show stash@{0} -p
+>diff --git a/environment/git/operation/README.md b/environment/git/>operation/README.md
+>index f4088e9..5c563c1 100644
+>--- a/environment/git/operation/README.md
+>+++ b/environment/git/operation/README.md
+>@@ -15,7 +15,7 @@
+>    * [git log](#git-log)
+>    * [git show](#git-show)
+>    * [git status 查看上次提交之后是否有对文件进行再次修改](#git-status)
+>-  * [git stash](#git-stash)
+>+  * [git stash 将更改保存在一个工作目录中](#git-stash)
+> 
+>    * [git branch 分支管理](#git-branch)
+>    * [git checkout 操作文件 操作分支](#git-checkout)
+>@@ -266,7 +266,15 @@
+>```
+
+>`git stash apply stash@{num}` 应用某个存储,但不会把存储从存储列表中删除
+>```sh
+>$git stash list
+>stash@{0}: On git: git init2
+>stash@{1}: On git: git init2
+>stash@{2}: On git: git init
+>stash@{3}: On git: save message
+>stash@{4}: On main: init
+>$git stash apply
+>On branch git
+>Your branch is up to date with 'origin/git'.
+>
+>Changes not staged for commit:
+>  (use "git add <file>..." to update what will be committed)
+>  (use "git restore <file>..." to discard changes in working >directory)
+>        "modified:   environment/git/issue/README.md"
+>
+>Untracked files:
+>  (use "git add <file>..." to include in what will be >committed)
+>        "assets/enviroment/git/.DS_Store"
+>
+>no changes added to commit (use "git add" and/or "git commit >-a")
+>```
+
+>`git stash pop stash@{$num}`命令恢复之前缓存的工作目录，将缓存堆栈中的对应stash删除，并将对应修改应用到当前的工作目录下
+```sh
+
+```
+
+>`git stash drop stash@{$num}` 丢弃stash@{$num}存储，从列表中删除这个存储
+```sh
+
+```
+
+>`git stash clear` 删除所有缓存的stash
+```sh
+
+```
 
 ## <a id="git-branch"></a>   `git branch 分支管理`
 > `git branch `

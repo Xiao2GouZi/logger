@@ -345,9 +345,20 @@
 >no changes added to commit (use "git add" and/or "git commit >-a")
 >```
 
->`git stash pop stash@{$num}`命令恢复之前缓存的工作目录，将缓存堆栈中的对应stash删除，并将对应修改应用到当前的工作目录下
+>`git stash pop stash@{$num}` 恢复之前缓存的工作目录，将缓存堆栈中的对应stash删除，并将对应修改应用到当前的工作目录下
 ```sh
+$git stash list           
+stash@{0}: On git: git init2
+stash@{1}: On git: git init2
+stash@{2}: On git: git init
+stash@{3}: On git: save message
+stash@{4}: On main: init
 
+$git stash list              
+stash@{0}: On git: git init2
+stash@{1}: On git: git init
+stash@{2}: On git: save message
+stash@{3}: On main: init
 ```
 
 >`git stash drop stash@{$num}` 丢弃stash@{$num}存储，从列表中删除这个存储

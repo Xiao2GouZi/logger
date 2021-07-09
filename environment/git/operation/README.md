@@ -2,12 +2,12 @@
 
 # 目录
    * [git config 设置属性](#git-config)
-   * [git clone](#git-clone)
-   * [git init](#git-init)
+   * [git clone 拷贝一份远程仓库](#git-clone)
+   * [git init 初始化仓库](#git-init)
    * [git add 添加文件到仓库](#git-add)
-   * [git mv](#git-mv)
+   * [git mv 移动或重命名工作区文件](#git-mv)
    * [git restore](#git-restore)
-   * [git rm](#git-rm)
+   * [git rm 删除工作区文件](#git-rm)
    * [git bisect](#git-bisect)
 
    * [git diff 比较文件在暂存区和工作区的差异](#git-diff)
@@ -92,10 +92,29 @@
 >...
 >```
 
-## <a id="git-clone"></a> `git clone`    //TODO: -----
+## <a id="git-clone"></a> `git clone 拷贝一份远程仓库` 
+> `git clone [url]` 
+>```sh
+>$git clone git@github.com:Xiao2GouZi/logger.git
+>Cloning into 'logger'...
+>remote: Enumerating objects: 166, done.
+>remote: Counting objects: 100% (166/166), done.
+>remote: Compressing objects: 100% (104/104), done.
+>remote: Total 166 (delta 50), reused 146 (delta 33), pack-reused 0
+>Receiving objects: 100% (166/166), 161.00 KiB | 197.00 KiB/s, done.
+>Resolving deltas: 100% (50/50), done.
+>```
 
+## <a id="git-init"></a>  `git init 初始化仓库` 
+>`git init` 在目录中创建新的 Git 仓库
+```sh
+$git init
+Initialized empty Git repository in /XXX/git-init-test/.git/
 
-## <a id="git-init"></a>  `git init`     //TODO: -----
+$ls -a
+.	..	.git
+
+```
 
 ## <a id="git-add"></a> `git add`        
 > `git add [file1] [file2] / git add .` 添加一个或多个文件到暂存区
@@ -143,11 +162,13 @@
 >       new file:   environment/git/test.md
 >```
 
-## <a id="git-mv"></a> `git mv`          //TODO: -----
+## <a id="git-mv"></a> `git mv 移动或重命名工作区文件`          //TODO: -----
 
 ## <a id="git-restore"></a> `git restore`  //TODO: -----
 
-## <a id="git-rm"></a> `git rm`            //TODO: -----
+## <a id="git-rm"></a> `git rm 删除工作区文件`
+>`git rm <file>` 将文件从暂存区和工作区中删除
+
 
 ## <a id="git-bisect"></a> `git bisect`    //TODO: -----
 
@@ -346,30 +367,77 @@
 >```
 
 >`git stash pop stash@{$num}` 恢复之前缓存的工作目录，将缓存堆栈中的对应stash删除，并将对应修改应用到当前的工作目录下
-```sh
-$git stash list           
-stash@{0}: On git: git init2
-stash@{1}: On git: git init2
-stash@{2}: On git: git init
-stash@{3}: On git: save message
-stash@{4}: On main: init
+>```sh
+>$git stash save "test stash pop"
+>Saved working directory and index state On git: test stash pop
+>
+>$git stash list                 
+>stash@{0}: On git: test stash pop
+>stash@{1}: On git: git init2
+>...
+>
+>$git stash show  stash@{0} -p   
+>diff --git a/environment/git/issue/README.md b/environment/git/issue/README.md
+>index 63b8267..b53dc3c 100644
+>--- a/environment/git/issue/README.md
+>+++ b/environment/git/issue/README.md
+>
+>@ -6,4 +6,6 @@ error: Your local changes to the following files would be overwritten >by merge:
+>         environment/git/operation/README.md
+> Please commit your changes or stash them before you merge.
+> Aborting
+>-```
+>\ No newline at end of file
+>+```
+>+
+>+test git stash pop 
+>\ No newline at end of file
+>
+>$git stash pop stash@{0}        
+>On branch git
+>Your branch is up to date with 'origin/git'.
+>
+>Changes not staged for commit:
+>  (use "git add <file>..." to update what will be committed)
+>  (use "git restore <file>..." to discard changes in working directory)
+>        "modified:   environment/git/issue/README.md"
+>
+>no changes added to commit (use "git add" and/or "git commit -a")
+>Dropped stash@{0} (9ce85eb67c5614fd2b963aa7ef26605c900058fb)
+>
+> 代码: "test git stash pop" 将会添加到 "environment/git/issue/README.md" 文件中, 并且会删除 "stash@{0}: On git: test stash pop"
+>```
 
-$git stash list              
+>`git stash drop stash@{$num}` 丢弃stash@{$num}存储，从列表中删除这个存储
+```sh
+$git stash list
 stash@{0}: On git: git init2
 stash@{1}: On git: git init
 stash@{2}: On git: save message
 stash@{3}: On main: init
-```
 
->`git stash drop stash@{$num}` 丢弃stash@{$num}存储，从列表中删除这个存储
-```sh
+$git stash drop stash@{0}
+Dropped stash@{0} (f48b2c14c41124abc393c28c25d5660c0f75e47b)
+
+$git stash list          
+stash@{0}: On git: git init
+stash@{1}: On git: save message
+stash@{2}: On main: init
 
 ```
 
 >`git stash clear` 删除所有缓存的stash
-```sh
-
-```
+>```sh
+>$git stash list
+>stash@{0}: On git: git init
+>stash@{1}: On git: save message
+>stash@{2}: On main: init
+>
+>$git stash clear
+>
+>$git stash list 
+>
+>```
 
 ## <a id="git-branch"></a>   `git branch 分支管理`
 > `git branch `

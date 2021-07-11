@@ -164,6 +164,18 @@ $ls -a
 
 ## <a id="git-mv"></a> `git mv 移动或重命名工作区文件`
 >`git mv [file] [newfile]`
+>```sh
+>$git mv operation/test.js operation/test2.js
+>$git status                                 
+>On branch git
+>Your branch is ahead of 'origin/git' by 2 commits.
+>  (use "git push" to publish your local commits)
+>
+>Changes to be committed:
+>  (use "git restore --staged <file>..." to unstage)
+>        "renamed:    operation/test.js -> operation/test2.js"
+>
+>```
 
 ## <a id="git-restore"></a> `git restore`  //TODO: -----
 

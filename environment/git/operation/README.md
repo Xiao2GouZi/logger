@@ -162,12 +162,38 @@ $ls -a
 >       new file:   environment/git/test.md
 >```
 
-## <a id="git-mv"></a> `git mv 移动或重命名工作区文件`          //TODO: -----
+## <a id="git-mv"></a> `git mv 移动或重命名工作区文件`
+>`git mv [file] [newfile]`
 
 ## <a id="git-restore"></a> `git restore`  //TODO: -----
 
 ## <a id="git-rm"></a> `git rm 删除工作区文件`
->`git rm <file>` 将文件从暂存区和工作区中删除
+>`git rm <file> -f/-cached` 将文件从暂存区和工作区中删除 -f
+>> `-f` 如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项 
+>> `-cached` 如果想把文件从暂存区域移除，但仍然希望保留在当前工作目录中
+>```sh
+>$git status
+>On branch git
+>Your branch is ahead of 'origin/git' by 1 commit.
+>  (use "git push" to publish your local commits)
+>
+>Changes to be committed:
+>  (use "git restore --staged <file>..." to unstage)
+>        "new file:   operation/test.js"
+>
+>$git rm -f operation/test.js
+>rm 'environment/git/operation/test.js'
+>
+>$git status
+>On branch git
+>Your branch is ahead of 'origin/git' by 1 commit.
+>  (use "git push" to publish your local commits)
+>
+>Changes to be committed:
+>  (use "git restore --staged <file>..." to unstage)
+>        "modified:   README.md"
+>```
+
 
 
 ## <a id="git-bisect"></a> `git bisect`    //TODO: -----

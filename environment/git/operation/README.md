@@ -35,17 +35,17 @@
 > `git config user.name  /  git config --global user.name`   查询(全局)用户名
 >```sh
 >$git config user.name
->齐云猛:bank
+>XXX:XXX
 >
 >$git config --global user.name
->齐云猛:bank
+>XXX:XXX
 >```
 
 > `git config user.name XXX  /  git config --global user.name XXX`  设置(全局)用户名
 >```sh
->$git config user.name 齐云猛:bank
+>$git config user.name XX:bank
 >
->$git config --global user.name 齐云猛:bank
+>$git config --global user.name XXX:bank
 >```
 
 > `git config user.email  /  git config --global user.email`  查询(全局)用户邮箱
@@ -68,7 +68,7 @@
 >```sh
 >$git config --list            
 >credential.helper=osxkeychain
->user.name=齐云猛:bank
+>user.name=XXX:XXX
 >user.email=15861097927@163.com
 >core.repositoryformatversion=0
 >core.filemode=true
@@ -78,7 +78,7 @@
 >
 >$git config --list --show-origin                 
 >file:/Applications/Xcode.app/Contents/Developer/usr/share/git-core/>gitconfig    credential.helper=osxkeychain
->file:/Users/bank/.gitconfig     user.name=齐云猛:bank
+>file:/Users/bank/.gitconfig     user.name=XXX:XXX
 >file:/Users/bank/.gitconfig     user.email=15861097927@163.com
 >file:.git/config        core.repositoryformatversion=0
 >file:.git/config        core.filemode=true

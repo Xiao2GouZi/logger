@@ -1,5 +1,3 @@
-
-
 # 目录
    * [git config 设置属性](#git-config)
    * [git clone 拷贝一份远程仓库](#git-clone)
@@ -11,7 +9,7 @@
    * [git bisect 使用二分查找查找引入bug的提交](#git-bisect)
 
    * [git diff 比较文件在暂存区和工作区的差异](#git-diff)
-   * [git grep](#git-grep)
+   * [git grep 从提交历史、工作目录、甚至索引中查找一个字符串或者正则表达式](#git-grep)
    * [git log 查看历史提交记录](#git-log)
    * [git show 显示各种类型的对象](#git-show)
    * [git status 查看上次提交之后是否有对文件进行再次修改](#git-status)
@@ -352,7 +350,32 @@ $ls -a
 >...
 >```
 
-## <a id="git-grep"></a> `git grep`         //TODO: -----
+## <a id="git-grep"></a> `git grep 从提交历史、工作目录、甚至索引中查找一个字符串或者正则表达式`         
+>`git grep`
+>```sh
+>$git grep git-config 
+>environment/git/operation/README.md:   * [git config 设置属性](#git-config)
+>environment/git/operation/README.md:## <a id="git-config"></a> `git config`
+>```
+>>`-n \ --line-number` 输出 Git 找到的匹配行的行号
+>>```sh
+>>$git grep -n git-config
+>>environment/git/operation/README.md:4:   * [git config 设置属性](#git-config)
+>>environment/git/operation/README.md:34:## <a id="git-config"></a> `git config`
+>>```
+>>`-c \ --count` 输出概述的信息,包括那些包含匹配字符串的文件,以及每个文件中包含了多少个匹配
+>>```sh
+>>$git grep --count git-config
+>>environment/git/operation/README.md:2
+>>```
+>>` -p \ --show-function` 显示每一个匹配的字符串所在的方法或函数
+>>```sh
+>>$git grep --p git-config
+>>environment/git/operation/README.md:   * [git config 设置属性](#git-config)
+>>environment/git/operation/README.md:## <a id="git-config"></a> `git config`
+>>```
+
+
 
 ## <a id="git-log"></a> `git log 查看历史提交记录`
 >`git log`

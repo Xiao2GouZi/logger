@@ -6,14 +6,14 @@
    * [git init 初始化仓库](#git-init)
    * [git add 添加文件到仓库](#git-add)
    * [git mv 移动或重命名工作区文件](#git-mv)
-   * [git restore](#git-restore)
+   * [git restore 撤销/把文件从缓存区撤销](#git-restore)
    * [git rm 删除工作区文件](#git-rm)
-   * [git bisect](#git-bisect)
+   * [git bisect 使用二分查找查找引入bug的提交](#git-bisect)
 
    * [git diff 比较文件在暂存区和工作区的差异](#git-diff)
    * [git grep](#git-grep)
-   * [git log](#git-log)
-   * [git show](#git-show)
+   * [git log 查看历史提交记录](#git-log)
+   * [git show 显示各种类型的对象](#git-show)
    * [git status 查看上次提交之后是否有对文件进行再次修改](#git-status)
    * [git stash 将更改保存在一个工作目录中](#git-stash)
 
@@ -177,7 +177,69 @@ $ls -a
 >
 >```
 
-## <a id="git-restore"></a> `git restore`  //TODO: -----
+## <a id="git-restore"></a> `git restore 撤销/把文件从缓存区撤销`  
+`注意git restore命令在工作区是不会其作用的`
+>`git restore <file>` 会撤销文件的修改，使文件恢复到暂存区或本地代码库（取决于文件在修改前的状态）
+>```sh
+>$git status
+>On branch git
+>Your branch is ahead of 'origin/git' by 5 commits.
+>  (use "git push" to publish your local commits)
+>
+>Changes not staged for commit:
+>  (use "git add <file>..." to update what will be committed)
+>  (use "git restore <file>..." to discard changes in working directory)
+>        "modified:   operation/README.md"
+>        "modified:   operation/test.js"
+>
+>no changes added to commit (use "git add" and/or "git commit -a")
+>
+>$git restore operation/test.js
+>
+>$git status                   
+>On branch git
+>Your branch is ahead of 'origin/git' by 5 commits.
+>  (use "git push" to publish your local commits)
+>
+>Changes not staged for commit:
+>  (use "git add <file>..." to update what will be committed)
+>  (use "git restore <file>..." to discard changes in working directory)
+>        "modified:   operation/README.md"
+>
+>no changes added to commit (use "git add" and/or "git commit -a")
+>```
+
+>`git restore --staged <file>` 把文件从暂存区撤回到工作区，保留文件最后一次修改的内容
+>```sh
+>$git status
+>On branch git
+>Your branch is ahead of 'origin/git' by 5 commits.
+>  (use "git push" to publish your local commits)
+>
+>Changes to be committed:
+>  (use "git restore --staged <file>..." to unstage)
+>        "modified:   operation/test.js"
+>
+>Changes not staged for commit:
+>  (use "git add <file>..." to update what will be committed)
+>  (use "git restore <file>..." to discard changes in working directory)
+>        "modified:   operation/README.md"
+>
+>$git restore --staged operation/test.js
+>
+>$git status                            
+>On branch git
+>Your branch is ahead of 'origin/git' by 5 commits.
+>  (use "git push" to publish your local commits)
+>
+>Changes not staged for commit:
+>  (use "git add <file>..." to update what will be committed)
+>  (use "git restore <file>..." to discard changes in working directory)
+>        "modified:   operation/README.md"
+>        "modified:   operation/test.js"
+>
+>no changes added to commit (use "git add" and/or "git commit -a")
+>```
 
 ## <a id="git-rm"></a> `git rm 删除工作区文件`
 >`git rm <file> -f/-cached` 将文件从暂存区和工作区中删除 -f
@@ -206,9 +268,10 @@ $ls -a
 >        "modified:   README.md"
 >```
 
+## <a id="git-bisect"></a> `git bisect 使用二分查找查找引入bug的提交` 
+>`$ git bisect start [终点] [起点]`
 
 
-## <a id="git-bisect"></a> `git bisect`    //TODO: -----
 
 ##  <a id="git-diff"></a> `git diff 比较文件在暂存区和工作区的差异`
 > `git diff [file]` 显示暂存区和工作区的差异
@@ -291,22 +354,278 @@ $ls -a
 
 ## <a id="git-grep"></a> `git grep`         //TODO: -----
 
-## <a id="git-log"></a> `git log`           //TODO: -----
-> `git log --pretty=oneline --abbrev-commit` 当前分支的提交记录
+## <a id="git-log"></a> `git log 查看历史提交记录`
+>`git log`
 >```sh
->$git log --pretty=oneline --abbrev-commit
->aa8fe36 (HEAD -> git, origin/git) git init
->19f21e8 git init
->2f6ddf8 git init
->d81c1e5 git init
->90ccafe git init
->f6447aa git init
->7355a58 git init
->7cd4503 git init
+>$git log
+>commit 8a30445edde20cd55fc2abde61eb489111c0cf66 (HEAD -> git)
+>Author: 齐云猛:bank <15861097927@163.com>
+>Date:   Mon Jul 12 00:24:30 2021 +0800
+>
+>    git init
+>
+>commit ee93b45d169725e3380d39003abcdae74ed7481e
+>Author: 齐云猛:bank <15861097927@163.com>
+>:...skipping...
+>```
+>
+>> `--oneline` 查看历史记录的简洁的版本
+>>```sh
+>>$git log --oneline
+>>8a30445 (HEAD -> git) git init
+>>ee93b45 git init
+>>0ac2675 git init
+>>ca2f07e git init
+>>5f2800f (origin/git) git init
+>>14e6b78 git init
+>>ec79cd5 git init
+>>```
+>
+>>`--graph` 查看历史中什么时候出现了分支、合并
+>>```sh
+>>$git log --graph
+>>* commit 8a30445edde20cd55fc2abde61eb489111c0cf66 (HEAD -> git)
+>>| Author: 齐云猛:bank <15861097927@163.com>
+>>| Date:   Mon Jul 12 00:24:30 2021 +0800
+>>| 
+>>|     git init
+>>| 
+>>* commit ee93b45d169725e3380d39003abcdae74ed7481e
+>>| Author: 齐云猛:bank <15861097927@163.com>
+>>| Date:   Mon Jul 12 00:24:06 2021 +0800
+>>| 
+>>|     git init
+>>| 
+>>* commit 0ac26754f1ef5f282c90b3765389a98e1b867537
+>>| Author: 齐云猛:bank <15861097927@163.com>
+>>| Date:   Mon Jul 12 00:21:42 2021 +0800
+>>| 
+>>|     git init
+>>:...skipping...
+>>```
+>
+>>`--reverse `逆向显示所有日志
+>>```sh
+>>$git log --reverse --oneline
+>>8e9e9a2 Initial commit
+>>bd26fdd 
+>>17d85fd (origin/main, origin/HEAD) init
+>>49d2236 init
+>>6761c2b (tag: test1) git init
+>>9dedcf9 git init
+>>9f8520d init
+>>86f0831 init
+>>a54e0f2 (tag: v3.0, tag: v2.0, tag: v1.0, dev) init
+>>fe075ea init
+>>92af1a4 init
+>>74cd85b (origin/master, master) init git
+>>7cd4503 git init
+>>7355a58 git init
+>>f6447aa git init
+>>90ccafe git init
+>>d81c1e5 git init
+>>2f6ddf8 git init
+>>:...skipping...
+>>```
+>
+>>`--author` 查找指定用户的提交日志
+>>```sh
+>>$git log --author=齐云猛:bank --oneline -5
+>>8a30445 (HEAD -> git) git init
+>>ee93b45 git init
+>>0ac2675 git init
+>>ca2f07e git init
+>>5f2800f (origin/git) git init
+>>```
+>
+>>`--since 和 --before，--until 和 --after` 查找指定日期内的日志
+>>```sh
+>>$git log --oneline --before={2021-07-10} --after={2021-07-1}            
+>>5f2800f (origin/git) git init
+>>14e6b78 git init
+>>ec79cd5 git init
+>>91e3e2c git init
+>>6692b98 git init
+>>6a8ac03 git init
+>>...
+>>```
+>
+>>`-p / --patch` 显示每次提交所引入的差异（按 补丁 的格式输出）
+>>```sh
+>>$git log -p -2
+>>commit 8a30445edde20cd55fc2abde61eb489111c0cf66 (HEAD -> git)
+>>Author: 齐云猛:bank <15861097927@163.com>
+>>Date:   Mon Jul 12 00:24:30 2021 +0800
+>>
+>>--- a/environment/git/operation/README.md
+>>+++ b/environment/git/operation/README.md
+>>@@ -164,6 +164,18 @@ $ls -a
+>> 
+>> ## <a id="git-mv"></a> `git mv 移动或重命名工作区文件`
+>> >`git mv [file] [newfile]`
+>>+>```sh
+>>+>$git mv operation/test.js operation/test2.js
+>>+>$git status                                 
+>>+>On branch git
+>>+>Your branch is ahead of 'origin/git' by 2 commits.
+>>+>  (use "git push" to publish your local commits)
+>>+>
+>>+>Changes to be committed:
+>>+>  (use "git restore --staged <file>..." to unstage)
+>>+>        "renamed:    operation/test.js -> operation/test2.js"
+>>+>
+>>+>
+>> 
+>>diff --git a/environment/git/operation/test.js b/environment/git/>>operation/test2.js
+>>similarity index 100%
+>>rename from environment/git/operation/test.js
+>>rename to environment/git/operation/test2.js
+>>```
+>
+>>`--stat` 查看每次提交的简略统计信息
+>>```sh
+>>$git log --stat
+>>commit ee93b45d169725e3380d39003abcdae74ed7481e
+>>Author: 齐云猛:bank <15861097927@163.com>
+>>Date:   Mon Jul 12 00:24:06 2021 +0800
+>>
+>>    git init
+>>
+>> environment/git/operation/README.md             | 12 ++++++++++++
+>> environment/git/operation/{test.js => test2.js} |  0
+>> 2 files changed, 12 insertions(+)
+>>
+>>commit 0ac26754f1ef5f282c90b3765389a98e1b867537
+>>Author: 齐云猛:bank <15861097927@163.com>
+>>Date:   Mon Jul 12 00:21:42 2021 +0800
+>>
+>>    git init
+>>
+>> environment/git/operation/README.md | 30 ++++++++++++++++++++++++++++--
+>> environment/git/operation/test.js   |  0
+>> 2 files changed, 28 insertions(+), 2 deletions(-)
+>>```
+> `git log --pretty=oneline --abbrev-commit` 当前分支的提交记录
+>>```sh
+>>`$git log --pretty=oneline --abbrev-commit` 显示commit id
+>>aa8fe36 (HEAD -> git, origin/git) git init
+>>19f21e8 git init
+>>2f6ddf8 git init
+>>d81c1e5 git init
+>>90ccafe git init
+>>f6447aa git init
+>>7355a58 git init
+>>7cd4503 git init
+>>...
+>>```
+
+>`git log 的常用选项`
+>选项  | 说明  
+>---- | -----   
+>-p  | 按补丁格式显示每个提交引入的差异。
+>--stat | 显示每次提交的文件修改统计信息。
+>--shortstat | 只显示 --stat 中最后的行数修改添加移除统计。
+>--name-only | 仅在提交信息后显示已修改的文件清单。
+>--name-status | 显示新增、修改、删除的文件清单。
+>--abbrev-commit | 仅显示 SHA-1 校验和所有 40 个字符中的前几个字符。
+>--relative-date | 使用较短的相对时间而不是完整格式显示日期（比如“2 weeks ago”）。
+>--graph | 在日志旁以 ASCII 图形显示分支与合并历史。
+>--pretty | 使用其他格式显示历史提交信息。可用的选项包括 oneline、short、full、fuller 和 format（用来定>义自己的格式）。
+>--oneline | --pretty=oneline --abbrev-commit 合用的简写。 
+
+>`常见的format选项`  
+>选项 | 说明  
+>---- | -----  
+>%H | 提交对象(commit)的完整哈希字串
+>%h | 提交对象的简短哈希字串
+>%T | 树对象(tree)的完整哈希字串
+>%t | 树对象的简短哈希字串
+>%P | 父对象(parent)的完整哈希字串
+>%p | 父对象的简短哈希字串
+>%an | 作者(author)的名字
+>%ae | 作者的电子邮件地址
+>%ad | 作者修订日期(可以用 -date= 选项定制格式)
+>%ar | 作者修订日期，按多久以前的方式显示
+>%cn | 提交者(committer)的名字
+>%ce | 提交者的电子邮件地址
+>%cd | 提交日期
+>%cr | 提交日期，按多久以前的方式显示
+>%s | 提交说明
+
+## <a id="git-show"></a> `git show 显示各种类型的对象`     
+>`git show [options] <object>…` 默认显示的是HEAD
+>```sh
+>$git log
+>commit 8a30445edde20cd55fc2abde61eb489111c0cf66 (HEAD -> git)
+>Author: 齐云猛:bank <15861097927@163.com>
+>Date:   Mon Jul 12 00:24:30 2021 +0800
+>
+>    git init
+>
+>commit ee93b45d169725e3380d39003abcdae74ed7481e
+>Author: 齐云猛:bank <15861097927@163.com>
+>Date:   Mon Jul 12 00:24:06 2021 +0800
+>
+>    git init
+>
+>$git show HEAD^   #显示上个版本
+>commit ee93b45d169725e3380d39003abcdae74ed7481e
+>Author: 齐云猛:bank <15861097927@163.com>
+>Date:   Mon Jul 12 00:24:06 2021 +0800
+>
+>    git init
+>
+>diff --git a/environment/git/operation/README.md b/environment/git/>operation/README.md
+>index f300b6b..0ba33ab 100644
+>--- a/environment/git/operation/README.md
+>+++ b/environment/git/operation/README.md
+>@@ -164,6 +164,18 @@ $ls -a
 >...
+>
+>$git show ee93b45d169725e3380d39003abcdae74ed7481e  # 显示指定版本
+>commit ee93b45d169725e3380d39003abcdae74ed7481e
+>Author: 齐云猛:bank <15861097927@163.com>
+>Date:   Mon Jul 12 00:24:06 2021 +0800
+>
+>    git init
+>
+>diff --git a/environment/git/operation/README.md b/environment/git/>operation/README.md
+>index f300b6b..0ba33ab 100644
+>--- a/environment/git/operation/README.md
+>+++ b/environment/git/operation/README.md
+>@@ -164,6 +164,18 @@ $ls -a
+> ...
+>
+>
+>$git show v1.0   # 查看指定tag信息
+>tag v1.0
+>Tagger: 齐云猛:bank <15861097927@163.com>
+>Date:   Wed Jun 23 22:53:51 2021 +0800
+>
+>封板
+>
+>commit a54e0f29f0c713559df273d2d154513348888a79 (tag: v3.0, tag: v2.0, tag: v1.0, dev)
+>Author: 齐云猛:bank <15861097927@163.com>
+>Date:   Wed Jun 23 12:21:52 2021 +0800
+>
+>    init
+>
+>diff --git a/environment/git/README.md b/environment/git/README.md
+>
+>
 >```
 
-## <a id="git-show"></a> `git show`         //TODO: -----
+>`git show --pretty[=<format>]|--format=<format>:` 以某种格式来输出提交日志信息
+>```sh
+>$git show --pretty=format:"%h %s"  # 等价于 git show --format="%h %s" 
+>8a30445 git init
+>diff --git a/environment/git/operation/test2.js b/environment/git/operation/test2.js
+>deleted file mode 100644
+>index e69de29..0000000
+>```
+
+
+
 ## <a id="git-status"></a> `git status 查看上次提交之后是否有对文件进行再次修改`  
 >`git status / git status -s`    
 >```sh

@@ -33,41 +33,41 @@
 > `git config user.name  /  git config --global user.name`   查询(全局)用户名
 >```sh
 >$git config user.name
->XXX:XXX
+>xxxx
 >
 >$git config --global user.name
->XXX:XXX
+>xxxx
 >```
 
 > `git config user.name XXX  /  git config --global user.name XXX`  设置(全局)用户名
 >```sh
 >$git config user.name XX:bank
 >
->$git config --global user.name XXX:bank
+>$git config --global user.name xxxx
 >```
 
 > `git config user.email  /  git config --global user.email`  查询(全局)用户邮箱
 >```sh
 >$git config user.email
->15861097927@163.com
+>xxxx@163.com
 >
 >$git config --global user.email
->15861097927@163.com
+>xxxx@163.com
 >```
 
 >` git config user.email XXX  /  git config --global user.email XXX`  设置(全局)用户邮箱
 >```sh
->$git config user.email 15861097927@163.com
+>$git config user.email xxxx@163.com
 >
->$git config --global user.email 15861097927@163.com
+>$git config --global user.email xxxx@163.com
 >```
 
 > `git config --list  /  git config --list --show-origin`   检查配置信息/ 检查配置信息以及所在的文件
 >```sh
 >$git config --list            
 >credential.helper=osxkeychain
->user.name=XXX:XXX
->user.email=15861097927@163.com
+>user.name=xxxx
+>user.email=xxxx@163.com
 >core.repositoryformatversion=0
 >core.filemode=true
 >core.bare=false
@@ -76,8 +76,8 @@
 >
 >$git config --list --show-origin                 
 >file:/Applications/Xcode.app/Contents/Developer/usr/share/git-core/>gitconfig    credential.helper=osxkeychain
->file:/Users/bank/.gitconfig     user.name=XXX:XXX
->file:/Users/bank/.gitconfig     user.email=15861097927@163.com
+>file:/Users/bank/.gitconfig     user.name=xxxx
+>file:/Users/bank/.gitconfig     user.email=xxxx@163.com
 >file:.git/config        core.repositoryformatversion=0
 >file:.git/config        core.filemode=true
 >file:.git/config        core.bare=false
@@ -241,30 +241,30 @@ $ls -a
 
 ## <a id="git-rm"></a> `git rm 删除工作区文件`
 >`git rm <file> -f/-cached` 将文件从暂存区和工作区中删除 -f
->> `-f` 如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项 
+>> `-f` 如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项  
 >> `-cached` 如果想把文件从暂存区域移除，但仍然希望保留在当前工作目录中
->```sh
->$git status
->On branch git
->Your branch is ahead of 'origin/git' by 1 commit.
->  (use "git push" to publish your local commits)
->
->Changes to be committed:
->  (use "git restore --staged <file>..." to unstage)
->        "new file:   operation/test.js"
->
->$git rm -f operation/test.js
->rm 'environment/git/operation/test.js'
->
->$git status
->On branch git
->Your branch is ahead of 'origin/git' by 1 commit.
->  (use "git push" to publish your local commits)
->
->Changes to be committed:
->  (use "git restore --staged <file>..." to unstage)
->        "modified:   README.md"
->```
+>>```sh
+>>$git status
+>>On branch git
+>>Your branch is ahead of 'origin/git' by 1 commit.
+>>  (use "git push" to publish your local commits)
+>>
+>>Changes to be committed:
+>>  (use "git restore --staged <file>..." to unstage)
+>>        "new file:   operation/test.js"
+>>
+>>$git rm -f operation/test.js
+>>rm 'environment/git/operation/test.js'
+>>
+>>$git status
+>>On branch git
+>>Your branch is ahead of 'origin/git' by 1 commit.
+>>  (use "git push" to publish your local commits)
+>>
+>>Changes to be committed:
+>>  (use "git restore --staged <file>..." to unstage)
+>>        "modified:   README.md"
+>>```
 
 ## <a id="git-bisect"></a> `git bisect 使用二分查找查找引入bug的提交` 
 >`$ git bisect start [终点] [起点]`
@@ -382,13 +382,13 @@ $ls -a
 >```sh
 >$git log
 >commit 8a30445edde20cd55fc2abde61eb489111c0cf66 (HEAD -> git)
->Author: 齐云猛:bank <15861097927@163.com>
+>Author: xxxx <xxxx@163.com>
 >Date:   Mon Jul 12 00:24:30 2021 +0800
 >
 >    git init
 >
 >commit ee93b45d169725e3380d39003abcdae74ed7481e
->Author: 齐云猛:bank <15861097927@163.com>
+>Author: xxxx <xxxx@163.com>
 >:...skipping...
 >```
 >
@@ -408,19 +408,19 @@ $ls -a
 >>```sh
 >>$git log --graph
 >>* commit 8a30445edde20cd55fc2abde61eb489111c0cf66 (HEAD -> git)
->>| Author: 齐云猛:bank <15861097927@163.com>
+>>| Author: xxxx <xxxx@163.com>
 >>| Date:   Mon Jul 12 00:24:30 2021 +0800
 >>| 
 >>|     git init
 >>| 
 >>* commit ee93b45d169725e3380d39003abcdae74ed7481e
->>| Author: 齐云猛:bank <15861097927@163.com>
+>>| Author: xxxx <xxxx@163.com>
 >>| Date:   Mon Jul 12 00:24:06 2021 +0800
 >>| 
 >>|     git init
 >>| 
 >>* commit 0ac26754f1ef5f282c90b3765389a98e1b867537
->>| Author: 齐云猛:bank <15861097927@163.com>
+>>| Author: xxxx <xxxx@163.com>
 >>| Date:   Mon Jul 12 00:21:42 2021 +0800
 >>| 
 >>|     git init
@@ -453,7 +453,7 @@ $ls -a
 >
 >>`--author` 查找指定用户的提交日志
 >>```sh
->>$git log --author=齐云猛:bank --oneline -5
+>>$git log --author=xxxx --oneline -5
 >>8a30445 (HEAD -> git) git init
 >>ee93b45 git init
 >>0ac2675 git init
@@ -477,7 +477,7 @@ $ls -a
 >>```sh
 >>$git log -p -2
 >>commit 8a30445edde20cd55fc2abde61eb489111c0cf66 (HEAD -> git)
->>Author: 齐云猛:bank <15861097927@163.com>
+>>Author: xxxx <xxxx@163.com>
 >>Date:   Mon Jul 12 00:24:30 2021 +0800
 >>
 >>--- a/environment/git/operation/README.md
@@ -509,7 +509,7 @@ $ls -a
 >>```sh
 >>$git log --stat
 >>commit ee93b45d169725e3380d39003abcdae74ed7481e
->>Author: 齐云猛:bank <15861097927@163.com>
+>>Author: xxxx <xxxx@163.com>
 >>Date:   Mon Jul 12 00:24:06 2021 +0800
 >>
 >>    git init
@@ -519,7 +519,7 @@ $ls -a
 >> 2 files changed, 12 insertions(+)
 >>
 >>commit 0ac26754f1ef5f282c90b3765389a98e1b867537
->>Author: 齐云猛:bank <15861097927@163.com>
+>>Author: xxxx <xxxx@163.com>
 >>Date:   Mon Jul 12 00:21:42 2021 +0800
 >>
 >>    git init
@@ -580,20 +580,20 @@ $ls -a
 >```sh
 >$git log
 >commit 8a30445edde20cd55fc2abde61eb489111c0cf66 (HEAD -> git)
->Author: 齐云猛:bank <15861097927@163.com>
+>Author: xxxx <xxxx@163.com>
 >Date:   Mon Jul 12 00:24:30 2021 +0800
 >
 >    git init
 >
 >commit ee93b45d169725e3380d39003abcdae74ed7481e
->Author: 齐云猛:bank <15861097927@163.com>
+>Author: xxxx <xxxx@163.com>
 >Date:   Mon Jul 12 00:24:06 2021 +0800
 >
 >    git init
 >
 >$git show HEAD^   #显示上个版本
 >commit ee93b45d169725e3380d39003abcdae74ed7481e
->Author: 齐云猛:bank <15861097927@163.com>
+>Author: xxxx <xxxx@163.com>
 >Date:   Mon Jul 12 00:24:06 2021 +0800
 >
 >    git init
@@ -607,7 +607,7 @@ $ls -a
 >
 >$git show ee93b45d169725e3380d39003abcdae74ed7481e  # 显示指定版本
 >commit ee93b45d169725e3380d39003abcdae74ed7481e
->Author: 齐云猛:bank <15861097927@163.com>
+>Author: xxxx <xxxx@163.com>
 >Date:   Mon Jul 12 00:24:06 2021 +0800
 >
 >    git init
@@ -622,13 +622,13 @@ $ls -a
 >
 >$git show v1.0   # 查看指定tag信息
 >tag v1.0
->Tagger: 齐云猛:bank <15861097927@163.com>
+>Tagger: xxxx <xxxx@163.com>
 >Date:   Wed Jun 23 22:53:51 2021 +0800
 >
 >封板
 >
 >commit a54e0f29f0c713559df273d2d154513348888a79 (tag: v3.0, tag: v2.0, tag: v1.0, dev)
->Author: 齐云猛:bank <15861097927@163.com>
+>Author: xxxx <xxxx@163.com>
 >Date:   Wed Jun 23 12:21:52 2021 +0800
 >
 >    init

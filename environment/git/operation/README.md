@@ -19,7 +19,7 @@
    * [git checkout 操作文件 操作分支](#git-checkout)
    * [git commit 命令将暂存区内容添加到本地仓库中](#git-commit) 
    * [git merge ](#git-merge) 
-   * [git rebase ](#git-rebase) 
+   * [git rebase 把一个分支的修改合并到当前分支](#git-rebase) 
    * [git reset 回退版本](#git-reset) 
    * [git switch 专门用来切换分支、创建并切换分支](#git-switch) 
    * [git tage 标签](#git-tage) 
@@ -892,7 +892,24 @@ stash@{2}: On main: init
 >```
 ## <a id="git-merge"></a> `git merge`    //TODO: -----
 
-## <a id="git-rebase"></a> `git rebase`     //TODO: -----
+## <a id="git-rebase"></a> `git rebase`    
+`git rebase `
+```sh
+
+
+```
+
+`--continue` 执行git rebase之后遇到冲突,解决完冲突,git add 
+```sh
+$git add .
+$git rebase --continue
+```
+
+`--abort` 终止合并操作, 回到最初阶段
+```sh
+$git add .
+$git rebase --abort
+```
 
 ## <a id="git-reset"></a> `git reset 回退版本`     
 > `git reset git reset [--soft | --mixed | --hard] [HEAD]`

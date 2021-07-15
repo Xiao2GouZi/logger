@@ -890,13 +890,16 @@ stash@{2}: On main: init
 >   等于
 >   $git commit -am"init"
 >```
-## <a id="git-merge"></a> `git merge`    //TODO: -----
+## <a id="git-merge"></a> `git merge`
 
 ## <a id="git-rebase"></a> `git rebase`    
-`git rebase `
+`git rebase ` 取消被合并分支里的每个提交(commit)
 ```sh
+$git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
 
-
+$git rebase git
 ```
 
 `--continue` 执行git rebase之后遇到冲突,解决完冲突,git add 

@@ -7,7 +7,7 @@
 AST: 解析器不是100%与源码匹配  
 CST: 解析器100%覆盖所有代码结构生成树(包括空格，标点符号，注释)
 
-## 二. AST、CST
+## 二. AST
 >第一步，词法分析，也叫做扫描scanner。  
 
 它读取我们的代码，然后把它们按照预定的规则合并成一个个的标识tokens。同时，它会移除空白符，注释，等。遇到空格，操作符，或者特殊符号的时候，它会认为一个话已经完成了,最后，整个代码将被分割进一个tokens列表（或者说一维数组）。
@@ -135,8 +135,12 @@ const add = (a, b) => a + b
 
 在线转译[AST](https://astexplorer.net/)工具, 不仅仅支持JS, 支持多种语言
 
+## 三. 应用
+ * 编辑器的错误提示、代码格式化、代码高亮、代码自动补全；
+ * elint、pretiier 对代码错误或风格的检查；
+ * webpack 通过 babel 转译 javascript 语法；
 
-## 三 Node
+## 四.  Node
 
 所有节点类型都实现以下接口：
 
@@ -199,7 +203,7 @@ type ModuleItem = ImportDeclaration | ExportDeclaration | StatementListItem;
 
 
 
-## 三. 工具
+## 五. 工具
 1. recast
 2. [jscodeshift](https://github.com/Xiao2GouZi/logger/tree/git/ast/jscodeshift)
 3. [Babylon](https://github.com/Xiao2GouZi/logger/tree/git/ast/babylon)

@@ -194,7 +194,7 @@ type StatementListItem = Declaration | Statement;
 type ModuleItem = ImportDeclaration | ExportDeclaration | StatementListItem;
 ```
 
-[详细的每个AST类型点击这里]()
+[详细的每个AST节点类型点击这里](https://github.com/Xiao2GouZi/logger/blob/ast/ast/base.md)
 
 
 

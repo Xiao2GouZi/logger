@@ -135,6 +135,70 @@ const add = (a, b) => a + b
 
 在线转译[AST](https://astexplorer.net/)工具, 不仅仅支持JS, 支持多种语言
 
+
+## 三 Node
+
+所有节点类型都实现以下接口：
+
+```ts
+interface Node {
+  type: string;
+  range?: [number, number];
+  loc?: SourceLocation;
+}
+```
+
+该type字段是表示AST变体类型的字符串。该loc字段表示节点的源位置信息。如果解析器没有生成有关节点源位置的信息，则该字段为null;否则它是一个对象，包括一个起始位置（被解析的源区域的第一个字符的位置）和一个结束位置.
+
+```ts
+interface SourceLocation {
+    start: Position;
+    end: Position;
+    source?: string | null;
+}
+```
+
+每个Position对象由一个line数字（1索引）和一个column数字（0索引）组成：
+
+```ts
+interface Position {
+    line: uint32 >= 1;
+    column: uint32 >= 0;
+}
+```
+
+
+### Programs
+
+```ts
+interface Program <: Node {
+    type: "Program";
+    sourceType: 'script' | 'module';
+    body: StatementListItem[] | ModuleItem[];
+}
+```
+
+表示一个完整的源代码树。
+
+## Scripts and Modules
+
+源代码数的来源包括两种，一种是script脚本，一种是modules模块
+
+当为script时，body为`StatementListItem`。
+当为modules时，body为`ModuleItem`。
+
+类型`StatementListItem`和`ModuleItem`类型如下。
+
+```ts
+type StatementListItem = Declaration | Statement;
+type ModuleItem = ImportDeclaration | ExportDeclaration | StatementListItem;
+```
+
+[详细的每个AST类型点击这里]()
+
+
+
+
 ## 三. 工具
 1. recast
 2. [jscodeshift](https://github.com/Xiao2GouZi/logger/tree/git/ast/jscodeshift)

@@ -1,6 +1,59 @@
 
 
-## downlevelIteration 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## <a id="downlevelIteration"></a> `downlevelIteration`  
 ```js
 const str = "Hello!";
 for (const s of str) {

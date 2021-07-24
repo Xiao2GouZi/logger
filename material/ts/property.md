@@ -20,7 +20,7 @@
 >removeComments | boolean | false | 用于指定是否将编译后的文件中的注释删掉, 除了以 /!*开头的版权信息。  
 >noEmit | boolean | false |  不生成编译文件
 >importHelpers | boolean | false |  指定是否引入tslib里的辅助工具函数
->[downlevelIteration]() | boolean | false |  当target为'ES5' or 'ES3'时，为'for-of', spread, and destructuring'中的迭代器提供完全支持
+>[downlevelIteration](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#downlevelIteration) | boolean | false |  当target为'ES5' or 'ES3'时，为'for-of', spread, and destructuring'中的迭代器提供完全支持
 >isolatedModules | boolean | false |  指定是否将每个文件作为单独的模块
 >lib |  |  |  
 >lib |  |  |  

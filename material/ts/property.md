@@ -1,5 +1,14 @@
 
-# tsconfig.json文件里的顶级属性  [compilerOptions](#compilerOptions) 、 [files](#files) 、 [include](#include) 、 [exclude](#exclude) 、 [extends](#extends) 、 [compileOnSave](#compileOnSave) 、 [references](#references) 、[watchOptions](#watchOptions) 、[typeAcquisition](#typeAcquisition)
+# tsconfig.json文件里的顶级属性 
+* [compilerOptions](#compilerOptions) 
+* [files](#files) 
+* [include](#include) 
+* [exclude](#exclude) 
+* [extends](#extends) 
+* [compileOnSave](#compileOnSave) 
+* [references](#references) 
+* [watchOptions](#watchOptions) 
+* [typeAcquisition](#typeAcquisition)
 
 ## <a id="compilerOptions"></a> `compilerOptions`
   * [Type Checking 类型检查](#type-checking) 

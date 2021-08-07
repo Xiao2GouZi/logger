@@ -634,14 +634,14 @@
 >}
 >```
 >如果不设置 "resolveJsonModule": true  就默认不支持
-```ts
-import StudentInfo from 'studentInfo.json'
-
-//xxx - error TS2732: Cannot find module 'studentInfo.json'. Consider using '--resolveJsonModule' to import module with '.json' //extension.
-//
-// import StudentInfo from 'studentInfo.json'
-//                          ~~~~~~~~~~~~~~~~~~
-```
+>```ts
+>import StudentInfo from 'studentInfo.json'
+>
+>//xxx - error TS2732: Cannot find module 'studentInfo.json'. Consider using >'--resolveJsonModule' to import module with '.json' //extension.
+>//
+>// import StudentInfo from 'studentInfo.json'
+>//                          ~~~~~~~~~~~~~~~~~~
+>```
 
 ## <a id="rootDir"></a> `rootDir` 
 >tsconfig.json
@@ -653,16 +653,17 @@ import StudentInfo from 'studentInfo.json'
 >  }
 >}
 >``` 
->```ts
 >原目录
+>```ts
 >demo
 >├── src
 >|   └── common
 >|       └── index.ts
 >│   └── index.ts
 >└── tsconfig.json
->
+>```
 >在没有设置 rootDir  编译后的目录如下 
+>```ts
 >demo
 >├── dist
 >|   └── common
@@ -673,8 +674,9 @@ import StudentInfo from 'studentInfo.json'
 >|       └── index.ts
 >│   └── index.ts
 >└── tsconfig.json
->
+>```
 >在没有设置 rootDir  编译后的目录如下 
+>```ts
 >demo
 >├── dist
 >|   └── src
@@ -711,9 +713,10 @@ import StudentInfo from 'studentInfo.json'
 >|       └── app1.ts
 >|       └── app2.ts
 >└── tsconfig.json
+>``` 
 >
 >配置  "rootDirs": ["src/common", "src/views"]
->
+>```ts
 >common.ts
 >
 >export function name(): number {
@@ -766,8 +769,9 @@ import StudentInfo from 'studentInfo.json'
 >├── src
 >|   └── index.ts
 >└── tsconfig.json
->
+>```
 >设置 "declarationMap": true
+>```ts
 >demo
 >├── dist
 >│   └── index.js
@@ -777,14 +781,19 @@ import StudentInfo from 'studentInfo.json'
 >├── src
 >|   └── index.ts
 >└── tsconfig.json
->
+>```
 >index.ts
+>```ts
 >export let name = "小飞";
 >
+>```
 >index.d.ts
+>```ts
 >export declare let name: string;
 >
+>```
 >index.d.ts.map
+>```ts
 >{
 >  "version": 3,
 >  "file": "index.d.ts",
@@ -863,14 +872,15 @@ import StudentInfo from 'studentInfo.json'
 >  }
 >}
 >``` 
->```ts
 >index.ts
+>```ts
 >export function fn(arr: string[]) {
 >  const names = ["小黑", "小李", "小猫"]
 >  const classesName = ["小兰", ...arr]
 >}
->
+>```
 >index.js
+>```ts
 >"use strict";
 >Object.defineProperty(exports, "__esModule", { value: true });
 >exports.fn = void 0;
@@ -898,13 +908,14 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >  }
 >}
 >``` 
->```ts
 >index.ts
+>```ts
 >const setAge = (age: number): number => {
 >  return age + 1
 >}
->
+>```
 >index.js
+>```ts
 >"use strict";
 >var setAge = function (age) {
 >    return age + 1;
@@ -922,20 +933,21 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >  }
 >}
 >``` 
->```ts
 >index.ts
+>```ts
 >const setAge = (age: number): number => {
 >  return age + 1
 >}
->
+>```
 >index.js
+>````ts
 >"use strict";
 >var setAge = function (age) {
 >    return age + 1;
 >};
 >//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9kYXNoLXRlc3QuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvbG9kYXNoLXRlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQTZDQSxJQUFNLE1BQU0sR0FBRyxVQUFDLEdBQVc7SUFDekIsT0FBTyxHQUFHLEdBQUcsQ0FBQyxDQUFBO0FBQ2hCLENBQUMsQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbIi8vIGltcG9ydCBTdHVkZW50SW5mbyBmcm9tICdzdHVkZW50SW5mby5qc29uJ1xuXG4vLyBpbXBvcnQgTG9kYXNoIGZyb20gJ2xvZGFzaCdcblxuLy8gZXhwb3J0IGxldCBuYW1lID0gXCLlsI/po55cIjtcblxuLy8gY29uc3Qgc3R1ZHlOYW1lID0gXCJ4aWFvaGVpXCI7XG4vLyBmb3IgKGNvbnN0IHMgb2Ygc3R1ZHlOYW1lKSB7XG4vLyAgIGNvbnNvbGUubG9nKHMpO1xuLy8gfVxuXG4vLyBleHBvcnQgZnVuY3Rpb24gZm4oYXJyOiBudW1iZXJbXSkge1xuLy8gICBjb25zdCBhcnIyID0gWzEsIC4uLmFycl07XG4vLyAgIGNvbnN0IG5hbWVzID0gW1wi5bCP6buRXCIsIFwi5bCP5p2OXCIsIFwi5bCP54yrXCJdXG4vLyAgIGNvbnN0IGNsYXNzZXNOYW1lID0gW1wi5bCP5YWwXCIsIC4uLm5hbWVzLF1cbi8vIH1cblxuXG4vLyBleHBvcnQgZnVuY3Rpb24gZm4oYXJyOiBzdHJpbmdbXSkge1xuLy8gICBjb25zdCBuYW1lcyA9IFtcIuWwj+m7kVwiLCBcIuWwj+adjlwiLCBcIuWwj+eMq1wiXVxuLy8gICBjb25zdCBjbGFzc2VzTmFtZSA9IFtcIuWwj+WFsFwiLCAuLi5hcnJdXG4vLyB9XG5cblxuXG5cbi8vIGludGVyZmFjZSBTVFVEWUlORk8ge1xuLy8gICBhZ2U6IG51bWJlcixcbi8vICAgbmFtZTogc3RyaW5nXG4vLyB9XG5cbi8vIGNvbnN0IGdldFN0dWR5ID0gKGxpc3RJbmZvOiBTVFVEWUlORk9bXSkgPT4ge1xuLy8gICBTdHVkZW50SW5mby5pbmZvXG4vLyAgIGNvbnN0IGluZGV4ID0gTG9kYXNoLmZpbmRJbmRleChsaXN0SW5mbywgKGl0ZW0pID0+IHtcbi8vICAgICByZXR1cm4gaXRlbS5uYW1lID09PSBcIuWwj+m7kVwiXG4vLyAgIH0pXG4vLyAgIHJldHVybiBpbmRleFxuLy8gfVxuXG4vLyBleHBvcnQgZGVmYXVsdCBnZXRTdHVkeVxuXG5cbi8vIExvZGFzaC5rZXlzXG5cblxuY29uc3Qgc2V0QWdlID0gKGFnZTogbnVtYmVyKTogbnVtYmVyID0+IHtcbiAgcmV0dXJuIGFnZSArIDFcbn1cblxuLy8gY29uc3Qgc2V0TmFtZSA9IChhZ2U6IG51bWJlcik6IG51bWJlciA9PiB7XG4vLyAgIHJldHVybiBhZ2UgKyAxXG4vLyB9XG5cbi8vIGNvbnN0IGMgPSAnMidcblxuLy8gY29uc3Qgc2V0VXNlck5hbWUgPSAobmFtZTogc3RyaW5nKSA9PiB7XG4vLyAgIHJldHVybiBuYW1lXG4vLyB9XG5cbi8vIGNvbnN0IHN0dWR5TmFtZTEgPSBzZXRVc2VyTmFtZS5jYWxsKCflsI/mmI4nLCBmYWxzZSlcbi8vIGNvbnN0IHN0dWR5TmFtZTIgPSBzZXRVc2VyTmFtZS5jYWxsKCflsI/nuqInLCB1bmRlZmluZWQpXG4vLyBjb25zdCBzdHVkeU5hbWUzID0gc2V0VXNlck5hbWUuY2FsbCgn5bCP57qiJywgMSlcblxuXG4vLyBjb25zb2xlLmxvZyhzdHVkeU5hbWUxKVxuLy8gY29uc29sZS5sb2coc3R1ZHlOYW1lMilcblxuXG4vLyBjb25zdCBzdHVkeXMgPSBbe1xuLy8gICBuYW1lOiAn5bCP5piOJyxcbi8vICAgYWdlOiAxMlxuLy8gfSwge1xuLy8gICBuYW1lOiAn5bCP6aOeJyxcbi8vICAgYWdlOiAxNFxuLy8gfSwge1xuLy8gICBuYW1lOiAn5bCP55m9Jyxcbi8vICAgYWdlOiAxMFxuLy8gfV1cblxuLy8gY29uc3Qgc3R1ZHlJbmZvID0gc3R1ZHlzLmZpbmQoaXRlbSA9PiBpdGVtLmFnZSA+IDE1KVxuLy8gc3R1ZHlJbmZvLmFnZVxuXG5cblxuLy8gaW50ZXJmYWNlIFN0dWR5SW5mbyB7XG4vLyAgIHNleDogXCLnlLdcIiB8IFwi5aWzXCIsXG4vLyAgIGFnZTogbnVtYmVyXG4vLyAgIFtrZXk6IHN0cmluZ106IHN0cmluZyB8IG51bWJlcjtcbi8vIH1cblxuLy8gY29uc3Qgc2V0dGluZ3M6IFN0dWR5SW5mbyA9IHtcbi8vICAgc2V4OiBcIuWls1wiLFxuLy8gICBhZ2U6IDEyXG4vLyB9XG5cbi8vIHNldHRpbmdzW1widXNlck5hbWVcIl0gPSAn5bCP5piOJ1xuXG4vLyBzZXR0aW5ncy51c2VyTmFtZSA9IFwi5bCP6buRXCJcblxuXG5cbi8vIGNsYXNzIFN0dWR5IHtcbi8vICAgc2V4OiBcIueUt1wiIHwgXCLlpbNcIlxuXG4vLyAgIGNvbnN0cnVjdG9yKHNleDogXCLnlLdcIiB8IFwi5aWzXCIpIHtcbi8vICAgICB0aGlzLnNleCA9IHNleFxuLy8gICB9XG5cbi8vICAgZ2V0U3R1ZHlJbmZvKG5hbWU6IHN0cmluZykge1xuLy8gICAgIHJldHVybiB7XG4vLyAgICAgICBzZXg6IHRoaXMuc2V4LFxuLy8gICAgICAgbmFtZVxuLy8gICAgIH1cbi8vICAgfVxuLy8gfVxuXG5cbi8vIGNsYXNzIFJlY3RhbmdsZSB7XG4vLyAgIHdpZHRoOiBudW1iZXI7XG4vLyAgIGhlaWdodDogbnVtYmVyO1xuXG4vLyAgIGNvbnN0cnVjdG9yKHdpZHRoOiBudW1iZXIsIGhlaWdodDogbnVtYmVyKSB7XG4vLyAgICAgdGhpcy53aWR0aCA9IHdpZHRoO1xuLy8gICAgIHRoaXMuaGVpZ2h0ID0gaGVpZ2h0O1xuLy8gICB9XG5cbi8vICAgZ2V0QXJlYUZ1bmN0aW9uKCkge1xuLy8gICAgIHJldHVybiBmdW5jdGlvbiAoKSB7XG4vLyAgICAgICByZXR1cm4gdGhpcy53aWR0aCAqIHRoaXMuaGVpZ2h0O1xuLy8gICAgICAgLy8gICAgICAgJ3RoaXMnIGltcGxpY2l0bHkgaGFzIHR5cGUgJ2FueScgYmVjYXVzZSBpdCBkb2VzIG5vdCBoYXZlIGEgdHlwZSBhbm5vdGF0aW9uLlxuLy8gICAgICAgLy8gJ3RoaXMnIGltcGxpY2l0bHkgaGFzIHR5cGUgJ2FueScgYmVjYXVzZSBpdCBkb2VzIG5vdCBoYXZlIGEgdHlwZSBhbm5vdGF0aW9uLlxuLy8gICAgIH07XG4vLyAgIH1cbi8vIH1cblxuXG5cblxuLy8gaW50ZXJmYWNlIFVzZXJEZWZhdWx0cyB7XG4vLyAgIGNvbG9yVGhlbWVPdmVycmlkZT86IFwiZGFya1wiIHwgXCJsaWdodFwiO1xuLy8gfVxuXG4vLyBjb25zdCB1c2VySW5mbzogVXNlckRlZmF1bHRzID0ge1xuLy8gICBjb2xvclRoZW1lT3ZlcnJpZGU6IFwiZGFya1wiXG4vLyB9XG5cblxuLy8gY29uc3QgYTogbnVtYmVyID0gNjtcblxuLy8gc3dpdGNoIChhKSB7XG4vLyAgIGNhc2UgMDpcbi8vICAgICAvLyBGYWxsdGhyb3VnaCBjYXNlIGluIHN3aXRjaC5cbi8vICAgICBjb25zb2xlLmxvZyhcImV2ZW5cIik7XG4vLyAgIGNhc2UgMTpcbi8vICAgICBjb25zb2xlLmxvZyhcIm9kZFwiKTtcbi8vICAgICBicmVhaztcbi8vIH1cblxuXG4vLyBjbGFzcyBTdHVkeSB7XG4vLyAgIGluZm8oKSB7IH1cbi8vIH1cblxuLy8gY2xhc3MgU2Nob29sIGV4dGVuZHMgU3R1ZHkge1xuLy8gICBvdmVycmlkZSBzaW5mb2V0dXAoKSB7IH1cbi8vIH1cblxuLy8gY2xhc3MgQ2xhc3NlcyBleHRlbmRzIFN0dWR5IHtcbi8vICAgaW5mbygpIHsgfVxuLy8gfSJdfQ==
+>
 >```
-
 
 ## <a id="noEmitHelpers"></a> `noEmitHelpers`  
 >tsconfig.json
@@ -946,13 +958,14 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >  }
 >}
 >``` 
->```ts
 >index.ts
+>```ts
 >const setAge = async (age: number): Promise<number> => {
 >  return age + 1
 >}
->
+>```
 >noEmitHelpers: false
+>```js
 >"use strict";
 >var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
 >    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -996,8 +1009,9 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >    });
 >}); };
 >
->
+>```
 >noEmitHelpers: true
+>```js
 >"use strict";
 >var setAge = function (age) { return __awaiter(void 0, void 0, void 0, function () {
 >    return __generator(this, function (_a) {
@@ -1005,7 +1019,7 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >    });
 >}); };
 >
->在全局作用域中为所使用的帮助程序提供实现, 不需要每次调用都会实现一次
+> //#在全局作用域中为所使用的帮助程序提供实现, 不需要每次调用都会实现一次
 >
 >```
 
@@ -1018,8 +1032,8 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >  }
 >}
 >``` 
->```ts
 >index.ts
+>```ts
 >/**
 > * 学生姓名
 > * @internal
@@ -1030,14 +1044,17 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 > * 学生性别
 > */
 >export let studySex = "男";
->
->stripInternal: false
+>```
+>stripInternal: false  
 >index.d.ts
+>```ts
 >export declare let studyName: string;
 >export declare let studySex: string;
+>```
 >
->
->stripInternal: true
+>stripInternal: true  
+>index.d.ts
+>```ts
 >export declare let studySex: string;
 >```
 
@@ -1061,25 +1078,25 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >  }
 >}
 >``` 
->```ts
 >index.ts
+>```ts
 >import * as fs from "fs";
 >import _ from "lodash";
 >
 >fs.readFileSync("file.txt", "utf8");
 >_.chunk(["a", "b", "c", "d"], 2);
->
+>```
 > 没有设置 "esModuleInterop"
->
+>```js
 >"use strict";
 >Object.defineProperty(exports, "__esModule", { value: true });
 >var fs = require("fs");
 >var lodash_1 = require("lodash");
 >fs.readFileSync("file.txt", "utf8");
 >lodash_1.default.chunk(["a", "b", "c", "d"], 2);
->
+>```
 >设置 "esModuleInterop"
->
+>```js
 >"use strict";
 >Object.defineProperty(exports, "__esModule", { value: true });
 >var tslib_1 = require("tslib");
@@ -1210,55 +1227,55 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >import * as React from 'react'
 >export const studyName = () => <span>小黑</span>;
 >```
->`jsx: react  将 JSX 改为等价的对 React.createElement 的调用并生成 .js 文件`
->```js
->"use strict";
->Object.defineProperty(exports, "__esModule", { value: true });
->exports.studyName = void 0;
->var React = require("react");
->var studyName = function () { return React.createElement("span", null, "\u5C0F\u9ED1"); };
->exports.studyName = studyName;
->```
->`jsx: preserve 不对 JSX 进行改变并生成 .jsx 文件`
->```js
->"use strict";
->Object.defineProperty(exports, "__esModule", { value: true });
->exports.studyName = void 0;
->var React = require("react");
->var studyName = function () { return <span>小黑</span>; };
->exports.studyName = studyName;
->```
->`jsx: react-jsx 改为 __jsx 调用并生成 .js 文件`
->```js
->"use strict";
->Object.defineProperty(exports, "__esModule", { value: true });
->exports.studyName = void 0;
->var jsx_runtime_1 = require("react/jsx-runtime");
->var studyName = function () { return jsx_runtime_1.jsx("span", { children: "\u5C0F\u9ED1" }, void 0); };
->exports.studyName = studyName;
->
->```
->`jsx: react-jsxdev: 改为 __jsx 调用并生成 .js 文件 `
->```js
->"use strict";
->var _this = this;
->Object.defineProperty(exports, "__esModule", { value: true });
->exports.studyName = void 0;
->var jsx_dev_runtime_1 = require("react/jsx-dev-runtime");
->var _jsxFileName = "/Users/bank/Desktop/code-test/babel-test/src/lodash-test.tsx";
->var studyName = function () { return jsx_dev_runtime_1.jsxDEV("span", { children: "\u5C0F\u9ED1" }, void 0, false, { fileName: >_jsxFileName, lineNumber: 5, columnNumber: 31 }, _this); };
->exports.studyName = studyName;
->
->```
->`jsx: react-native: 不对 JSX 进行改变并生成 .js 文件 `
->```js
->"use strict";
->Object.defineProperty(exports, "__esModule", { value: true });
->exports.studyName = void 0;
->var React = require("react");
->var studyName = function () { return <span>小黑</span>; };
->exports.studyName = studyName;
->```
+>>`jsx: react  将 JSX 改为等价的对 React.createElement 的调用并生成 .js 文件`
+>>```js
+>>"use strict";
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>exports.studyName = void 0;
+>>var React = require("react");
+>>var studyName = function () { return React.createElement("span", null, "\u5C0F\u9ED1"); };
+>>exports.studyName = studyName;
+>>```
+>>`jsx: preserve 不对 JSX 进行改变并生成 .jsx 文件`
+>>```js
+>>"use strict";
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>exports.studyName = void 0;
+>>var React = require("react");
+>>var studyName = function () { return <span>小黑</span>; };
+>>exports.studyName = studyName;
+>>```
+>>`jsx: react-jsx 改为 __jsx 调用并生成 .js 文件`
+>>```js
+>>"use strict";
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>exports.studyName = void 0;
+>>var jsx_runtime_1 = require("react/jsx-runtime");
+>>var studyName = function () { return jsx_runtime_1.jsx("span", { children: "\u5C0F\u9ED1" }, void 0); };
+>>exports.studyName = studyName;
+>>
+>>```
+>>`jsx: react-jsxdev: 改为 __jsx 调用并生成 .js 文件 `
+>>```js
+>>"use strict";
+>>var _this = this;
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>exports.studyName = void 0;
+>>var jsx_dev_runtime_1 = require("react/jsx-dev-runtime");
+>>var _jsxFileName = "/Users/bank/Desktop/code-test/babel-test/src/lodash-test.tsx";
+>>var studyName = function () { return jsx_dev_runtime_1.jsxDEV("span", { children: "\u5C0F\u9ED1" }, void 0, false, { >fileName: >_jsxFileName, lineNumber: 5, columnNumber: 31 }, _this); };
+>>exports.studyName = studyName;
+>>
+>>```
+>>`jsx: react-native: 不对 JSX 进行改变并生成 .js 文件 `
+>>```js
+>>"use strict";
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>exports.studyName = void 0;
+>>var React = require("react");
+>>var studyName = function () { return <span>小黑</span>; };
+>>exports.studyName = studyName;
+>>```
 
 ## <a id="lib"></a> `lib`  
 >属性值 | 说明  
@@ -1281,30 +1298,3 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 * 该rootDir设置，如果没有明确设置，默认为包含tsconfig文件的目录
 * 所有实现文件都必须与include模式匹配或列在files数组中。如果违反此约束，tsc将通知您未指定哪些文件
 * declaration 必须开启
-
-
-
-
-
-
-## <a id="noEmitHelpers"></a> `noEmitHelpers`  
-## <a id="noEmitHelpers"></a> `noEmitHelpers`  
-## <a id="noEmitHelpers"></a> `noEmitHelpers`  
-## <a id="noEmitHelpers"></a> `noEmitHelpers`  
-## <a id="noEmitHelpers"></a> `noEmitHelpers`  
-## <a id="noEmitHelpers"></a> `noEmitHelpers`  
-## <a id="noEmitHelpers"></a> `noEmitHelpers`  
-
-
-
-
-
-
-
-
-
-
-
-
-
-

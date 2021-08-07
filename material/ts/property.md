@@ -28,7 +28,7 @@
 ### <a id="type-checking"></a> Type Checking  类型检查
 >选项 | 类型 | 默认值 | 说明  
 >---- | ----- | -----  | -----
-> [allowUnreachableCode](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#downlevelIteration) | boolen | undefined | 报告执行不到的代码错误
+> [allowUnreachableCode](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#allowUnreachableCode) | boolen | undefined | 报告执行不到的代码错误
 >[allowUnusedLabels](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#allowUnusedLabels) | boolen | undefined |  报告未使用的标签错误
 >[alwaysStrict](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#alwaysStrict) | boolen | false | 指定始终以严格模式检查每个模块，并且在编译之后的js文件中加入"use strict"字符串，用来告诉浏览器该js为严格模式 
 >[exactOptionalPropertyTypes](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#exactOptionalPropertyTypes) | boolen | true | 更严格的规则来处理类型或接口上的属性
@@ -191,23 +191,6 @@
 >选项 | 类型 | 默认值 | 说明  
 >---- | ----- | -----  | -----
 >[assumeChangesOnlyAffectDirectDependencies](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#assumeChangesOnlyAffectDirectDependencies) | boolen | false | 是否避免重新检查/重建所有真正可能受影响的文件，而只会重新检查/重建已更改的文件以及直接导入它们的文件
-
-
-
-
-
-tsc --project ./src   编译src目录下项目,并且src目录下要包含 tsconfig.json 文件 否则报错
-tsc --build 
-tsc -b                            # Use the tsconfig.json in the current directory
-tsc -b src                        # Use src/tsconfig.json
-tsc -b foo/prd.tsconfig.json bar  # Use foo/prd.tsconfig.json and bar/tsconfig.json
-
---verbose: 打印详细日志以解释正在发生的事情（可以与任何其他标志结合使用）
---dry: 显示将要完成的操作，但实际上并未构建任何内容
---clean: 删除指定项目的输出（可以与 结合--dry）
---force: 就好像所有项目都过时一样
---watch: 观察模式（不能与任何标志组合，除了--verbose）
-
 
 ## <a id="files"></a> `files`
 >`files可以配置一个数组列表，里面包含指定文件的相对或绝对路径，编译器在编译的时候只会编译包含在files中列出的文件，如果不指定，则取决于有没有设置include选项，如果没有include选项，则默认会编译根目录以及所有子目录中的文件。这里列出的路径必须是指定文件，而不是某个文件夹，而且不能使用* ? **/ 等通配符`

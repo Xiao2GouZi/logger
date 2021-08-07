@@ -41,7 +41,7 @@
 >>[noUncheckedIndexedAccess](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#noUncheckedIndexedAccess) |  |  | 通过索引签名来描述那些键未知但值已知的对象
 >>[noUnusedLocals](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#noUnusedLocals) | boolen | false |  用于检查是否有定义了但是没有使用的变量，对于这一点的检测，使用eslint可以在你书写代码的时候做提示，你可以配合使用
 >>[noUnusedParameters](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#noUnusedParameters) | boolen | false | 用于检查是否有在函数体中没有使用的参数，这个也可以配合eslint来做检查
->>[strict](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#strict) | boolen | false | 用于指定是否启动所有类型检查，如果设为true则会同时开启下面这几个严格类型检查  alwaysStrict, strictNullChecks, strictBindCallApply, strictFunctionTypes, strictPropertyInitialization, noImplicitAny, noImplicitThis, useUnknownInCatchVariab
+>>[strict](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#strict) | boolen | false | 用于指定是否启动所有类型检查，如果设为true则会同时开启下面这几个严格类型检查 
 >>[strictBindCallApply](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#strictBindCallApply) | boolen | false | 会对bind、call和apply绑定的方法的参数的检测是严格检测的
 >>[strictFunctionTypes](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#strictFunctionTypes) | boolen | false | 用于指定是否使用函数参数双向协变检查
 >>[strictNullChecks](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#strictNullChecks) | boolen | false | null和undefined值不能赋给非这两种类型的值，别的类型也不能赋给他们，除了any类型。还有个例外就是undefined可以赋值给void类型

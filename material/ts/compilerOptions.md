@@ -287,6 +287,17 @@
 >//                              ~~~~~~
 >```
 
+## <a id="strict"></a> `strictBindCallApply 用于指定是否启动所有类型检查，如果设为true则会同时开启下面这几个严格类型检查` 
+* [alwaysStrict]()
+* strictNullChecks, 
+* [strictBindCallApply](#strictBindCallApply)
+* [strictFunctionTypes](#strictFunctionTypes)
+* [strictPropertyInitialization](#strictPropertyInitialization)
+* [noImplicitAny](#noImplicitAny)
+* [noImplicitThis](#noImplicitThis)
+* [useUnknownInCatchVariab](#useUnknownInCatchVariab)
+
+
 ## <a id="strictBindCallApply"></a> `strictBindCallApply 会对bind、call和apply绑定的方法的参数的检测是严格检测的`  
 >tsconfig.json
 >```json
@@ -368,6 +379,7 @@
 >// studyInfo.age
 >// ~~~~~~~~~
 >```
+
 
 ## <a id="strictPropertyInitialization"></a> `strictPropertyInitialization 设为true后会检查类的非undefined属性是否已经在构造函数里初始化，如果要开启这项，需要同时开启strictNullChecks`  
 >tsconfig.json

@@ -298,7 +298,7 @@
 >>dynamicPriorityPolling | 使用动态队列，其中不经常修改的文件将不那么频繁地检查。
 >>synchronousWatchDirectory | 禁用对目录的延迟监视。
 
-## <a id="typeAcquisition" href=''></a>`typeAcquisition  类型获取仅对 JavaScript 项目很重要。。`
+## <a id="typeAcquisition" href="javascript:void(0);"></a>`typeAcquisition  类型获取仅对 JavaScript 项目很重要。。`
 >选项 | 类型 | 默认值 | 说明  
 >---- | ----- | -----  | -----
 >[enable](#) | boolen | false | 提供在 JavaScript 项目中禁用类型获取的配置

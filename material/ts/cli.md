@@ -3,8 +3,8 @@
 # tsc cli option 文件里的顶级属性 
 * [CLI Commands](#CLI-Commands) 
 * [Build Options](#Build-Options) 
-* [Watch Options](#https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/property.md#watch-options) 
-* [Compiler Flags](#https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md) 
+* [Watch Options](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/property.md#watch-options) 
+* [Compiler Flags](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md) 
 
 
 ## <a id="CLI-Commands"></a> `CLI Commands`
@@ -24,6 +24,8 @@
 
 
 ## <a id="Build-Options"></a> `Build Options`
+>选项 | 类型  | 说明  
+>---- | ----- | -----
 >--build | boolen | 构建一个或多个项目及其依赖项
 >--clean | boolen | 删除指定项目的输出（可以与 结合--dry） 
 >--dry | boolen | 显示将要完成的操作，但实际上并未构建任何内容  

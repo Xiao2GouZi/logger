@@ -3,8 +3,8 @@
 # tsc cli option 文件里的顶级属性 
 * [CLI Commands](#CLI-Commands) 
 * [Build Options](#Build-Options) 
-* [Watch Options](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/property.md#watch-options) 
-* [Compiler Flags](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md) 
+* [Watch Options](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/property.md#watchOptions) 
+* [Compiler Flags](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/property.md) 
 
 
 ## <a id="CLI-Commands"></a> `CLI Commands`

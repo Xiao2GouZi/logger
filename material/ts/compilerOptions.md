@@ -1,4 +1,4 @@
-## <a id="allowUnreachableCode"></a> `allowUnreachableCode`  
+## <a id="allowUnreachableCode"></a> `allowUnreachableCode 报告执行不到的代码错误`  
 >```js
 >function fn(n: number) {
 >  if (n > 5) {
@@ -29,7 +29,7 @@
 >}
 >```
 
-## <a id="allowUnusedLabels"></a> `allowUnusedLabels`  
+## <a id="allowUnusedLabels"></a> `allowUnusedLabels 报告未使用的标签错误`  
 >```js
 >function verifyAge(age: number) {
 >  // Forgot 'return' statement
@@ -40,7 +40,7 @@
 >}
 >```
 
-## <a id="exactOptionalPropertyTypes"></a> `exactOptionalPropertyTypes`  
+## <a id="exactOptionalPropertyTypes"></a> `exactOptionalPropertyTypes 更严格的规则来处理类型或接口上的属性`    
 >tsconfig.json
 >```json
 >{
@@ -64,7 +64,7 @@
 >}
 >```
 
-## <a id="noFallthroughCasesInSwitch"></a> `noFallthroughCasesInSwitch`  
+## <a id="noFallthroughCasesInSwitch"></a> `noFallthroughCasesInSwitch 用于检查switch中是否有case没有使用break跳出switch`  
 >tsconfig.json
 >```json
 >{
@@ -90,7 +90,7 @@
 >
 >```
 
-## <a id="noImplicitAny"></a> `noImplicitAny`  
+## <a id="noImplicitAny"></a> `noImplicitAny 如果我们没有为一些值设置明确的类型，编译器会默认认为这个值为any，如果noImplicitAny的值为true的话。则没有明确的类型会报错`  
 >tsconfig.json
 >```json
 >{
@@ -109,7 +109,7 @@
 >//                    ~~~
 >```
 
-## <a id="noImplicitOverride"></a> `noImplicitOverride`  
+## <a id="noImplicitOverride"></a> `noImplicitOverride 处理使用继承的类时，子类有可能在基类中重命名时与它重载的函数“不同步”`  
 >tsconfig.json
 >```json
 >{
@@ -138,7 +138,7 @@
 >
 >```
 
-## <a id="noImplicitReturns"></a> `noImplicitReturns`  
+## <a id="noImplicitReturns"></a> `noImplicitReturns 用于检查函数是否有返回值，设为true后，如果函数没有返回值则会提示`  
 >tsconfig.json
 >```json
 >{
@@ -159,7 +159,7 @@
 >//                               ~~~~~~
 >```
 
-## <a id="noImplicitThis"></a> `noImplicitThis`  
+## <a id="noImplicitThis"></a> `noImplicitThis 当this表达式的值为any类型的时候，生成一个错误`  
 >tsconfig.json
 >```json
 >{
@@ -199,7 +199,7 @@
 >//                ~~~~
 >```
 
-## <a id="noPropertyAccessFromIndexSignature"></a> `noPropertyAccessFromIndexSignature`
+## <a id="noPropertyAccessFromIndexSignature"></a> `noPropertyAccessFromIndexSignature 确保了通过" dot " (obj.key)语法和" indexed " (obj["key"])访问字段和属性在类型中声明的方式之间的一致性`
 >tsconfig.json
 >```json
 >{
@@ -231,7 +231,7 @@
 >//          ~~~~~~~~
 >```
 
-## <a id="noUnusedLocals"></a> `noUnusedLocals`  
+## <a id="noUnusedLocals"></a> `noUnusedLocals 用于检查是否有定义了但是没有使用的变量，对于这一点的检测，使用eslint可以在你书写代码的时候做提示，你可以配合使用`  
 >tsconfig.json
 >```json
 >{
@@ -253,7 +253,7 @@
 >//           ~~~~~~~~~~
 >```
 
-## <a id="noUnusedParameters"></a> `noUnusedParameters`  
+## <a id="noUnusedParameters"></a> `noUnusedParameters 用于检查是否有在函数体中没有使用的参数，这个也可以配合eslint来做检查`  
 >tsconfig.json
 >```json
 >{
@@ -287,7 +287,7 @@
 >//                              ~~~~~~
 >```
 
-## <a id="strictBindCallApply"></a> `strictBindCallApply`  
+## <a id="strictBindCallApply"></a> `strictBindCallApply 会对bind、call和apply绑定的方法的参数的检测是严格检测的`  
 >tsconfig.json
 >```json
 >{
@@ -312,7 +312,7 @@
 >//                                           ~~~~~
 >```
 
-## <a id="strictFunctionTypes"></a> `strictFunctionTypes`  
+## <a id="strictFunctionTypes"></a> `strictFunctionTypes 用于指定是否使用函数参数双向协变检查`  
 >tsconfig.json
 >```json
 >{
@@ -339,7 +339,7 @@
 >//     ~~~~
 >```
 
-## <a id="strictNullChecks"></a> `strictNullChecks`
+## <a id="strictNullChecks"></a> `strictNullChecks null和undefined值不能赋给非这两种类型的值，别的类型也不能赋给他们，除了any类型。还有个例外就是undefined可以赋值给void类型`
 >tsconfig.json
 >```json
 >{
@@ -369,7 +369,7 @@
 >// ~~~~~~~~~
 >```
 
-## <a id="strictPropertyInitialization"></a> `strictPropertyInitialization`  
+## <a id="strictPropertyInitialization"></a> `strictPropertyInitialization 设为true后会检查类的非undefined属性是否已经在构造函数里初始化，如果要开启这项，需要同时开启strictNullChecks`  
 >tsconfig.json
 >```json
 >{
@@ -395,7 +395,7 @@
 >
 >```
 
-## <a id="useUnknownInCatchVariables"></a> `useUnknownInCatchVariables`  
+## <a id="useUnknownInCatchVariables"></a> `useUnknownInCatchVariables 允许将catch子句中变量的类型从' any '改为' unknown '的支持`  
 >tsconfig.json
 >```json
 >{
@@ -416,7 +416,7 @@
 >}
 >```
 
-## <a id="baseUrl"></a> `baseUrl` 
+## <a id="baseUrl"></a> `baseUrl baseUrl用于设置解析非相对模块名称的基本目录，相对模块不会受baseUrl的影响` 
 >tsconfig.json
 >```json
 >{
@@ -435,7 +435,7 @@
 >```
 
 
-## <a id="module"></a> `module`  
+## <a id="module"></a> `module 用来指定编译后的js要使用的模块标准: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'`  
 >tsconfig.json
 >```json
 >{
@@ -596,7 +596,7 @@
 >>exports.default = getStudy;
 >>```
 
-## <a id="paths"></a> `paths`  
+## <a id="paths"></a> `paths 指定模块的路径，和baseUrl有关联，和webpack中resolve.alias配置一样`  
 >tsconfig.json
 >```json
 >{
@@ -624,7 +624,7 @@
 >
 >```
 
-## <a id="resolveJsonModule"></a> `resolveJsonModule`
+## <a id="resolveJsonModule"></a> `resolveJsonModule 是否允许导入json文件`
 >tsconfig.json
 >```json
 >{
@@ -643,7 +643,7 @@
 >//                          ~~~~~~~~~~~~~~~~~~
 >```
 
-## <a id="rootDir"></a> `rootDir` 
+## <a id="rootDir"></a> `rootDir 用来指定编译文件的根目录，编译器会在根目录查找入口文件，如果编译器发现以rootDir的值作为根目录查找入口文件并不会把所有文件加载进去的话会报错，但是不会停止编译` 
 >tsconfig.json
 >```json
 >{
@@ -690,7 +690,7 @@
 >└── tsconfig.json
 >```
 
-## <a id="rootDirs"></a> `rootDirs`  
+## <a id="rootDirs"></a> `rootDirs 通过 rootDirs，你可以告诉编译器有许多“虚拟”的目录作为一个根目录。这将会允许编译器在这些“虚拟”目录中解析相对应的模块导入，就像它们被合并到同一目录中一样。用于运行时`  
 >tsconfig.json
 >```json
 >{
@@ -731,7 +731,7 @@
 >
 >```
 
-## <a id="declaration"></a> `declaration`  
+## <a id="declaration"></a> `declaration 用来指定是否在编译的时候生成相应的".d.ts"声明文件。如果设为true，编译每个ts文件之后会生成一个js文件和一个声明文件`  
 >tsconfig.json
 >```json
 >{
@@ -752,7 +752,7 @@
 >
 >```
 
-## <a id="declarationMap"></a> `declarationMap`  
+## <a id="declarationMap"></a> `declarationMap 指定是否为声明文件.d.ts生成map文件`  
 >tsconfig.json
 >```json
 >{
@@ -807,7 +807,7 @@
 >
 >```
 
-## <a id="downlevelIteration"></a> `downlevelIteration`  
+## <a id="downlevelIteration"></a> `downlevelIteration 当target为'ES5' or 'ES3'时，为'for-of', spread, and destructuring'中的迭代器提供完全支持`  
 >tsconfig.json
 >```json
 >{
@@ -862,7 +862,7 @@
 >}
 >```
 
-## <a id="importHelpers"></a> `importHelpers`  
+## <a id="importHelpers"></a> `importHelpers 指定是否引入tslib里的辅助工具函数`  
 >tsconfig.json
 >```json
 >{
@@ -892,14 +892,14 @@
 >exports.fn = fn;
 >```
 
-## <a id="importsNotUsedAsValues"></a> `importsNotUsedAsValues`  
+## <a id="importsNotUsedAsValues"></a> `importsNotUsedAsValues 可以来控制没被使用的导入语句将会被如何处理`  
 属性值 | 说明  
 ---- | -----
 remove | 这是现在的行为 —— 丢弃这些导入语句。这仍然是默认行为，没有破坏性的更改
 preserve | 它将会保留所有的语句，即使是从来没有被使用。可能导致imports/side-effects保留
 error | 它将会保留所有的导入（与 preserve 选项相同）语句，但是当一个值的导入仅仅用于类型时将会抛出错误。如果你想确保没有意外导入任何值，这会是有用的，但是对于副作用，你仍然需要添加额外的导入语法。
 
-## <a id="inlineSourceMap"></a> `inlineSourceMap`  
+## <a id="inlineSourceMap"></a> `inlineSourceMap 指定是否将map文件的内容和js文件编译在同一个js文件中，如果设为true，则map的内容会以//# sourceMappingURL=然后拼接base64字符串的形式插入在js文件底部`  
 >tsconfig.json
 >```json
 >{
@@ -923,7 +923,7 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9kYXNoLXRlc3QuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvbG9kYXNoLXRlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQTZDQSxJQUFNLE1BQU0sR0FBRyxVQUFDLEdBQVc7SUFDekIsT0FBTyxHQUFHLEdBQUcsQ0FBQyxDQUFBO0FBQ2hCLENBQUMsQ0FBQSJ9
 >```
 
-## <a id="inlineSources"></a> `inlineSources`  
+## <a id="inlineSources"></a> `inlineSources 用于指定是否进一步将.ts文件的内容也包含到输入文件中`  
 >tsconfig.json
 >```json
 >{
@@ -949,7 +949,7 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >
 >```
 
-## <a id="noEmitHelpers"></a> `noEmitHelpers`  
+## <a id="noEmitHelpers"></a> `noEmitHelpers 不在输出文件中生成用户自定义的帮助函数代码`  
 >tsconfig.json
 >```json
 >{
@@ -1023,7 +1023,7 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >
 >```
 
-## <a id="stripInternal"></a> `stripInternal`  
+## <a id="stripInternal"></a> `stripInternal 不对具有 /** @internal */ JSDoc注解的代码生成代码`  
 >tsconfig.json
 >```json
 >{
@@ -1058,7 +1058,7 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >export declare let studySex: string;
 >```
 
-## <a id="esModuleInterop"></a> `esModuleInterop`  
+## <a id="esModuleInterop"></a> `esModuleInterop 默认情况下（未设置 esModuleInterop 或值为 false），TypeScript 像 ES6 模块一样对待 CommonJS/AMD/UMD`  
 两个被证实的缺陷
 * 形如 import * as moment from "moment" 这样的命名空间导入等价于 const moment = require("moment")
 * 形如 import moment from "moment" 这样的默认导入等价于 const moment = require("moment").default
@@ -1107,7 +1107,8 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >
 >```
 
-## <a id="experimentalDecorators"></a> `experimentalDecorators`  
+## <a id="experimentalDecorators"></a> `experimentalDecorators 用于指定是否启用实验性的装饰器特性`  
+## <a id="emitDecoratorMetadata"></a> `emitDecoratorMetadata 用于指定是否为装饰器提供元数据支持，关于元数据，也是ES6的新标准，可以通过Reflect提供的静态方法获取元数据，如果需要使用Reflect的一些方法，需要引入ES2015.Reflect这个库`  
 >tsconfig.json
 >```json
 >{
@@ -1213,7 +1214,7 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >}());
 >```
 
-## <a id="jsx"></a> `jsx`  
+## <a id="jsx"></a> `jsx 指定jsx代码用于的开发环境: 'preserve', 'react-native', or 'react'.`  
 >tsconfig.json
 >```json
 >{
@@ -1277,7 +1278,7 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >>exports.studyName = studyName;
 >>```
 
-## <a id="lib"></a> `lib`  
+## <a id="lib"></a> `lib lib用于指定要包含在编译中的库文件, 如果--lib没有指定默认注入的库的列表。默认注入的库为：针对于--target ES5：DOM，ES5，ScriptHost; 针对于--target ES6：DOM，ES6，DOM.Iterable，ScriptHost`  
 >属性值 | 说明  
 >---- | -----
 >ES5 |	ES3 和 ES5 的核心功能定义
@@ -1294,7 +1295,7 @@ error | 它将会保留所有的导入（与 preserve 选项相同）语句，�
 >WebWorker	| [WebWorker](https://developer.mozilla.org/docs/Web/API/Web_Workers_API/Using_web_workers) 上下文中存在的 >API。
 >ScriptHost	| [Windows](https://wikipedia.org/wiki/Windows_Script_Host) Script Hosting System 的 API。
 
-## <a id="composite"></a> `composite` 
+## <a id="composite"></a> `composite 是否编译构建引用项目` 
 * 该rootDir设置，如果没有明确设置，默认为包含tsconfig文件的目录
 * 所有实现文件都必须与include模式匹配或列在files数组中。如果违反此约束，tsc将通知您未指定哪些文件
 * declaration 必须开启

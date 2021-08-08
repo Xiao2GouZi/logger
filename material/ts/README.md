@@ -5,7 +5,7 @@
 $npm install typescript -g
 ```
 
-`注: 如何直接执行ts文件, 请看 [ts-node]()`
+### 注: 如何直接执行ts文件, 请看 [ts-node](https://github.com/Xiao2GouZi/logger/tree/ts/material/ts/ts-node)
 ### 创建tsconfig.json
 ```sh
 $tsc init

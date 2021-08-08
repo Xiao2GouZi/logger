@@ -1,16 +1,16 @@
 
 # tsconfig.json文件里的顶级属性 
-* [compilerOptions](#compilerOptions) 
-* [files](#files) 
-* [include](#include) 
-* [exclude](#exclude) 
-* [extends](#extends) 
-* [compileOnSave](#compileOnSave) 
-* [references](#references) 
+* [compilerOptions 配置编译选项](#compilerOptions) 
+* [files 编译器需要编译的单个文件类表](#files) 
+* [include 编译器需要编译的文件或者目录](#include) 
+* [exclude 编译器需要排除的文件或者文件夹](#exclude) 
+* [extends 引入其他配置文件, 继承配置](#extends) 
+* [compileOnSave 设置保存文件的时候自动编译,需要编译器支持](#compileOnSave) 
+* [references 指定依赖的工程](#references) 
 * [watchOptions](#watchOptions) 
-* [typeAcquisition](#typeAcquisition)
+* [typeAcquisition 设置自动引入库类型文件(.d.ts)相关](#typeAcquisition)
 
->## <a id="compilerOptions"></a> `compilerOptions`
+>## <a id="compilerOptions"></a> `compilerOptions 配置编译选项`
 >  * [Type Checking 类型检查](#type-checking) 
 >  * [Modules 模块](#modules) 
 >  * [Emit](#emit) 
@@ -176,7 +176,7 @@
 >>---- | ----- | -----  | -----
 >>[assumeChangesOnlyAffectDirectDependencies](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#assumeChangesOnlyAffectDirectDependencies) | boolen | false | 是否避免重新检查/重建所有真正可能受影响的文件，而只会重新检查/重建已更改的文件以及直接导入它们的文件
 
-## <a id="files"></a> `files`
+## <a id="files"></a> `files 编译器需要编译的单个文件类表`
 >`files可以配置一个数组列表，里面包含指定文件的相对或绝对路径，编译器在编译的时候只会编译包含在files中列出的文件，如果不指定，则取决于有没有设置include选项，如果没有include选项，则默认会编译根目录以及所有子目录中的文件。这里列出的路径必须是指定文件，而不是某个文件夹，而且不能使用* ? **/ 等通配符`
 >```json
 >{
@@ -187,7 +187,7 @@
 >```
 >这样只会编译src/index.ts文件 
 
-## <a id="include"></a> `include`
+## <a id="include"></a> `include 编译器需要编译的文件或者目录`
 >`include也可以指定要编译的路径列表，但是和files的区别在于，这里的路径可以是文件夹，也可以是文件，可以使用相对和绝对路径，而且可以使用通配符，比如"./src"即表示要编译src文件夹下的所有文件以及子文件夹的文件`
 >```json
 >{
@@ -198,8 +198,8 @@
 >```
 >编译编译src目录下所有的ts文件
 
-## <a id="exclude"></a> `exclude`
->`exclude表示要排除的、不编译的文件，它也可以指定一个列表，规则和include一样，可以是文件或文件夹，可以是相对路径或绝对路径，可以使用通配符`
+## <a id="exclude"></a> `exclude 编译器需要排除的文件或者文件夹`
+>`exclude表示要排除的、不编译的文件，它也可以指定一个列表，规则和include一样，可以是文件或文件夹，可以是相对路径或绝对路径，可以使用通配符.默认排除node_modules`
 >```json
 >{
 >  "include": [
@@ -212,7 +212,7 @@
 >```
 >编译器编译src目录下除去index.ts文件外的所有ts文件
 
-## <a id="extends"></a> `extends`
+## <a id="extends"></a> `extends 引入其他配置文件, 继承配置`
 >`extends可以通过指定一个其他的tsconfig.json文件路径，来继承这个配置文件里的配置，继承来的文件的配置会覆盖当前文件定义的配置。TS在3.2版本开始，支持继承一个来自Node.js包的tsconfig.json配置文件`
 >### ts/config.json
 >```json
@@ -235,7 +235,7 @@
 >在原文件里的配置先被加载，然后被来至继承文件里的配置重写。 如果发现循环引用，则会报错
 
 
-## <a id="compileOnSave"></a> `compileOnSave`
+## <a id="compileOnSave"></a> `compileOnSave 设置保存文件的时候自动编译,需要编译器支持`
 >`compileOnSave的值是true或false，如果设为true，在我们编辑了项目中的文件保存的时候，编辑器会根据tsconfig.json中的配置重新生成文件，不过这个要编辑器支持`
 >```json
 >{
@@ -243,7 +243,7 @@
 >}
 >```
 
-## <a id="references"></a> `references`
+## <a id="references"></a> `references 指定依赖的工程`
 >`一个对象数组，指定要引用的项目`
 
 
@@ -282,7 +282,7 @@
 >>dynamicPriorityPolling | 使用动态队列，其中不经常修改的文件将不那么频繁地检查。
 >>synchronousWatchDirectory | 禁用对目录的延迟监视。
 
-## <a id="typeAcquisition"></a>`typeAcquisition  类型获取仅对 JavaScript 项目很重要。。`
+## <a id="typeAcquisition"></a>`typeAcquisition  类型获取仅对 JavaScript 项目很重要。设置自动引入库类型文件(.d.ts)相关`
 >选项 | 类型 | 默认值 | 说明  
 >---- | ----- | -----  | -----
 >[enable](#) | boolen | false | 提供在 JavaScript 项目中禁用类型获取的配置

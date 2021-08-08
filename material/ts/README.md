@@ -1,3 +1,16 @@
+## 开启 Typescript 
+
+### npm 全局安装 typescript
+```sh
+$npm install typescript -g
+```
+
+`注: 如何直接执行ts文件, 请看 [ts-node]()`
+### 创建tsconfig.json
+```sh
+$tsc init
+```
+
 
 ## `files、include、exclude`
 >### `files && include`

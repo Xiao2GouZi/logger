@@ -617,6 +617,9 @@
 >    "paths": {
 >      "common": [
 >        "./common/index"
+>      ],
+>       "@assets/*": [
+>        "./assets/*"
 >      ]
 >    }
 >  }

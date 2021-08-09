@@ -124,7 +124,7 @@
 >}
 >
 >class School extends Study {
->  override sinfoetup() { }
+>  override info() { }
 >}
 >
 >class Classes extends Study {

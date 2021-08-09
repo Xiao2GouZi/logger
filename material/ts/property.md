@@ -30,7 +30,7 @@
 >>---- | ----- | -----  | -----
 >>[allowUnreachableCode](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#allowUnreachableCode) | boolen | undefined | 报告执行不到的代码错误
 >>[allowUnusedLabels](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#allowUnusedLabels) | boolen | undefined |  报告未使用的标签错误
->>[alwaysStrict](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#alwaysStrict) | boolen | false | 指定始终以严格模式检查每个模块，并且在编译之后>的js文件中加入"use strict"字符串，用来告诉浏览器该js为严格模式 
+>>[alwaysStrict](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#alwaysStrict) | boolen | false | 指定始终以严格模式检查每个模块，并且在编译之后的js文件中加入"use strict"字符串，用来告诉浏览器该js为严格模式 
 >>[exactOptionalPropertyTypes](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#exactOptionalPropertyTypes) | boolen | true | 更严格的规则来处理类型或接口上的属性
 >>[noFallthroughCasesInSwitch](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#noFallthroughCasesInSwitch) | boolen | false | 用于检查switch中是否有case没有使用break跳出switch 
 >>[noImplicitAny](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#noImplicitAny) | boolen | false | 如果我们没有为一些值设置明确的类型，编译器会默认认为这个值为any，如果noImplicitAny的值为true的话。则没有明确的类型会报错 
@@ -128,9 +128,9 @@
 >>[emitDecoratorMetadata](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#experimentalDecorators) | boolen | false | 用于指定是否为装饰器提供元数据支持，关于元数据，也是ES6的新标准，可以通过Reflect提供的静态方法获取元数据，如果需要使用Reflect的一些方法，需要引入ES2015.Reflect这个库 
 >>[experimentalDecorators](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#experimentalDecorators) | boolen | false | 用于指定是否启用实验性的装饰器特性
 >>[jsx](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#jsx) | string | Preserve | 指定jsx代码用于的开发环境: 'preserve', 'react-native', or 'react'.
->>[jsxFactory](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#jsxFactory) |  |  | 指定生成目标为react JSX时，使用的JSX工厂函数，比如 React.createElement或 h
->>[jsxFragmentFactory](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#jsxFragmentFactory) |  |  | 
->>[jsxImportSource](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#jsxImportSource) |  |  | 
+>>[jsxFactory](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#jsxFactory) |  |  | 当使用经典的JSX运行时编译JSX元素时，更改.js文件中调用的函数，默认：React.createElement 。
+>>[jsxFragmentFactory](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#jsxFragmentFactory) |  |  | 指定 JSX 片段工厂函数在指定了 jsxFactory 编译器选项的情况下针对 react JSX 发出时使用。
+>>[jsxImportSource](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#jsxImportSource) |  |  | 当在TS 4.1中使用 jsx 作为 react-jsx 或 react-jsxdev 时，声明用于导入jsx和jsxs工厂函数的模块说明符。
 >>[lib](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#lib) | string[] | false | lib用于指定要包含在编译中的库文件, 如果--lib没有指定默认注入的库的列表。默认注入的库为：针对于--target ES5：DOM，ES5，ScriptHost; 针对于--target ES6：DOM，ES6，DOM.Iterable，ScriptHost
 >>[noLib](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#noLib) | boolen | false | 不包含默认的库文件, lib将被忽略
 >>[reactNamespace](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#reactNamespace) | string | React | 当目标为生成 "react" JSX时，指定 createElement和 __spread的调用对象
@@ -141,9 +141,9 @@
 >>选项 | 类型 | 默认值 | 说明  
 >>---- | ----- | -----  | -----
 >>[diagnostics](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#diagnostics) | boolen | false |  弃用
->>[explainFiles](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#explainFiles) | boolen | false | 
->>[extendedDiagnostics](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#extendedDiagnostics) | boolen | false | 显示详细的诊段信息
->>[generateCpuProfile](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#generateCpuProfile) |  |  | 
+>>[explainFiles](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#explainFiles) | boolen | false | 解释文件，此选项用于调试文件如何成为编译的一部分，默认：false。
+>>[extendedDiagnostics](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#extendedDiagnostics) | boolen | false | 是否查看 TS 在编译时花费的时间，默认：false。
+>>[generateCpuProfile](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#generateCpuProfile) |  |  | 在编译阶段让 TS 发出 CPU 配置文件，只能通过终端或 CLI 调用 --generateCpuProfile tsc-output.cpuprofile 。
 >>[listEmittedFiles](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#listEmittedFiles) | boolen | false | 打印出编译后生成文件的名字 
 >>[listFiles ](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#listFiles ) | boolen | false | 编译过程中打印文件名
 >>[traceResolution](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#traceResolution) | boolen | false | 生成模块解析日志信息
@@ -168,7 +168,7 @@
 >### <a id="completeness"></a>Completeness 完整性
 >>选项 | 类型 | 默认值 | 说明  
 >>---- | ----- | -----  | -----
->>[skipDefaultLibCheck ](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#skipDefaultLibCheck ) | boolen | false | 忽略 库的默认声明文件的类型检查
+>>[skipDefaultLibCheck ](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#skipDefaultLibCheck ) | boolen | false | 忽略 库的默认声明文件的类型检查, 用skipLibCheck代替
 >>[skipLibCheck](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/compilerOptions.md#skipLibCheck) | boolen | false | 忽略所有的声明文件（ *.d.ts）的类型检查
 >
 >### <a id="watch-options"></a>Watch Options  监听选项
@@ -286,8 +286,8 @@
 >选项 | 类型 | 默认值 | 说明  
 >---- | ----- | -----  | -----
 >[enable](#) | boolen | false | 提供在 JavaScript 项目中禁用类型获取的配置
->[include](#) | boolen | false | 使用 include 来指定应从绝对类型中使用哪些类型
->[exclude](#) | boolen | false | 提供用于禁用 JavaScript 项目中某个模块的类型获取的配置
+>[include](#) |  |  | 使用 include 来指定应从绝对类型中使用哪些类型
+>[exclude](#) |  |  | 提供用于禁用 JavaScript 项目中某个模块的类型获取的配置
 >[disableFilenameBasedTypeAcquisition](#) | boolen | false | 是否禁用基于文件名的类型获取，TypeScript 的类型获取可以根据项目中的文件名推断应该添加哪些类型
 
 

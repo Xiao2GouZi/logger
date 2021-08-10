@@ -11,6 +11,8 @@ $npm install typescript -g
 $tsc init
 ```
 
+设置[tsconfig](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/tsconfig/README.md)
+
 
 ## 如何正确使用 `files、include、exclude`
 >### `files && include`

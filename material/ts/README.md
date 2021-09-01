@@ -4,10 +4,14 @@
 * [基础类型](#type-base) 
 * [TypeScript 断言  as ](#typescript-as) 
 * [类型守卫 in typeof instance is](#typescript-in-typeof-instance-is) 
+* [交叉类型](#typescript-cross-type) 
+* [抽象类](#class-abstract) 
 * [函数重载](#typescript-funtion-overload) 
 * [访问器 getter setter](#accessor-getter-setter) 
 * [ECMAScript 私有字段](#es-private) 
 * [TypeScript 泛型](#typescript-genericity) 
+* [TypeScript 装饰器](#typescript-decorators) 
+
 
 
 
@@ -170,219 +174,359 @@
 >```
 
 ### <a id="typescript-as"></a> `TypeScript 断言`
->```ts
->  enum ESEX {
->    GIRL,
->    BODY
->  }
->
->  interface ISTUDYINFO {
->    name: string
->    age: number
->    sex: ESEX
->  }
->
->  let studyInfos: any = [{
->    name: "小黑",
->    age: 12,
->    sex: ESEX.BODY
->  }]
->
->  let study1 = (studyInfos[0] as ISTUDYINFO)
->  study1.age
->
->  //var ESEX;
->  //(function (ESEX) {
->  //    ESEX[ESEX["GIRL"] = 0] = "GIRL";
->  //    ESEX[ESEX["BODY"] = 1] = "BODY";
->  //})(ESEX || (ESEX = {}));
->  //var studyInfo = [{
->  //        name: "小黑",
->  //        age: 12,
->  //        sex: ESEX.BODY
->  //    }];
->
->```
+>#### `类型断言 尖括号、as语法`
+>>```ts
+>>  enum ESEX {
+>>    GIRL,
+>>    BODY
+>>  }
+>>
+>>  interface ISTUDYINFO {
+>>    name: string
+>>    age: number
+>>    sex: ESEX
+>>  }
+>>
+>>  let studyInfos: any = [{
+>>    name: "小黑",
+>>    age: 12,
+>>    sex: ESEX.BODY
+>>  }]
+>>
+>>  let study1 = (studyInfos[0] as ISTUDYINFO).name
+>>  // let study1 = (<ISTUDYINFO>studyInfos[0]).name
+>>  study1.age
+>>
+>>  //var ESEX;
+>>  //(function (ESEX) {
+>>  //    ESEX[ESEX["GIRL"] = 0] = "GIRL";
+>>  //    ESEX[ESEX["BODY"] = 1] = "BODY";
+>>  //})(ESEX || (ESEX = {}));
+>>  //var studyInfo = [{
+>>  //        name: "小黑",
+>>  //        age: 12,
+>>  //        sex: ESEX.BODY
+>>  //    }];
+>>
+>>```
+>#### `非空断言 !`
+>> ```ts
+>>  type studentSex = "boy" | "girl" | undefined | null
+>>  
+>>  // 前提是 确认 sex 不可能是 undefined或者null
+>>  const getStudentInfo = (sex: studentSex) => {
+>>    return {
+>>      name: "xiaoming",
+>>      age: 12,
+>>      sex: sex!
+>>    }
+>>  }
+>>```
 
 ### <a id="typescript-in-typeof-instance-is"></a> `类型守卫 in typeof instance is`
 >类型保护是可执行运行时检查的一种表达式，确保该类型在一定的范围内
 >#### `in`
->```ts
->enum ESEX {
->  GIRL,
->  BODY
->}
+>>```ts
+>>  enum ESEX {
+>>    GIRL,
+>>    BODY
+>>  }
+>>  
+>>  interface ISTUDYSEX {
+>>    name: string,
+>>    sex: ESEX
+>>  }
+>>  
+>>  interface ISTUDYAGE {
+>>    name: string,
+>>    age: number
+>>  }
+>>  
+>>  type STUDYINFO = ISTUDYSEX | ISTUDYAGE
+>>  
+>>  const getStudyInfo = (info: STUDYINFO)=> {
+>>    if ("sex" in info) {
+>>      return {
+>>        ...info,
+>>        age: 14
+>>      }
+>>    }
+>>    if ("age" in info) {
+>>      return {
+>>        ...info,
+>>        sex: ESEX.BODY
+>>      }
+>>    }
+>>  }
+>>  
+>>  const info = getStudyInfo({
+>>    name: '小黑',
+>>    sex: ESEX.GIRL
+>>  })
+>>  
+>>  console.log('   =>   info', info)
+>>  //   =>   info { name: '小黑', sex: 0, age: 14 }
+>>  
+>>  //var __assign = (this && this.__assign) || function () {
+>>  //    __assign = Object.assign || function(t) {
+>>  //        for (var s, i = 1, n = arguments.length; i < n; i++) {
+>>  //            s = arguments[i];
+>>  //            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+>>  //                t[p] = s[p];
+>>  //        }
+>>  //        return t;
+>>  //    };
+>>  //    return __assign.apply(this, arguments);
+>>  //};
+>>  //var ESEX;
+>>  //(function (ESEX) {
+>>  //    ESEX[ESEX["GIRL"] = 0] = "GIRL";
+>>  //    ESEX[ESEX["BODY"] = 1] = "BODY";
+>>  //})(ESEX || (ESEX = {}));
+>>  //var getStudyInfo = function (info) {
+>>  //    if ("sex" in info) {
+>>  //        return __assign(__assign({}, info), { age: 14 });
+>>  //    }
+>>  //    if ("age" in info) {
+>>  //        return __assign(__assign({}, info), { sex: ESEX.BODY });
+>>  //    }
+>>  //};
+>>  //var info = getStudyInfo({
+>>  //    name: '小黑',
+>>  //    sex: ESEX.GIRL
+>>  //});
+>>  //console.log('   =>   info', info);
+>>  //
+>>```
 >
->interface ISTUDYSEX {
->  name: string,
->  sex: ESEX
->}
+>#### `typeof  "number"， "string"， "boolean" 或 "symbol"`
+>>```ts
+>>  const getStudyInfo = (name: string, sex: string | number, age: number) => {
+>>    if (typeof sex === "number") {
+>>      return {
+>>        name,
+>>        sex: sex === 1 ? "男" : "女",
+>>        age
+>>      }
+>>    }
+>>    if (typeof sex === "string") {
+>>      return {
+>>        name,
+>>        sex,
+>>        age
+>>      }
+>>    }
+>>  }
+>>
+>>  const studyInfo = getStudyInfo("小美", 1, 12)
+>>  console.log(" studyInfo ==> ", studyInfo)
+>>  // studyInfo ==>  { name: '小美', sex: '男', age: 12 }
+>>
+>>  //var getStudyInfo = function (name, sex, age) {
+>>  //    if (typeof sex === "number") {
+>>  //        return {
+>>  //            name: name,
+>>  //            sex: sex === 1 ? "男" : "女",
+>>  //            age: age
+>>  //        };
+>>  //    }
+>>  //    if (typeof sex === "string") {
+>>  //        return {
+>>  //            name: name,
+>>  //            sex: sex,
+>>  //            age: age
+>>  //        };
+>>  //    }
+>>  //};
+>>  //var studyInfo = getStudyInfo("小美", 1, 12);
+>>  //console.log(" studyInfo ==> ", studyInfo);
+>>
+>>```
 >
->interface ISTUDYAGE {
->  name: string,
->  age: number
->}
->
->type STUDYINFO = ISTUDYSEX | ISTUDYAGE
->
->const getStudyInfo = (info: STUDYINFO)=> {
->  if ("sex" in info) {
->    return {
->      ...info,
->      age: 14
->    }
->  }
->  if ("age" in info) {
->    return {
->      ...info,
->      sex: ESEX.BODY
->    }
->  }
->}
->
->const info = getStudyInfo({
->  name: '小黑',
->  sex: ESEX.GIRL
->})
->
->console.log('   =>   info', info)
->//   =>   info { name: '小黑', sex: 0, age: 14 }
->
->//var __assign = (this && this.__assign) || function () {
->//    __assign = Object.assign || function(t) {
->//        for (var s, i = 1, n = arguments.length; i < n; i++) {
->//            s = arguments[i];
->//            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
->//                t[p] = s[p];
->//        }
->//        return t;
->//    };
->//    return __assign.apply(this, arguments);
->//};
->//var ESEX;
->//(function (ESEX) {
->//    ESEX[ESEX["GIRL"] = 0] = "GIRL";
->//    ESEX[ESEX["BODY"] = 1] = "BODY";
->//})(ESEX || (ESEX = {}));
->//var getStudyInfo = function (info) {
->//    if ("sex" in info) {
->//        return __assign(__assign({}, info), { age: 14 });
->//    }
->//    if ("age" in info) {
->//        return __assign(__assign({}, info), { sex: ESEX.BODY });
->//    }
->//};
->//var info = getStudyInfo({
->//    name: '小黑',
->//    sex: ESEX.GIRL
->//});
->//console.log('   =>   info', info);
->//
->```
->
->#### `typeof`
->```ts
->  const getStudyInfo = (name: string, sex: string | number, age: number) => {
->    if (typeof sex === "number") {
->      return {
->        name,
->        sex: sex === 1 ? "男" : "女",
->        age
->      }
->    }
->    if (typeof sex === "string") {
->      return {
->        name,
->        sex,
->        age
->      }
->    }
->  }
->
->  const studyInfo = getStudyInfo("小美", 1, 12)
->  console.log(" studyInfo ==> ", studyInfo)
->  // studyInfo ==>  { name: '小美', sex: '男', age: 12 }
->
->  //var getStudyInfo = function (name, sex, age) {
->  //    if (typeof sex === "number") {
->  //        return {
->  //            name: name,
->  //            sex: sex === 1 ? "男" : "女",
->  //            age: age
->  //        };
->  //    }
->  //    if (typeof sex === "string") {
->  //        return {
->  //            name: name,
->  //            sex: sex,
->  //            age: age
->  //        };
->  //    }
->  //};
->  //var studyInfo = getStudyInfo("小美", 1, 12);
->  //console.log(" studyInfo ==> ", studyInfo);
->
->```
->
->#### `instance`
->```ts
->  enum ESEX {
->    GIRL,
->    BODY
->  }
->
->  interface ISTUDYINFO {
->    name: string
->    age: number
->    sex: ESEX
->  }
->
->
->  let studyInfos: ISTUDYINFO[] = [{
->    name: "小黑",
->    age: 12,
->    sex: ESEX.BODY
->  }]
->
->  //var ESEX;
->  //(function (ESEX) {
->  //    ESEX[ESEX["GIRL"] = 0] = "GIRL";
->  //    ESEX[ESEX["BODY"] = 1] = "BODY";
->  //})(ESEX || (ESEX = {}));
->  //var studyInfos = [{
->  //        name: "小黑",
->  //        age: 12,
->  //        sex: ESEX.BODY
->  //    }];
->```
->
+>#### `instance 区分不同的class类型`
+>>```ts
+>>  interface IStudentInfo {
+>>    name: string,
+>>    age: number,
+>>  }
+>>  
+>>  interface IStudentInfos {
+>>    getStudentInfo: () => IStudentInfo
+>>  }
+>>  
+>>  class ClassesA implements IStudentInfos {
+>>    constructor() { }
+>>    getStudentInfo = () => {
+>>      return {
+>>        name: "xiaoming",
+>>        age: 12,
+>>      }
+>>    }
+>>  }
+>>  
+>>  class ClassesB implements IStudentInfos {
+>>    constructor() { }
+>>    getStudentInfo = () => {
+>>      return {
+>>        name: "xiaoming",
+>>        age: 12,
+>>      }
+>>    }
+>>  }
+>>  
+>>  const classes = new ClassesA()
+>>  
+>>  if (classes instanceof ClassesA) {
+>>    console.log(' ======> classesA type ClassesA')
+>>  }
+>>  
+>>  //var ClassesA = (function () {
+>>  //    function ClassesA() {
+>>  //        this.getStudentInfo = function () {
+>>  //            return {
+>>  //                name: "xiaoming",
+>>  //                age: 12,
+>>  //            };
+>>  //        };
+>>  //    }
+>>  //    return ClassesA;
+>>  //}());
+>>  //var ClassesB = (function () {
+>>  //    function ClassesB() {
+>>  //        this.getStudentInfo = function () {
+>>  //            return {
+>>  //                name: "xiaoming",
+>>  //                age: 12,
+>>  //            };
+>>  //        };
+>>  //    }
+>>  //    return ClassesB;
+>>  //}());
+>>  //var classesA = new ClassesA();
+>>  //if (classesA instanceof ClassesA) {
+>>  //    console.log(' ======> classesA type ClassesA');
+>>  //}
+>>```
 >
 >#### `is`
+>>```ts
+>>  function isString(x: any): x is string {
+>>    return typeof x === "string";
+>>  }
+>>  
+>>  function example(foo: any){
+>>    if(isString(foo)){
+>>        // 如下代码编译和运行时都正常，因为 foo 是 string toLocaleUpperCase方法
+>>        console.log(foo.toLocaleUpperCase());
+>>    }
+>>    // 编译不会出错，但是运行时出错   当前foo是string类型,但是string没有toExponential的方法
+>>    console.log(foo.toExponential(2));
+>>  }
+>>  example("hello world");
+>>  
+>>  //function isString(x) {
+>>  //    return typeof x === "string";
+>>  //}
+>>  //function example(foo) {
+>>  //    if (isString(foo)) {
+>>  //        console.log(foo.toLocaleUpperCase());
+>>  //    }
+>>  //    console.log(foo.toExponential(2));
+>>  //}
+>>  //example("hello world");
+>>```
+>
+
+### <a id="typescript-cross-type"></a> `交叉类型`
 >```ts
->  function isString(x: any): x is string {
->    return typeof x === "string";
+>  // 相同成员,相同基础类型
+>  interface IPrimarySchoolInfo {
+>    name: string,
+>    year: number
 >  }
 >  
->  function example(foo: any){
->    if(isString(foo)){
->        // 如下代码编译和运行时都正常，因为 foo 是 string toLocaleUpperCase方法
->        console.log(foo.toLocaleUpperCase());
+>  interface IMiddleSchoolInfo {
+>    name: string,
+>    detail: string,
+>  }
+>  
+>  const schoolInfo: IPrimarySchoolInfo & IMiddleSchoolInfo = {
+>    name: '希望学校',
+>    year: 12,
+>    detail: "优秀的学校"
+>  }
+>  
+>  // 相同成员,不同基础类型
+>  interface IPrimarySchoolInfo {
+>    name: string,
+>    year: number
+>  }
+>  
+>  interface IMiddleSchoolInfo {
+>    name: number,
+>    detail: string,
+>  }
+>  
+>  const schoolInfo: IPrimarySchoolInfo & IMiddleSchoolInfo = {
+>    //  error  Type 'string' is not assignable to type 'never'.
+>    name: '',
+>    year: 12,
+>    detail: "优秀的徐晓"
+>  }
+>  
+>  //相同成员,不同非基础类型
+>  interface IPrimarySchoolInfo {
+>    otherInfo: {
+>      code: string,
 >    }
->    // 编译不会出错，但是运行时出错   当前foo是string类型,但是string没有toExponential的方法
->    console.log(foo.toExponential(2));
 >  }
->  example("hello world");
 >  
->  //function isString(x) {
->  //    return typeof x === "string";
->  //}
->  //function example(foo) {
->  //    if (isString(foo)) {
->  //        console.log(foo.toLocaleUpperCase());
->  //    }
->  //    console.log(foo.toExponential(2));
->  //}
->  //example("hello world");
+>  interface IMiddleSchoolInfo {
+>    otherInfo: {
+>      id: number
+>    }
+>  }
+>  
+>  const schoolInfo: IPrimarySchoolInfo & IMiddleSchoolInfo = {
+>    otherInfo: {
+>      code: "XSDAD",
+>      id: 98765678909876
+>    }
+>  }
+>
+>```
+
+### <a id="class-abstract"></a> `抽象类`
+>  ```ts
+>  abstract class Person {
+>    constructor(public name: string){}
+>  
+>    abstract say(words: string) :void;
+>  }
+>  
+>  // Cannot create an instance of an abstract class.(2511)
+>  const lolo = new Person(); // Error
+>  
+>  abstract class Person {
+>    constructor(public name: string){}
+>  
+>    // 抽象方法
+>    abstract say(words: string) :void;
+>  }
+>  
+>  class Developer extends Person {
+>    constructor(name: string) {
+>      super(name);
+>    }
+>    
+>    say(words: string): void {
+>      console.log(`${this.name} says ${words}`);
+>    }
+>  }
+>  
+>  const lolo = new Developer("lolo");
+>  lolo.say("I love ts!"); // lolo says I love ts!
+>  
 >```
 
 ### <a id="typescript-funtion-overload"></a> `函数重载`
@@ -537,6 +681,7 @@
 >```
 
 ### <a id="typescript-genericity"></a> `TypeScript 泛型`
+>允许同一个函数接受不同类型参数的一种模板
 >泛型变量
 >* T（Type）：表示一个 TypeScript 类型
 >* K（Key）：表示对象中的键类型
@@ -1106,17 +1251,157 @@
 >>```
 >
 
+### <a id="typescript-decorators"></a> `TypeScript 装饰器`
+>`类装饰器`
+>>```ts
+>>  declare type ClassDecorator = <TFunction extends Function>(target: TFunction) => TFunction | void;
+>>     //target: TFunction - 被装饰的类
+>>  
+>>  function SchoolDecorator<T extends Function>(name: string) {
+>>    return function (target: T) {
+>>      target.prototype.setInfo = () => {
+>>        target.prototype.name = name
+>>        console.log(' =====> setInfo', target.prototype.name)
+>>      }
+>>    }
+>>  }
+>>  
+>>  @SchoolDecorator("希望大学")
+>>  class Student {
+>>    name: string
+>>    constructor() {
+>>      this.name = '默认值'
+>>    }
+>>    getInfo = () => {
+>>      console.log(' =====> getInfo', this.name)
+>>    }
+>>  }
+>>  
+>>  const student = new Student()
+>>  student.getInfo();
+>>  (student as any).setInfo()
+>>
+>>```
+>
+>`属性装饰器`
+>>```ts
+>>  declare type PropertyDecorator = (target: Object, propertyKey: string | symbol) => void;
+>>     // target: Object - 被装饰的类
+>>     // propertyKey: string | symbol - 被装饰类的属性名
+>>  
+>>  function propertyDecorator (target, key) {
+>>    delete target[key];
+>>    const backingField = "_" + key;
+>>    Object.defineProperty(target, backingField, {
+>>      writable: true,
+>>      enumerable: true,
+>>      configurable: true
+>>    });
+>>  
+>>    // property getter
+>>    const getter = function (this) {
+>>      const currVal = this[backingField];
+>>      return currVal;
+>>    };
+>>  
+>>    // property setter
+>>    const setter = function (this, newVal) {
+>>      this[backingField] = newVal;
+>>    };
+>>  
+>>    // Create new property with getter and setter
+>>    Object.defineProperty(target, key, {
+>>      get: getter,
+>>      set: setter,
+>>      enumerable: true,
+>>      configurable: true
+>>    });
+>>  
+>>  }
+>>  
+>>  class Student {
+>>    @propertyDecorator
+>>    appName;
+>>  
+>>    constructor(name) {
+>>      this.appName = name;
+>>    }
+>>  
+>>    getInfo () {
+>>      console.log(' =====> getInfo')
+>>    }
+>>  }
+>>  
+>>  const p1 = new Student("semlinker");
+>>  p1.appName = "xixihaha"
+>>  
+>>```
+>
+>`方法装饰器`
+>>```ts
+>>  declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) =>   TypedPropertyDescriptor<T> | void;
+>>      //target: Object - 被装饰的类
+>>      //propertyKey: string | symbol - 方法名
+>>      //descriptor: TypePropertyDescript - 属性描述符
+>>  
+>>  function actionDescriptor(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
+>>    console.log(' ====> target', target,)
+>>    //====> target Task { runTask: [Function] }
+>>    console.log(' ====> propertyKey', propertyKey)
+>>    //====> propertyKey runTask
+>>    let originalMethod = descriptor.value;
+>>    descriptor.value = function (...args: any[]) {
+>>      console.log(" ====> args => 2", Array.from(args))
+>>      //====> args => 2 [ 'learn ts' ]
+>>      let result = originalMethod.apply(this, args);
+>>      return result;
+>>    };
+>>  }
+>>  
+>>  class Task {
+>>    @actionDescriptor
+>>    runTask(arg: any): any {
+>>      console.log(' ===> arg => 1', arg)
+>>      //===> arg => 1 learn ts
+>>      return "finished";
+>>    }
+>>  }
+>>  
+>>  let task = new Task();
+>>  let result = task.runTask("learn ts");
+>>  console.log("result: " + result);
+>>  //result: finished
+>>```
+>
+>`参数装饰器`
+>>```ts
+>>  declare type ParameterDecorator = (target: Object, propertyKey: string | symbol, parameterIndex: number) => void;
+>>  
+>>    //target: Object - 被装饰的类
+>>    //propertyKey: string | symbol - 方法名
+>>    //parameterIndex: number - 方法中参数的索引值
+>>  
+>>  function paramDescriptor(target: Function, key: string, parameterIndex: number) {
+>>    console.log(' =====> target', target)
+>>    console.log(' =====> key', key)
+>>    console.log(' =====> parameterIndex', parameterIndex)
+>>  }
+>>  
+>>  class Student {
+>>    getName(@paramDescriptor name: string): string {
+>>      console.log(' ===> arg => 1', name)
+>>      return "finished";
+>>    }
+>>  }
+>>```
 
 
 
 
-
-
+<!-- ### <a id="typescript-in-typeof-instance-is"></a> `类型守卫 in typeof instance is`
 ### <a id="typescript-in-typeof-instance-is"></a> `类型守卫 in typeof instance is`
 ### <a id="typescript-in-typeof-instance-is"></a> `类型守卫 in typeof instance is`
-### <a id="typescript-in-typeof-instance-is"></a> `类型守卫 in typeof instance is`
-### <a id="typescript-in-typeof-instance-is"></a> `类型守卫 in typeof instance is`
-### <a id="typescript-in-typeof-instance-is"></a> `类型守卫 in typeof instance is`
+### <a id="typescript-in-typeof-instance-is"></a> `类型守卫 in typeof instance is` -->
 
 
 

@@ -871,7 +871,7 @@
 >>  //===> setMessage { type: 'delay', payload: 'hello 123' }
 >>```
 >
->`extends 继承某些类`
+>`extends 继承某些类型`
 >>```ts
 >>  interface ISCHOOLINFO {
 >>    address: string,
@@ -888,7 +888,7 @@
 >>    awards: []
 >>  }
 >>```
->
+> ## 运用好 in、infer、extends、keyof、typeof 可以组装成大多数想要的泛型, Partial、Required、Readonly、Pick 等等  是TS提供的基础泛型工具, 现实工作中要写好泛型还是有很长路要走的  
 >`Partial 将某个类型里的属性全部变为可选项 ?`
 >>```ts
 >>  /**
@@ -897,7 +897,7 @@
 >>  type Partial<T> = {
 >>      [P in keyof T]?: T[P];
 >>  };
->>  
+>>  //首先通过 keyof T 拿到 T 的所有属性名，然后使用 in 进行遍历，将值赋给 P，最后通过 T[P] 取得相应的属性值。中间的 ? 号，用于将所有属性变为可选。
 >>  interface ISCHOOLINFO {
 >>    address: string,
 >>    name: string,
@@ -927,7 +927,7 @@
 >>  type Required<T> = {
 >>      [P in keyof T]-?: T[P];
 >>  };
->>  
+>>  //首先通过 keyof T 拿到 T 的所有属性名，然后使用 in 进行遍历，将值赋给 P，最后通过 T[P] 取得相应的属性值。中间的 -? 号，用于将所有属性变为必选。
 >>  interface ISCHOOLINFO {
 >>    address?: string,
 >>    name: string,
@@ -949,7 +949,7 @@
 >>  type Readonly<T> = {
 >>      readonly [P in keyof T]: T[P];
 >>  };
->>  
+>>  //首先通过 keyof T 拿到 T 的所有属性名，然后使用 in 进行遍历，将值赋给 P，最后通过 T[P] 取得相应的属性值。最左边的readonly，用于将所有属性变为必选。
 >>  interface ISCHOOLINFO {
 >>    address?: string,
 >>    name: string,

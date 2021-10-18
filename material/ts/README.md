@@ -1,6 +1,10 @@
 # 开启 Typescript  
-* [npm 全局安装 typescript](#npm-i-typescript) 
-* [创建tsconfig.json](#tsconfig-json) 
+
+如何安装运行[typescript](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/cli.md), 如何创建自己的声明文件[declaration](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/declaration.md),如何配置好[tsconfig](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/tsconfig/README.md)
+
+从入门到放弃,只差那么一点点.
+
+* [新的语法从提案到变成正式标准](#typescript-stage) 
 * [基础类型](#type-base) 
 * [TypeScript 断言  as ](#typescript-as) 
 * [类型守卫 in typeof instance is](#typescript-in-typeof-instance-is) 
@@ -12,26 +16,12 @@
 * [TypeScript 泛型](#typescript-genericity) 
 * [TypeScript 装饰器](#typescript-decorators) 
 
-
-
-
-
-
-
-
-### <a id="npm-i-typescript"></a> `npm 全局安装 typescript`
->```sh
->$npm install typescript -g
->```
->
-> 注: 可以通过[ts-node](https://github.com/Xiao2GouZi/logger/tree/ts/material/ts/ts-node)直接编译执行ts,而不需要先编译成js文件在执行
-
-### <a id="tsconfig-json"></a> `创建tsconfig.json`
->```sh
->$tsc init
->```
->如何配置 [tsconfig](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/tsconfig/README.md)
-
+### <a id="typescript-stage"></a> `新的语法从提案到变成正式标准`
+>* Stage 0：展示阶段，仅仅是提出了讨论、想法，尚未正式提案。
+>* Stage 1：征求意见阶段，提供抽象的 API 描述，讨论可行性，关键算法等。
+>* Stage 2：草案阶段，使用正式的规范语言精确描述其语法和语义。
+>* Stage 3：候选人阶段，语法的设计工作已完成，需要浏览器、Node.js 等环境支持，搜集用户的反馈。
+>* Stage 4：定案阶段，已准备好将其添加到正式的 ECMAScript 标准中。
 
 ### <a id="type-base"></a> `基础类型`
 >#### `Boolen 类型`
@@ -761,7 +751,7 @@
 >>    girl: string;
 >>```
 >
->`infer 在条件类型语句中，可以用 infer 声明一个类型变量并且对它进行使用`
+>`infer  推断 在条件类型语句中，可以用 infer 声明一个类型变量并且对它进行使用`
 >>```ts
 >>  interface Action<T> {
 >>    payload?: T;

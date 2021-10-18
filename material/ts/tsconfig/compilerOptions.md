@@ -1,0 +1,1316 @@
+## <a id="allowUnreachableCode"></a> `allowUnreachableCode 报告执行不到的代码错误`  
+>```js
+>function fn(n: number) {
+>  if (n > 5) {
+>    return true;
+>  } else {
+>    return false;
+>  }
+>  return true;
+>}
+>```
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "allowUnreachableCode": false
+>  }
+>}
+>```
+>```js
+>function fn(n: number) {
+>  if (n > 5) {
+>    return true;
+>  } else {
+>    return false;
+>  }
+>  return true;
+>  /** Unreachable code detected. */
+>}
+>```
+
+## <a id="allowUnusedLabels"></a> `allowUnusedLabels 报告未使用的标签错误`  
+>```js
+>function verifyAge(age: number) {
+>  // Forgot 'return' statement
+>  if (age > 18) {
+>    verified: true;
+> /** Unused label. */
+>  }
+>}
+>```
+
+## <a id="exactOptionalPropertyTypes"></a> `exactOptionalPropertyTypes 更严格的规则来处理类型或接口上的属性`    
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "exactOptionalPropertyTypes": true
+>  }
+>}
+>```
+>```ts
+>interface UserDefaults {
+>  colorThemeOverride?: "dark" | "light";
+>}
+>
+>const userInfo: UserDefaults = {
+>  colorThemeOverride: "dark"
+>}
+>
+>/** Type 'undefined' is not assignable to type '"dark" | "light"'. */
+>const userInfo:UserDefaults = {
+>  colorThemeOverride: undefined
+>}
+>```
+
+## <a id="noFallthroughCasesInSwitch"></a> `noFallthroughCasesInSwitch 用于检查switch中是否有case没有使用break跳出switch`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "noFallthroughCasesInSwitch": true
+>  }
+>}
+>```
+>```ts
+>const a: number = 6;
+>
+>switch (a) {
+>  case 0:
+>    console.log("even");
+>  case 1:
+>    console.log("odd");
+>    break;
+>}
+>
+>  // xxx - error TS7029: Fallthrough case in switch.
+>  // 30   case 0:
+>  //     ~~~~~~~
+>
+>```
+
+## <a id="noImplicitAny"></a> `noImplicitAny 如果我们没有为一些值设置明确的类型，编译器会默认认为这个值为any，如果noImplicitAny的值为true的话。则没有明确的类型会报错`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "noImplicitAny": true
+>  }
+>}
+>```
+>```ts
+>const setName = (age) => {
+>  return age + 1
+>}
+>
+>// xx - error TS7006: Parameter 'age' implicitly has an 'any' type.
+>// 11 const setName = (age) => {
+>//                    ~~~
+>```
+
+## <a id="noImplicitOverride"></a> `noImplicitOverride 处理使用继承的类时，子类有可能在基类中重命名时与它重载的函数“不同步”`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "noImplicitOverride": true
+>  }
+>}
+>```
+>```ts
+>class Study {
+>  info() { }
+>}
+>
+>class School extends Study {
+>  override info() { }
+>}
+>
+>class Classes extends Study {
+>  info() { }
+>}
+>
+>// xxx - error TS4114: This member must have an 'override' modifier because it overrides a member in the base >class 'Album'.
+>
+>//   info() { }
+>//   ~~~~~
+>
+>```
+
+## <a id="noImplicitReturns"></a> `noImplicitReturns 用于检查函数是否有返回值，设为true后，如果函数没有返回值则会提示`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "noImplicitReturns": true
+>  }
+>}
+>```
+>```ts
+>const setName = (age: number): number => {
+>  if (age > 10) {
+>    return age + 1
+>  }
+>}
+>//xxx - error TS7030: Not all code paths return a value.
+>//
+>//const setName = (age: number): number => {
+>//                               ~~~~~~
+>```
+
+## <a id="noImplicitThis"></a> `noImplicitThis 当this表达式的值为any类型的时候，生成一个错误`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "noImplicitThis": true
+>  }
+>}
+>```
+>```ts
+>class Study {
+>  age: number
+>  sex: "男" | "女"
+>
+>  constructor(age: number, sex: "男" | "女") {
+>    this.age = age
+>    this.sex = sex
+>  }
+>
+>  getStudyInfo() {
+>    return function () {
+>      return {
+>        age: this.age,
+>        sex: this.sex
+>      }
+>    }
+>  }
+>}
+>
+>//xxx - error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+>//
+>//        age: this.age,
+>//                ~~~~
+>//
+>//xxx - error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+>//
+>//         sex: this.sex
+>//                ~~~~
+>```
+
+## <a id="noPropertyAccessFromIndexSignature"></a> `noPropertyAccessFromIndexSignature 确保了通过" dot " (obj.key)语法和" indexed " (obj["key"])访问字段和属性在类型中声明的方式之间的一致性`
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "noPropertyAccessFromIndexSignature": true
+>  }
+>}
+>```
+>```ts
+>interface StudyInfo {
+>  sex: "男" | "女",
+>  age: number
+>  [key: string]: string | number;
+>}
+>
+>const settings: StudyInfo = {
+>  sex: "女",
+>  age: 12
+>}
+>
+>//正常
+>settings["userName"] = '小明'
+>
+>//异常
+>settings.userName = "小黑"
+>//xxx - error TS4111: Property 'userName' comes from an index signature, so it must be //>accessed with ['userName'].
+>//
+>// settings.userName = "小黑"
+>//          ~~~~~~~~
+>```
+
+## <a id="noUnusedLocals"></a> `noUnusedLocals 用于检查是否有定义了但是没有使用的变量，对于这一点的检测，使用eslint可以在你书写代码的时候做提示，你可以配合使用`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "noUnusedLocals": true
+>  }
+>}
+>```
+>```ts
+>class Study {
+>  getStudyInfo() {
+>    const nameFormat = '12'
+>  }
+>}
+>
+>//xxx - error TS6133: 'nameFormat' is declared but its value is never read.
+>//
+>//     const nameFormat = '12'
+>//           ~~~~~~~~~~
+>```
+
+## <a id="noUnusedParameters"></a> `noUnusedParameters 用于检查是否有在函数体中没有使用的参数，这个也可以配合eslint来做检查`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "noUnusedParameters": true
+>  }
+>}
+>```
+>```ts
+>class Study {
+>  age: number
+>  sex: "男" | "女"
+>
+>  constructor(age: number, sex: "男" | "女") {
+>    this.age = age
+>    this.sex = sex
+>  }
+>
+>  getStudyInfo(name: string, height: number) {
+>    return {
+>      age: this.age,
+>      sex: this.sex,
+>      name
+>    }
+>  }
+>}
+>
+>//xxx - error TS6133: 'height' is declared but its value is never read.
+>//
+>//   getStudyInfo(name: string, height: number) {
+>//                              ~~~~~~
+>```
+
+## <a id="strict"></a> `strictBindCallApply 用于指定是否启动所有类型检查，如果设为true则会同时开启下面这几个严格类型检查` 
+* [alwaysStrict]()
+* strictNullChecks, 
+* [strictBindCallApply](#strictBindCallApply)
+* [strictFunctionTypes](#strictFunctionTypes)
+* [strictPropertyInitialization](#strictPropertyInitialization)
+* [noImplicitAny](#noImplicitAny)
+* [noImplicitThis](#noImplicitThis)
+* [useUnknownInCatchVariab](#useUnknownInCatchVariab)
+
+
+## <a id="strictBindCallApply"></a> `strictBindCallApply 会对bind、call和apply绑定的方法的参数的检测是严格检测的`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "strictBindCallApply": true
+>  }
+>}
+>```
+>```ts
+>const setUserName = (name: string) => {
+>  return name
+>}
+>
+>//正常
+>const studyName2 = setUserName.call('小红', undefined)
+>//异常
+>const studyName1 = setUserName.call('小明', false)
+>
+>//xxx - error TS2345: Argument of type 'boolean' is not assignable to parameter of type 'string'.
+>//
+>// const studyName1 = setUserName.call('小明', false)
+>//                                           ~~~~~
+>```
+
+## <a id="strictFunctionTypes"></a> `strictFunctionTypes 用于指定是否使用函数参数双向协变检查`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "strictFunctionTypes": true
+>  }
+>}
+>```
+>```ts
+>function fn(x: string) {
+>  console.log("Hello, " + x.toLowerCase());
+>}
+>
+>type StringOrNumberFunc = (ns: string | number) => void;
+>
+>// Unsafe assignment is prevented
+>let func: StringOrNumberFunc = fn;
+>//xxx - error TS2322: Type '(x: string) => void' is not assignable to type 'StringOrNumberFunc'.
+>//  Types of parameters 'x' and 'ns' are incompatible.
+>//    Type 'string | number' is not assignable to type 'string'.
+>//      Type 'number' is not assignable to type 'string'.
+>//
+>// let func: StringOrNumberFunc = fn;
+>//     ~~~~
+>```
+
+## <a id="strictNullChecks"></a> `strictNullChecks null和undefined值不能赋给非这两种类型的值，别的类型也不能赋给他们，除了any类型。还有个例外就是undefined可以赋值给void类型`
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "strictNullChecks": true
+>  }
+>}
+>```
+>```ts
+>const studys = [{
+>  name: '小明',
+>  age: 12
+>}, {
+>  name: '小飞',
+>  age: 14
+>}, {
+>  name: '小白',
+>  age: 10
+>}]
+>
+>const studyInfo = studys.find(item => item.age > 15)
+>studyInfo.age
+>
+>// - error TS2532: Object is possibly 'undefined'.
+>//
+>// studyInfo.age
+>// ~~~~~~~~~
+>```
+
+
+## <a id="strictPropertyInitialization"></a> `strictPropertyInitialization 设为true后会检查类的非undefined属性是否已经在构造函数里初始化，如果要开启这项，需要同时开启strictNullChecks`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "strictPropertyInitialization": true
+>  }
+>}
+>```
+>```ts
+>class Study {
+>  age: number
+>  sex: "男" | "女"
+>
+>  constructor(sex: "男" | "女") {
+>    this.sex = sex
+>  }
+>}
+>
+>//xxx - error TS2564: Property 'age' has no initializer and is not definitely assigned in the //>constructor.
+>//
+>//   age: number
+>//   ~~~
+>
+>```
+
+## <a id="useUnknownInCatchVariables"></a> `useUnknownInCatchVariables 允许将catch子句中变量的类型从' any '改为' unknown '的支持`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "strictPropertyInitialization": true
+>  }
+>}
+>```
+>``` ts
+>try {
+>  // ...
+>} catch (err) {
+>  // We have to verify err is an
+>  // error before using it as one.
+>  if (err instanceof Error) {
+>    console.log(err.message);
+>  }
+>}
+>```
+
+## <a id="baseUrl"></a> `baseUrl baseUrl用于设置解析非相对模块名称的基本目录，相对模块不会受baseUrl的影响` 
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "baseUrl": "./"
+>  }
+>}
+>```
+>```ts
+>demo
+>├── lib
+>├── src
+>│   └── index.ts
+>└── tsconfig.json
+> // TypeScript 将会从首先寻找与 tsconfig.json 处于相同目录的文件。
+>```
+
+
+## <a id="module"></a> `module 用来指定编译后的js要使用的模块标准: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "module": "CommonJS"
+>  }
+>}
+>```
+>```ts
+>import Lodash from 'lodash'
+>
+>interface STUDYINFO {
+>  age: number,
+>  name: string
+>}
+>
+>const getStudy = (listInfo: STUDYINFO[]) => {
+>  const index = Lodash.findIndex(listInfo, (item) => {
+>    return item.name === "小黑"
+>  })
+>  return index
+>}
+>
+>export default getStudy
+>```
+>>### CommonJS
+>>```js
+>>"use strict";
+>>var __importDefault = (this && this.__importDefault) || function (mod) {
+>>    return (mod && mod.__esModule) ? mod : { "default": mod };
+>>};
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>var lodash_1 = __importDefault(require("lodash"));
+>>var getStudy = function (listInfo) {
+>>    var index = lodash_1.default.findIndex(listInfo, function (item) {
+>>        return item.name === "小黑";
+>>    });
+>>    return index;
+>>};
+>>exports.default = getStudy;
+>>```
+>>### UMD
+>>```js
+>>var __importDefault = (this && this.__importDefault) || function (mod) {
+>>    return (mod && mod.__esModule) ? mod : { "default": mod };
+>>};
+>>(function (factory) {
+>>    if (typeof module === "object" && typeof module.exports === "object") {
+>>        var v = factory(require, exports);
+>>        if (v !== undefined) module.exports = v;
+>>    }
+>>    else if (typeof define === "function" && define.amd) {
+>>        define(["require", "exports", "lodash"], factory);
+>>    }
+>>})(function (require, exports) {
+>>    "use strict";
+>>    Object.defineProperty(exports, "__esModule", { value: true });
+>>    var lodash_1 = __importDefault(require("lodash"));
+>>    var getStudy = function (listInfo) {
+>>        var index = lodash_1.default.findIndex(listInfo, function (item) {
+>>            return item.name === "小黑";
+>>        });
+>>        return index;
+>>    };
+>>    exports.default = getStudy;
+>>});
+>>
+>>```
+>>### AMD
+>>```js
+>>var __importDefault = (this && this.__importDefault) || function (mod) {
+>>    return (mod && mod.__esModule) ? mod : { "default": mod };
+>>};
+>>define(["require", "exports", "lodash"], function (require, exports, lodash_1) {
+>>    "use strict";
+>>    Object.defineProperty(exports, "__esModule", { value: true });
+>>    lodash_1 = __importDefault(lodash_1);
+>>    var getStudy = function (listInfo) {
+>>        var index = lodash_1.default.findIndex(listInfo, function (item) {
+>>            return item.name === "小黑";
+>>        });
+>>        return index;
+>>    };
+>>    exports.default = getStudy;
+>>});
+>>```
+>>### System
+>>```js
+>>System.register(["lodash"], function (exports_1, context_1) {
+>>    "use strict";
+>>    var lodash_1, getStudy;
+>>    var __moduleName = context_1 && context_1.id;
+>>    return {
+>>        setters: [
+>>            function (lodash_1_1) {
+>>                lodash_1 = lodash_1_1;
+>>            }
+>>        ],
+>>        execute: function () {
+>>            getStudy = function (listInfo) {
+>>                var index = lodash_1.default.findIndex(listInfo, function (item) {
+>>                    return item.name === "小黑";
+>>                });
+>>                return index;
+>>            };
+>>            exports_1("default", getStudy);
+>>        }
+>>    };
+>>});
+>>```
+>>### ESNext
+>>```js
+>>import Lodash from 'lodash';
+>>var getStudy = function (listInfo) {
+>>    var index = Lodash.findIndex(listInfo, function (item) {
+>>        return item.name === "小黑";
+>>    });
+>>    return index;
+>>};
+>>export default getStudy;
+>>```
+>>### es2015
+>>```js
+>>import Lodash from 'lodash';
+>>var getStudy = function (listInfo) {
+>>    var index = Lodash.findIndex(listInfo, function (item) {
+>>        return item.name === "小黑";
+>>    });
+>>    return index;
+>>};
+>>export default getStudy;
+>>```
+>>### ES2020
+>>```js
+>>import Lodash from 'lodash';
+>>var getStudy = function (listInfo) {
+>>    var index = Lodash.findIndex(listInfo, function (item) {
+>>        return item.name === "小黑";
+>>    });
+>>    return index;
+>>};
+>>export default getStudy;
+>>```
+>>### None
+>>```js
+>>"use strict";
+>>var __importDefault = (this && this.__importDefault) || function (mod) {
+>>    return (mod && mod.__esModule) ? mod : { "default": mod };
+>>};
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>var lodash_1 = __importDefault(require("lodash"));
+>>var getStudy = function (listInfo) {
+>>    var index = lodash_1.default.findIndex(listInfo, function (item) {
+>>        return item.name === "小黑";
+>>    });
+>>    return index;
+>>};
+>>exports.default = getStudy;
+>>```
+
+## <a id="paths"></a> `paths 指定模块的路径，和baseUrl有关联，和webpack中resolve.alias配置一样`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>    "baseUrl": "src", 
+>    "paths": {
+>      "common": [
+>        "./common/index"
+>      ],
+>       "@assets/*": [
+>        "./assets/*"
+>      ]
+>    }
+>  }
+>}
+>```
+>```js
+>demo
+>├── src
+>|   └── common
+>|       └── index.ts
+>│   └── index.ts
+>└── tsconfig.json
+>
+>import Common from 'common'
+>
+>Common.getStudy([{ age: 12, name: '122' }])
+>
+>```
+
+## <a id="resolveJsonModule"></a> `resolveJsonModule 是否允许导入json文件`
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "resolveJsonModule": true
+>  }
+>}
+>```
+>如果不设置 "resolveJsonModule": true  就默认不支持
+>```ts
+>import StudentInfo from 'studentInfo.json'
+>
+>//xxx - error TS2732: Cannot find module 'studentInfo.json'. Consider using >'--resolveJsonModule' to import module with '.json' //extension.
+>//
+>// import StudentInfo from 'studentInfo.json'
+>//                          ~~~~~~~~~~~~~~~~~~
+>```
+
+## <a id="rootDir"></a> `rootDir 用来指定编译文件的根目录，编译器会在根目录查找入口文件，如果编译器发现以rootDir的值作为根目录查找入口文件并不会把所有文件加载进去的话会报错，但是不会停止编译` 
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "rootDir": "./",
+>     "outDir": "./dist"
+>  }
+>}
+>``` 
+>原目录
+>```ts
+>demo
+>├── src
+>|   └── common
+>|       └── index.ts
+>│   └── index.ts
+>└── tsconfig.json
+>```
+>在没有设置 rootDir  编译后的目录如下 
+>```ts
+>demo
+>├── dist
+>|   └── common
+>|       └── index.js
+>│   └── index.js
+>├── src
+>|   └── common
+>|       └── index.ts
+>│   └── index.ts
+>└── tsconfig.json
+>```
+>在没有设置 rootDir  编译后的目录如下 
+>```ts
+>demo
+>├── dist
+>|   └── src
+>|       └── common
+>|           └── index.js
+>│       └── index.js
+>├── src
+>|   └── common
+>|       └── index.ts
+>│   └── index.ts
+>└── tsconfig.json
+>```
+
+## <a id="rootDirs"></a> `rootDirs 通过 rootDirs，你可以告诉编译器有许多“虚拟”的目录作为一个根目录。这将会允许编译器在这些“虚拟”目录中解析相对应的模块导入，就像它们被合并到同一目录中一样。用于运行时`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "rootDir": "./",
+>     "rootDirs": [
+>      "src/common",
+>      "src/views",
+>    ]
+>  }
+>}
+>``` 
+>```ts
+>demo
+>原目录
+>├── src
+>|   └── common
+>|       └── common.ts
+>|   └── views
+>|       └── app1.ts
+>|       └── app2.ts
+>└── tsconfig.json
+>``` 
+>
+>配置  "rootDirs": ["src/common", "src/views"]
+>```ts
+>common.ts
+>
+>export function name(): number {
+>  return 1
+>}
+>
+>app1.ts
+>
+>import * as Common from './common'
+>
+>console.log(' app1 ---- Common.name:', Common.name())
+>
+>```
+
+## <a id="declaration"></a> `declaration 用来指定是否在编译的时候生成相应的".d.ts"声明文件。如果设为true，编译每个ts文件之后会生成一个js文件和一个声明文件`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "declaration": true,
+>     "declarationDir": "./lib", 
+>     "emitDeclarationOnly": true
+>  }
+>}
+>``` 
+>
+>```ts
+> index.ts
+>export let name = "小飞";
+>
+>index.d.ts
+>export declare let name: string;
+>
+>```
+
+## <a id="declarationMap"></a> `declarationMap 指定是否为声明文件.d.ts生成map文件`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "declaration": true,
+>     "declarationDir": "./lib", 
+>     "declarationMap": true
+>  }
+>}
+>``` 
+>```ts
+>demo
+>原目录
+>├── src
+>|   └── index.ts
+>└── tsconfig.json
+>```
+>设置 "declarationMap": true
+>```ts
+>demo
+>├── dist
+>│   └── index.js
+>├── lib
+>│   └── index.d.ts
+>│   └── index.d.ts.map
+>├── src
+>|   └── index.ts
+>└── tsconfig.json
+>```
+>index.ts
+>```ts
+>export let name = "小飞";
+>
+>```
+>index.d.ts
+>```ts
+>export declare let name: string;
+>
+>```
+>index.d.ts.map
+>```ts
+>{
+>  "version": 3,
+>  "file": "index.d.ts",
+>  "sourceRoot": "",
+>  "sources": [
+>    "../src/index.ts"
+>  ],
+>  "names": [],
+>  "mappings": "AAIA,eAAO,IAAI,IAAI,QAAO,CAAC"
+>}
+>
+>```
+
+## <a id="downlevelIteration"></a> `downlevelIteration 当target为'ES5' or 'ES3'时，为'for-of', spread, and destructuring'中的迭代器提供完全支持`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "downlevelIteration": true
+>  }
+>}
+>``` 
+>```js
+>const str = "Hello!";
+>for (const s of str) {
+>  console.log(s);
+>}
+>```
+>for/of 循环将被降级为传统的 for 循环
+>```js
+>"use strict";
+>var studyName = "xiaohei";
+>for (var _i = 0, studyName_1 = studyName; _i < studyName_1.length; _i++) {
+>    var s = studyName_1[_i];
+>    console.log(s);
+>}
+>```
+>配置downlevelIteration之后, 将会使用辅助函数来检查 Symbol.iterator 的实现, 如果没有实现，则将会回退到基于索引的迭代
+>```js
+>"use strict";
+>var __values = (this && this.__values) || function(o) {
+>    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+>    if (m) return m.call(o);
+>    if (o && typeof o.length === "number") return {
+>        next: function () {
+>            if (o && i >= o.length) o = void 0;
+>            return { value: o && o[i++], done: !o };
+>        }
+>    };
+>    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+>};
+>var e_1, _a;
+>var studyName = "xiaohei";
+>try {
+>    for (var studyName_1 = __values(studyName), studyName_1_1 = studyName_1.next(); !studyName_1_1.done; studyName_1_1 = studyName_1.>next()) {
+>        var s = studyName_1_1.value;
+>        console.log(s);
+>    }
+>}
+>catch (e_1_1) { e_1 = { error: e_1_1 }; }
+>finally {
+>    try {
+>        if (studyName_1_1 && !studyName_1_1.done && (_a = studyName_1.return)) _a.call(studyName_1);
+>    }
+>    finally { if (e_1) throw e_1.error; }
+>}
+>```
+
+## <a id="importHelpers"></a> `importHelpers 指定是否引入tslib里的辅助工具函数`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "importHelpers": true,
+>      "downlevelIteration": true
+>  }
+>}
+>``` 
+>index.ts
+>```ts
+>export function fn(arr: string[]) {
+>  const names = ["小黑", "小李", "小猫"]
+>  const classesName = ["小兰", ...arr]
+>}
+>```
+>index.js
+>```ts
+>"use strict";
+>Object.defineProperty(exports, "__esModule", { value: true });
+>exports.fn = void 0;
+>var tslib_1 = require("tslib");
+>function fn(arr) {
+>    var names = ["小黑", "小李", "小猫"];
+>    var classesName = tslib_1.__spreadArray(["小兰"], tslib_1.__read(arr));
+>}
+>exports.fn = fn;
+>```
+
+## <a id="importsNotUsedAsValues"></a> `importsNotUsedAsValues 可以来控制没被使用的导入语句将会被如何处理`  
+属性值 | 说明  
+---- | -----
+remove | 这是现在的行为 —— 丢弃这些导入语句。这仍然是默认行为，没有破坏性的更改
+preserve | 它将会保留所有的语句，即使是从来没有被使用。可能导致imports/side-effects保留
+error | 它将会保留所有的导入（与 preserve 选项相同）语句，但是当一个值的导入仅仅用于类型时将会抛出错误。如果你想确保没有意外导入任何值，这会是有用的，但是对于副作用，你仍然需要添加额外的导入语法。
+
+## <a id="inlineSourceMap"></a> `inlineSourceMap 指定是否将map文件的内容和js文件编译在同一个js文件中，如果设为true，则map的内容会以//# sourceMappingURL=然后拼接base64字符串的形式插入在js文件底部`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "inlineSourceMap": true,
+>  }
+>}
+>``` 
+>index.ts
+>```ts
+>const setAge = (age: number): number => {
+>  return age + 1
+>}
+>```
+>index.js
+>```ts
+>"use strict";
+>var setAge = function (age) {
+>    return age + 1;
+>};
+>//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9kYXNoLXRlc3QuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvbG9kYXNoLXRlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQTZDQSxJQUFNLE1BQU0sR0FBRyxVQUFDLEdBQVc7SUFDekIsT0FBTyxHQUFHLEdBQUcsQ0FBQyxDQUFBO0FBQ2hCLENBQUMsQ0FBQSJ9
+>```
+
+## <a id="inlineSources"></a> `inlineSources 用于指定是否进一步将.ts文件的内容也包含到输入文件中`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "inlineSourceMap": true,
+>     "inlineSources": true
+>  }
+>}
+>``` 
+>index.ts
+>```ts
+>const setAge = (age: number): number => {
+>  return age + 1
+>}
+>```
+>index.js
+>````ts
+>"use strict";
+>var setAge = function (age) {
+>    return age + 1;
+>};
+>//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9kYXNoLXRlc3QuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvbG9kYXNoLXRlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQTZDQSxJQUFNLE1BQU0sR0FBRyxVQUFDLEdBQVc7SUFDekIsT0FBTyxHQUFHLEdBQUcsQ0FBQyxDQUFBO0FBQ2hCLENBQUMsQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbIi8vIGltcG9ydCBTdHVkZW50SW5mbyBmcm9tICdzdHVkZW50SW5mby5qc29uJ1xuXG4vLyBpbXBvcnQgTG9kYXNoIGZyb20gJ2xvZGFzaCdcblxuLy8gZXhwb3J0IGxldCBuYW1lID0gXCLlsI/po55cIjtcblxuLy8gY29uc3Qgc3R1ZHlOYW1lID0gXCJ4aWFvaGVpXCI7XG4vLyBmb3IgKGNvbnN0IHMgb2Ygc3R1ZHlOYW1lKSB7XG4vLyAgIGNvbnNvbGUubG9nKHMpO1xuLy8gfVxuXG4vLyBleHBvcnQgZnVuY3Rpb24gZm4oYXJyOiBudW1iZXJbXSkge1xuLy8gICBjb25zdCBhcnIyID0gWzEsIC4uLmFycl07XG4vLyAgIGNvbnN0IG5hbWVzID0gW1wi5bCP6buRXCIsIFwi5bCP5p2OXCIsIFwi5bCP54yrXCJdXG4vLyAgIGNvbnN0IGNsYXNzZXNOYW1lID0gW1wi5bCP5YWwXCIsIC4uLm5hbWVzLF1cbi8vIH1cblxuXG4vLyBleHBvcnQgZnVuY3Rpb24gZm4oYXJyOiBzdHJpbmdbXSkge1xuLy8gICBjb25zdCBuYW1lcyA9IFtcIuWwj+m7kVwiLCBcIuWwj+adjlwiLCBcIuWwj+eMq1wiXVxuLy8gICBjb25zdCBjbGFzc2VzTmFtZSA9IFtcIuWwj+WFsFwiLCAuLi5hcnJdXG4vLyB9XG5cblxuXG5cbi8vIGludGVyZmFjZSBTVFVEWUlORk8ge1xuLy8gICBhZ2U6IG51bWJlcixcbi8vICAgbmFtZTogc3RyaW5nXG4vLyB9XG5cbi8vIGNvbnN0IGdldFN0dWR5ID0gKGxpc3RJbmZvOiBTVFVEWUlORk9bXSkgPT4ge1xuLy8gICBTdHVkZW50SW5mby5pbmZvXG4vLyAgIGNvbnN0IGluZGV4ID0gTG9kYXNoLmZpbmRJbmRleChsaXN0SW5mbywgKGl0ZW0pID0+IHtcbi8vICAgICByZXR1cm4gaXRlbS5uYW1lID09PSBcIuWwj+m7kVwiXG4vLyAgIH0pXG4vLyAgIHJldHVybiBpbmRleFxuLy8gfVxuXG4vLyBleHBvcnQgZGVmYXVsdCBnZXRTdHVkeVxuXG5cbi8vIExvZGFzaC5rZXlzXG5cblxuY29uc3Qgc2V0QWdlID0gKGFnZTogbnVtYmVyKTogbnVtYmVyID0+IHtcbiAgcmV0dXJuIGFnZSArIDFcbn1cblxuLy8gY29uc3Qgc2V0TmFtZSA9IChhZ2U6IG51bWJlcik6IG51bWJlciA9PiB7XG4vLyAgIHJldHVybiBhZ2UgKyAxXG4vLyB9XG5cbi8vIGNvbnN0IGMgPSAnMidcblxuLy8gY29uc3Qgc2V0VXNlck5hbWUgPSAobmFtZTogc3RyaW5nKSA9PiB7XG4vLyAgIHJldHVybiBuYW1lXG4vLyB9XG5cbi8vIGNvbnN0IHN0dWR5TmFtZTEgPSBzZXRVc2VyTmFtZS5jYWxsKCflsI/mmI4nLCBmYWxzZSlcbi8vIGNvbnN0IHN0dWR5TmFtZTIgPSBzZXRVc2VyTmFtZS5jYWxsKCflsI/nuqInLCB1bmRlZmluZWQpXG4vLyBjb25zdCBzdHVkeU5hbWUzID0gc2V0VXNlck5hbWUuY2FsbCgn5bCP57qiJywgMSlcblxuXG4vLyBjb25zb2xlLmxvZyhzdHVkeU5hbWUxKVxuLy8gY29uc29sZS5sb2coc3R1ZHlOYW1lMilcblxuXG4vLyBjb25zdCBzdHVkeXMgPSBbe1xuLy8gICBuYW1lOiAn5bCP5piOJyxcbi8vICAgYWdlOiAxMlxuLy8gfSwge1xuLy8gICBuYW1lOiAn5bCP6aOeJyxcbi8vICAgYWdlOiAxNFxuLy8gfSwge1xuLy8gICBuYW1lOiAn5bCP55m9Jyxcbi8vICAgYWdlOiAxMFxuLy8gfV1cblxuLy8gY29uc3Qgc3R1ZHlJbmZvID0gc3R1ZHlzLmZpbmQoaXRlbSA9PiBpdGVtLmFnZSA+IDE1KVxuLy8gc3R1ZHlJbmZvLmFnZVxuXG5cblxuLy8gaW50ZXJmYWNlIFN0dWR5SW5mbyB7XG4vLyAgIHNleDogXCLnlLdcIiB8IFwi5aWzXCIsXG4vLyAgIGFnZTogbnVtYmVyXG4vLyAgIFtrZXk6IHN0cmluZ106IHN0cmluZyB8IG51bWJlcjtcbi8vIH1cblxuLy8gY29uc3Qgc2V0dGluZ3M6IFN0dWR5SW5mbyA9IHtcbi8vICAgc2V4OiBcIuWls1wiLFxuLy8gICBhZ2U6IDEyXG4vLyB9XG5cbi8vIHNldHRpbmdzW1widXNlck5hbWVcIl0gPSAn5bCP5piOJ1xuXG4vLyBzZXR0aW5ncy51c2VyTmFtZSA9IFwi5bCP6buRXCJcblxuXG5cbi8vIGNsYXNzIFN0dWR5IHtcbi8vICAgc2V4OiBcIueUt1wiIHwgXCLlpbNcIlxuXG4vLyAgIGNvbnN0cnVjdG9yKHNleDogXCLnlLdcIiB8IFwi5aWzXCIpIHtcbi8vICAgICB0aGlzLnNleCA9IHNleFxuLy8gICB9XG5cbi8vICAgZ2V0U3R1ZHlJbmZvKG5hbWU6IHN0cmluZykge1xuLy8gICAgIHJldHVybiB7XG4vLyAgICAgICBzZXg6IHRoaXMuc2V4LFxuLy8gICAgICAgbmFtZVxuLy8gICAgIH1cbi8vICAgfVxuLy8gfVxuXG5cbi8vIGNsYXNzIFJlY3RhbmdsZSB7XG4vLyAgIHdpZHRoOiBudW1iZXI7XG4vLyAgIGhlaWdodDogbnVtYmVyO1xuXG4vLyAgIGNvbnN0cnVjdG9yKHdpZHRoOiBudW1iZXIsIGhlaWdodDogbnVtYmVyKSB7XG4vLyAgICAgdGhpcy53aWR0aCA9IHdpZHRoO1xuLy8gICAgIHRoaXMuaGVpZ2h0ID0gaGVpZ2h0O1xuLy8gICB9XG5cbi8vICAgZ2V0QXJlYUZ1bmN0aW9uKCkge1xuLy8gICAgIHJldHVybiBmdW5jdGlvbiAoKSB7XG4vLyAgICAgICByZXR1cm4gdGhpcy53aWR0aCAqIHRoaXMuaGVpZ2h0O1xuLy8gICAgICAgLy8gICAgICAgJ3RoaXMnIGltcGxpY2l0bHkgaGFzIHR5cGUgJ2FueScgYmVjYXVzZSBpdCBkb2VzIG5vdCBoYXZlIGEgdHlwZSBhbm5vdGF0aW9uLlxuLy8gICAgICAgLy8gJ3RoaXMnIGltcGxpY2l0bHkgaGFzIHR5cGUgJ2FueScgYmVjYXVzZSBpdCBkb2VzIG5vdCBoYXZlIGEgdHlwZSBhbm5vdGF0aW9uLlxuLy8gICAgIH07XG4vLyAgIH1cbi8vIH1cblxuXG5cblxuLy8gaW50ZXJmYWNlIFVzZXJEZWZhdWx0cyB7XG4vLyAgIGNvbG9yVGhlbWVPdmVycmlkZT86IFwiZGFya1wiIHwgXCJsaWdodFwiO1xuLy8gfVxuXG4vLyBjb25zdCB1c2VySW5mbzogVXNlckRlZmF1bHRzID0ge1xuLy8gICBjb2xvclRoZW1lT3ZlcnJpZGU6IFwiZGFya1wiXG4vLyB9XG5cblxuLy8gY29uc3QgYTogbnVtYmVyID0gNjtcblxuLy8gc3dpdGNoIChhKSB7XG4vLyAgIGNhc2UgMDpcbi8vICAgICAvLyBGYWxsdGhyb3VnaCBjYXNlIGluIHN3aXRjaC5cbi8vICAgICBjb25zb2xlLmxvZyhcImV2ZW5cIik7XG4vLyAgIGNhc2UgMTpcbi8vICAgICBjb25zb2xlLmxvZyhcIm9kZFwiKTtcbi8vICAgICBicmVhaztcbi8vIH1cblxuXG4vLyBjbGFzcyBTdHVkeSB7XG4vLyAgIGluZm8oKSB7IH1cbi8vIH1cblxuLy8gY2xhc3MgU2Nob29sIGV4dGVuZHMgU3R1ZHkge1xuLy8gICBvdmVycmlkZSBzaW5mb2V0dXAoKSB7IH1cbi8vIH1cblxuLy8gY2xhc3MgQ2xhc3NlcyBleHRlbmRzIFN0dWR5IHtcbi8vICAgaW5mbygpIHsgfVxuLy8gfSJdfQ==
+>
+>```
+
+## <a id="noEmitHelpers"></a> `noEmitHelpers 不在输出文件中生成用户自定义的帮助函数代码`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "noEmitHelpers": true,
+>  }
+>}
+>``` 
+>index.ts
+>```ts
+>const setAge = async (age: number): Promise<number> => {
+>  return age + 1
+>}
+>```
+>noEmitHelpers: false
+>```js
+>"use strict";
+>var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+>    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+>    return new (P || (P = Promise))(function (resolve, reject) {
+>        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+>        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+>        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+>        step((generator = generator.apply(thisArg, _arguments || [])).next());
+>    });
+>};
+>var __generator = (this && this.__generator) || function (thisArg, body) {
+>    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+>    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = >function() { return this; }), g;
+>    function verb(n) { return function (v) { return step([n, v]); }; }
+>    function step(op) {
+>        if (f) throw new TypeError("Generator is already executing.");
+>        while (_) try {
+>            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) >&& !(t = t.call(y, op[1])).done) return t;
+>            if (y = 0, t) op = [op[0] & 2, t.value];
+>            switch (op[0]) {
+>                case 0: case 1: t = op; break;
+>                case 4: _.label++; return { value: op[1], done: false };
+>                case 5: _.label++; y = op[1]; op = [0]; continue;
+>                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+>                default:
+>                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; >}
+>                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+>                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+>                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+>                    if (t[2]) _.ops.pop();
+>                    _.trys.pop(); continue;
+>            }
+>            op = body.call(thisArg, _);
+>        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+>        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+>    }
+>};
+>var setAge = function (age) { return __awaiter(void 0, void 0, void 0, function () {
+>    return __generator(this, function (_a) {
+>        return [2, age + 1];
+>    });
+>}); };
+>
+>```
+>noEmitHelpers: true
+>```js
+>"use strict";
+>var setAge = function (age) { return __awaiter(void 0, void 0, void 0, function () {
+>    return __generator(this, function (_a) {
+>        return [2, age + 1];
+>    });
+>}); };
+>
+> //#在全局作用域中为所使用的帮助程序提供实现, 不需要每次调用都会实现一次
+>
+>```
+
+## <a id="stripInternal"></a> `stripInternal 不对具有 /** @internal */ JSDoc注解的代码生成代码`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "stripInternal": true,
+>  }
+>}
+>``` 
+>index.ts
+>```ts
+>/**
+> * 学生姓名
+> * @internal
+> */
+>export let studyName = "小飞";
+>
+>/**
+> * 学生性别
+> */
+>export let studySex = "男";
+>```
+>stripInternal: false  
+>index.d.ts
+>```ts
+>export declare let studyName: string;
+>export declare let studySex: string;
+>```
+>
+>stripInternal: true  
+>index.d.ts
+>```ts
+>export declare let studySex: string;
+>```
+
+## <a id="esModuleInterop"></a> `esModuleInterop 默认情况下（未设置 esModuleInterop 或值为 false），TypeScript 像 ES6 模块一样对待 CommonJS/AMD/UMD`  
+两个被证实的缺陷
+* 形如 import * as moment from "moment" 这样的命名空间导入等价于 const moment = require("moment")
+* 形如 import moment from "moment" 这样的默认导入等价于 const moment = require("moment").default
+
+这种错误的行为导致了这两个问题：
+
+* ES6 模块规范规定，命名空间导入（import * as x）只能是一个对象。TypeScript 把它处理成 = require("x") 的行为允许把导入当作一个可调用的函数，这样不符合规范。
+* 虽然 TypeScript 准确实现了 ES6 模块规范，但是大多数使用 CommonJS/AMD/UMD 模块的库并没有像 TypeScript 那样严格遵守。
+
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "esModuleInterop": true,
+>     "allowSyntheticDefaultImports": true,
+>     "importHelpers": true,
+>  }
+>}
+>``` 
+>index.ts
+>```ts
+>import * as fs from "fs";
+>import _ from "lodash";
+>
+>fs.readFileSync("file.txt", "utf8");
+>_.chunk(["a", "b", "c", "d"], 2);
+>```
+> 没有设置 "esModuleInterop"
+>```js
+>"use strict";
+>Object.defineProperty(exports, "__esModule", { value: true });
+>var fs = require("fs");
+>var lodash_1 = require("lodash");
+>fs.readFileSync("file.txt", "utf8");
+>lodash_1.default.chunk(["a", "b", "c", "d"], 2);
+>```
+>设置 "esModuleInterop"
+>```js
+>"use strict";
+>Object.defineProperty(exports, "__esModule", { value: true });
+>var tslib_1 = require("tslib");
+>var fs = tslib_1.__importStar(require("fs"));
+>var lodash_1 = tslib_1.__importDefault(require("lodash"));
+>fs.readFileSync("file.txt", "utf8");
+>lodash_1.default.chunk(["a", "b", "c", "d"], 2);
+>
+>```
+
+## <a id="experimentalDecorators"></a> `experimentalDecorators 用于指定是否启用实验性的装饰器特性`  
+## <a id="emitDecoratorMetadata"></a> `emitDecoratorMetadata 用于指定是否为装饰器提供元数据支持，关于元数据，也是ES6的新标准，可以通过Reflect提供的静态方法获取元数据，如果需要使用Reflect的一些方法，需要引入ES2015.Reflect这个库`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "emitDecoratorMetadata": true,
+>     "experimentalDecorators": true,
+>  }
+>}
+>``` 
+>
+>```ts
+>function ClassDecorator() {
+>  return function (target: any) {
+>    console.log("I am class decorator", target);
+>  }
+>}
+>
+>@ClassDecorator()
+>class Study {
+>  sex: "男" | "女"
+>
+>  constructor(sex: "男" | "女") {
+>    this.sex = sex
+>  }
+>
+>  getStudyInfo(name: string) {
+>    return {
+>      sex: this.sex,
+>      name
+>    }
+>  }
+>}
+>```
+> `experimentalDecorators 默认值  直接报错, 不支持装饰器`
+>```
+>Experimental support for decorators is a feature that is subject to >change in a future release. Set the 'experimentalDecorators' option in >your 'tsconfig' or 'jsconfig' to remove this warning.
+>
+>148 class Study {
+>          ~~~~~
+>```
+> `experimentalDecorators 设置true`
+>```js
+>"use strict";
+>var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+>    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+>    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+>    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+>    return c > 3 && r && Object.defineProperty(target, key, r), r;
+>};
+>function ClassDecorator() {
+>    return function (target) {
+>        console.log("I am class decorator", target);
+>    };
+>}
+>var Study = (function () {
+>    function Study(sex) {
+>        this.sex = sex;
+>    }
+>    Study.prototype.getStudyInfo = function (name) {
+>        return {
+>            sex: this.sex,
+>            name: name
+>        };
+>    };
+>    Study = __decorate([
+>        ClassDecorator()
+>    ], Study);
+>    return Study;
+>}());
+>```
+> `emitDecoratorMetadata 设置 true  编译文件中多了__metadata `
+>```js
+>"use strict";
+>var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+>    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+>    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+>    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+>    return c > 3 && r && Object.defineProperty(target, key, r), r;
+>};
+>var __metadata = (this && this.__metadata) || function (k, v) {
+>    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+>};
+>function ClassDecorator() {
+>    return function (target) {
+>        console.log("I am class decorator", target);
+>    };
+>}
+>var Study = (function () {
+>    function Study(sex) {
+>        this.sex = sex;
+>    }
+>    Study.prototype.getStudyInfo = function (name) {
+>        return {
+>            sex: this.sex,
+>            name: name
+>        };
+>    };
+>    Study = __decorate([
+>        ClassDecorator(),
+>        __metadata("design:paramtypes", [String])
+>    ], Study);
+>    return Study;
+>}());
+>```
+
+## <a id="jsx"></a> `jsx 指定jsx代码用于的开发环境: 'preserve', 'react-native', or 'react'.`  
+>tsconfig.json
+>```json
+>{
+>  "compilerOptions": {
+>     "jsx": "react",
+>  }
+>}
+>``` 
+>Demo index.tsx
+>```ts
+>import * as React from 'react'
+>export const studyName = () => <span>小黑</span>;
+>```
+>>`jsx: react  将 JSX 改为等价的对 React.createElement 的调用并生成 .js 文件`
+>>```js
+>>"use strict";
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>exports.studyName = void 0;
+>>var React = require("react");
+>>var studyName = function () { return React.createElement("span", null, "\u5C0F\u9ED1"); };
+>>exports.studyName = studyName;
+>>```
+>>`jsx: preserve 不对 JSX 进行改变并生成 .jsx 文件`
+>>```js
+>>"use strict";
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>exports.studyName = void 0;
+>>var React = require("react");
+>>var studyName = function () { return <span>小黑</span>; };
+>>exports.studyName = studyName;
+>>```
+>>`jsx: react-jsx 改为 __jsx 调用并生成 .js 文件`
+>>```js
+>>"use strict";
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>exports.studyName = void 0;
+>>var jsx_runtime_1 = require("react/jsx-runtime");
+>>var studyName = function () { return jsx_runtime_1.jsx("span", { children: "\u5C0F\u9ED1" }, void 0); };
+>>exports.studyName = studyName;
+>>
+>>```
+>>`jsx: react-jsxdev: 改为 __jsx 调用并生成 .js 文件 `
+>>```js
+>>"use strict";
+>>var _this = this;
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>exports.studyName = void 0;
+>>var jsx_dev_runtime_1 = require("react/jsx-dev-runtime");
+>>var _jsxFileName = "/Users/bank/Desktop/code-test/babel-test/src/lodash-test.tsx";
+>>var studyName = function () { return jsx_dev_runtime_1.jsxDEV("span", { children: "\u5C0F\u9ED1" }, void 0, false, { >fileName: >_jsxFileName, lineNumber: 5, columnNumber: 31 }, _this); };
+>>exports.studyName = studyName;
+>>
+>>```
+>>`jsx: react-native: 不对 JSX 进行改变并生成 .js 文件 `
+>>```js
+>>"use strict";
+>>Object.defineProperty(exports, "__esModule", { value: true });
+>>exports.studyName = void 0;
+>>var React = require("react");
+>>var studyName = function () { return <span>小黑</span>; };
+>>exports.studyName = studyName;
+>>```
+
+## <a id="lib"></a> `lib lib用于指定要包含在编译中的库文件, 如果--lib没有指定默认注入的库的列表。默认注入的库为：针对于--target ES5：DOM，ES5，ScriptHost; 针对于--target ES6：DOM，ES6，DOM.Iterable，ScriptHost`  
+>属性值 | 说明  
+>---- | -----
+>ES5 |	ES3 和 ES5 的核心功能定义
+>ES2015 | ES2015 中额外提供的 API (又被称为 ES6) —— array.find， Promise，Proxy，Symbol，Map，Set，Reflect 等。
+>ES6	| ES2015 的别名。
+>ES2016 | ES2016 中额外提供的 API —— array.include 等。
+>ES7	| ES2016 的别名。
+>ES2017 | ES2017 中额外提供的 API —— Object.entries，Object.values，Atomics，SharedArrayBuffer，date.formatToParts，>typed arrays 等。
+>ES2018 | ES2018 中额外提供的 API —— async iterables，promise.finally，Intl.PluralRules，rexexp.groups 等。
+>ES2019 | ES2019 中额外提供的 API —— array.flat，array.flatMap，Object.fromEntries，string.trimStart，string.trimEnd 等。
+>ES2020 | ES2020 中额外提供的 API —— string.matchAll 等。
+>ESNext | ESNext 中额外提供的 API —— 随着 JavaScript 的发展，这些会发生变化。
+>DOM	| [DOM](https://developer.mozilla.org/zh-CN/docs/Glossary/DOM) 定义 —— window，document 等。
+>WebWorker	| [WebWorker](https://developer.mozilla.org/docs/Web/API/Web_Workers_API/Using_web_workers) 上下文中存在的 >API。
+>ScriptHost	| [Windows](https://wikipedia.org/wiki/Windows_Script_Host) Script Hosting System 的 API。
+
+## <a id="composite"></a> `composite 是否编译构建引用项目` 
+* 该rootDir设置，如果没有明确设置，默认为包含tsconfig文件的目录
+* 所有实现文件都必须与include模式匹配或列在files数组中。如果违反此约束，tsc将通知您未指定哪些文件
+* declaration 必须开启

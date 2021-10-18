@@ -4,7 +4,7 @@
 * [npm 全局安装 typescript](#npm-i-typescript) 
 * [CLI Commands](#CLI-Commands) 
 * [Build Options](#Build-Options) 
-* [Watch Options](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/tsconfig/README.md#watchOptions) 
+* [Watch Options](/material/ts/tsconfig/README.md#watchOptions) 
 * [Compiler Flags](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/tsconfig/README.md) 
 
 

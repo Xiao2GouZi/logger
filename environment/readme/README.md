@@ -31,11 +31,9 @@ ___特别强调___  (示例：粗斜体)
 
 > 代码块高亮  
 
-```
-@Override
-protected void onDestroy() {
-    EventBus.getDefault().unregister(this);
-    super.onDestroy();
+```js 
+function name(){
+
 }
 ``` 
 
@@ -76,4 +74,4 @@ protected void onDestroy() {
  
 8、引用
 > 第一行引用文字  
-> 第二行引用文字 
+>> 第二行引用文字 

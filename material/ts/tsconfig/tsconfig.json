@@ -1,0 +1,173 @@
+{
+  /** 配置编译选项 */
+  "compilerOptions": {
+    /** Type Checking 类型检查 */
+    "allowUnreachableCode": false, /** 报告执行不到的代码错误 false 检查 */
+    "allowUnusedLabels": false, /** 报告未使用的标签错误 false 检查 */
+    "exactOptionalPropertyTypes": true, /** 更严格的规则来处理类型或接口上的属性 */
+    "noFallthroughCasesInSwitch": false, /** 用于检查switch中是否有case没有使用break跳出switch */
+    "noImplicitOverride": true, /** 处理使用继承的类时，子类有可能在基类中重命名时与它重载的函数“不同步” */
+    "noImplicitReturns": true, /** 用于检查函数是否有返回值，设为true后，如果函数没有返回值则会提示 */
+    "noPropertyAccessFromIndexSignature": true, /** 确保了通过" dot " (obj.key)语法和" indexed " (obj["key"])访问字段和属性在类型中声明的方式之间的一致性 */
+    "noUncheckedIndexedAccess": false, /** 通过索引签名来描述那些键未知但值已知的对象 */
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    /** 严格检查 */
+    "strict": true, /** 用于指定是否启动所有类型检查，如果设为true则会同时开启下面这几个严格类型检查 */
+    "alwaysStrict": true, /** 指定始终以严格模式检查每个模块，并且在编译之后的js文件中加入"use strict"字符串，用来告诉浏览器该js为严格模式 */
+    "strictNullChecks": true, /** null和undefined值不能赋给非这两种类型的值，别的类型也不能赋给他们，除了any类型。还有个例外就是undefined可以赋值给void类型 */
+    "strictBindCallApply": true, /** 会对bind、call和apply绑定的方法的参数的检测是严格检测的 */
+    "strictFunctionTypes": true, /** 用于指定是否使用函数参数双向协变检查 */
+    "strictPropertyInitialization": true, /** 设为true后会检查类的非undefined属性是否已经在构造函数里初始化，如果要开启这项，需要同时开启strictNullChecks */
+    "noImplicitAny": true, /** 如果我们没有为一些值设置明确的类型，编译器会默认认为这个值为any，如果noImplicitAny的值为true的话。若没有明确的类型会报错 */
+    "noImplicitThis": true, /** 当this表达式的值为any类型的时候，生成一个错误 */
+    "useUnknownInCatchVariables": false, /** 允许将catch子句中变量的类型从' any '改为' unknown '的支持 */
+    /** Modules 模块 */
+    "allowUmdGlobalAccess": false, /** 将允许你在模块文件中以全局变量的形式访问 UMD 的导出 */
+    "module": "CommonJS", /** 用来指定编译后的js要使用的模块标准: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext' default target === "ES6" ? "ES6" : "commonjs" */
+    "moduleResolution": "Node", /** 用于选择模块解析策略，有'node'和'classic'两种类型' default: module === AMD / UMD / System / ES6 ? Classic : Node */
+    "noResolve": false, /** 模块导入的文件加到编译文件列表。 */
+    "baseUrl": "src", /** baseUrl用于设置解析非相对模块名称的基本目录，相对模块不会受baseUrl的影响 */
+    "paths": { /** 指定模块的路径，和baseUrl有关联，和webpack中resolve.alias配置一样 */
+      "@common/*": [
+        "./common/*"
+      ]
+    },
+    "resolveJsonModule": true, /** 是否允许导入json文件 */
+    "rootDir": "", /** 用来指定编译文件的根目录，编译器会在根目录查找入口文件，如果编译器发现以rootDir的值作为根目录查找入口文件并不会把所有文件加载进去的话会报错，但是不会停止编译 */
+    "rootDirs": [], /** 通过 rootDirs，你可以告诉编译器有许多“虚拟”的目录作为一个根目录。这将会允许编译器在这些“虚拟”目录中解析相对应的模块导入，就像它们被合并到同一目录中一样。用于运行时 */
+    "typeRoots": [ /** typeRoots用来指定声明文件或文件夹的路径列表，如果指定了此项，则只有在这里列出的声明文件才会被加载; 当 typeRoots 被指定，仅有 在 typeRoots 下的包会被包含*/
+      "node_modules/@types",
+      // "./typings"
+    ],
+    "types": [ /** types用来指定需要包含的模块，只有在这里列出的模块的声明文件才会被加载进来; 当 typeRoots 被指定，仅有 在 typeRoots 下的包会被包含 */
+      "node_modules/@types"
+    ],
+    /** Emit */
+    /** 设置生成 .d.ts */
+    "declaration": false, /** 用来指定是否在编译的时候生成相应的".d.ts"声明文件。如果设为true，编译每个ts文件之后会生成一个js文件和一个声明文件 */
+    "declarationDir": "./lib", /** 生成.d.ts声明文件的输出路径。 */
+    "declarationMap": false, /** 指定是否为声明文件.d.ts生成map文件 */
+    "emitDeclarationOnly": false, /** 只输出.d.ts文件,不会输出编译后的就是文件 */
+    "downlevelIteration": true, /** 当target为'ES5' or 'ES3'时，为'for-of', spread, and destructuring'中的迭代器提供完全支持 */
+    "importHelpers": true, /** 指定是否引入tslib里的辅助工具函数 */
+    "noEmitHelpers": false, /** 不在输出文件中生成用户自定义的帮助函数代码 */
+    "emitBOM": false, /** 在输出文件的开头加入BOM头 */
+    "importsNotUsedAsValues": "error", /** 可以来控制没被使用的导入语句将会被如何处理 */
+    /** Map 选项 */
+    "sourceMap": false, /** 	用来指定编译时是否生成.map文件 */
+    "sourceRoot": "", /** 指定TypeScript源文件的路径，以便调试器定位。当TypeScript文件的位置是在运行时指定时使用此标记。路径信息会被加到 sourceMap里 */
+    "mapRoot": "", /** mapRoot用于指定调试器找到映射文件而非生成文件的位置，指定map文件的根路径，该选项会影响.map文件中的sources属性 */
+    "inlineSourceMap": false, /** 指定是否将map文件的内容和js文件编译在同一个js文件中，如果设为true，则map的内容会以//# sourceMappingURL=然后拼接base64字符串的形式插入在js文件底部,  与sourceMap互斥*/
+    "inlineSources": false, /** 用于指定是否进一步将.ts文件的内容也包含到输入文件中  需要设置 sourceMap或者 inlineSourceMap*/
+    // "newLine": "crlf", /** 当生成文件时指定行结束符： "crlf"（windows）或 "lf"（unix） */
+    "noEmit": false, /** 不生成编译文件 */
+    "noEmitOnError": true, /** 报错时不生成输出文件 */
+    "outDir": "./dist", /** outDir用来指定输出文件夹，值为一个文件夹路径字符串，输出的文件都将放置在这个文件夹 */
+    // "outFile": "", /** outFile用于指定将输出文件合并为一个文件，它的值为一个文件路径名。比如设置为"./dist/main.js"，则输出的文件为一个main.js文件。但是要注意，只有设置module的值为None,amd和system模块时才支持这个配置 */
+    "preserveConstEnums": true, /** 保留 const和 enum声明 */
+    "removeComments": true, /** 用于指定是否将编译后的文件中的注释删掉, 除了以 /!*开头的版权信息。 */
+    "stripInternal": true, /** 不对具有  @internal  JSDoc注解的代码生成代码 */
+    /** JavaScript Support */
+    "allowJs": true, /** 用来指定是否允许编译js文件，默认是false，即不编译js文件 */
+    "checkJs": true, /** 用来指定是否检查和报告js文件中的错误, 与 --allowJs配合使用 */
+    "maxNodeModuleJsDepth": 0, /** node_modules依赖的最大搜索深度并加载JavaScript文件。仅适用于 --allowJs。 */
+    /** Editor Support */
+    "disableSizeLimit": false, /** 禁用JavaScript工程体积大小的限制 为了避免在处理大型JavaScript项目时可能出现的内存膨胀问题，TypeScript分配的内存有一个上限 */
+    "plugins": [], /** 可在编辑器内运行的语言服务插件列表 VS Code 可以让一个扩展 自动包含语言服务插件，所以你可以在编辑器中运行一些插件，而不需要在 tsconfig.json 中指定他们 */
+    /** Interop Constraints 互操作约束 */
+    "allowSyntheticDefaultImports": true, /** 用来指定允许从没有默认导出的模块中默认导入 */
+    "esModuleInterop": true, /** 默认情况下（未设置 esModuleInterop 或值为 false），TypeScript 像 ES6 模块一样对待 CommonJS/AMD/UMD */
+    "forceConsistentCasingInFileNames": true, /** 禁止对同一个文件的不一致的引用。 */
+    "isolatedModules": false, /** 指定是否将每个文件作为单独的模块 */
+    "preserveSymlinks": true, /** 不把符号链接解析为其真实路径，具体可以了解下webpack和nodejs的symlink相关知识 */
+    /** Backwards Compatibility 向后兼容 */
+    "noImplicitUseStrict": true, /** 模块输出中不包含 "use strict"指令 */
+    "noStrictGenericChecks": false, /** 禁用在函数类型里对泛型签名进行严格检查 */
+    "suppressExcessPropertyErrors": false, /** 阻止对对象字面量的额外属性检查 */
+    "suppressImplicitAnyIndexErrors": false, /** 阻止 --noImplicitAny对缺少索引签名的索引对象报错 */
+    /** Language and Environment 语言和环境 */
+    /** 实验选项 */
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    /** jsx */
+    "jsx": "react", /** 指定jsx代码用于的开发环境: 'preserve', 'react-native', or 'react'. */
+    "jsxFactory": "React.createElement", /** 当使用经典的JSX运行时编译JSX元素时，更改.js文件中调用的函数，默认：React.createElement 。 */
+    "jsxFragmentFactory": "React.Fragment", /** 指定 JSX 片段工厂函数在指定了 jsxFactory 编译器选项的情况下针对 react JSX 发出时使用。 */
+    "jsxImportSource": "react", /** 当在TS 4.1中使用 jsx 作为 react-jsx 或 react-jsxdev 时，声明用于导入jsx和jsxs工厂函数的模块说明符。 */
+    /** lib */
+    "lib": [ /** lib用于指定要包含在编译中的库文件, 如果--lib没有指定默认注入的库的列表。默认注入的库为：针对于--target ES5：DOM，ES5，ScriptHost; 针对于--target ES6：DOM，ES6，DOM.Iterable，ScriptHost */
+      "ES5",
+      "ES2015",
+      "ES6",
+      "ES2016",
+      "ES7",
+      "ES2017",
+      "ES2018",
+      "ES2019",
+      "ES2020",
+      "ESNext",
+      "DOM",
+      "WebWorker",
+      "ScriptHost"
+    ],
+    "noLib": false, /** 不包含默认的库文件, lib将被忽略 */
+    "reactNamespace": "React", /** 当目标为生成 "react" JSX时，指定 createElement和 __spread的调用对象 */
+    "target": "ES5", /** target用于指定编译后js文件里的语法应该遵循哪个JavaScript的版本的版本目标: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+    "useDefineForClassFields": false, /** 将 class 声明中的字段语义从 [[Set]] 变更到 [[Define]] */
+    /** Compiler Diagnostics 编译器诊断 */
+    "explainFiles": false, /** 解释文件，此选项用于调试文件如何成为编译的一部分，默认：false */
+    "extendedDiagnostics": true, /** 是否查看 TS 在编译时花费的时间，默认：false。 */
+    "generateCpuProfile": "profile.cpuprofile", /** 在编译阶段让 TS 发出 CPU 配置文件，只能通过终端或 CLI 调用 --generateCpuProfile tsc-output.cpuprofile 。 */
+    "listEmittedFiles": false, /** 打印出编译后生成文件的名字 */
+    "listFiles": false, /** 编译过程中打印文件名 */
+    "traceResolution": false, /** 生成模块解析日志信息 */
+    /** Projects 项目 */
+    "composite": false, /** 是否编译构建引用项目 composite, incremental, tsBuildInfoFile*/
+    "incremental": false, /** 是否启用增量编译，指再次编译时只编译增加的内容， */
+    "tsBuildInfoFile": ".tsbuildinfo", /** 指定增量编译信息文件的位置，使用该功能时，必须开启incremental选项。 */
+    "disableReferencedProjectLoad": false, /** 禁用所有项目的自动加载。 */
+    "disableSolutionSearching": false, /** 在编辑器中搜索查找所有引用或跳转到定义等功能时，禁止包含复合项目， */
+    "disableSourceOfProjectReferenceRedirect": false, /** 是否禁用项目引用源重定向 */
+    /** Output Formatting 输出格式 */
+    "noErrorTruncation": false, /** 不截短错误消息 */
+    "preserveWatchOutput": false, /** 保留watch模式下过时的控制台输出, 保留之前的编译日志 */
+    "pretty": true, /** 给错误和消息设置样式，使用颜色和上下文 */
+    /** Completeness 完整性 */
+    "skipLibCheck": true, /** 忽略所有的声明文件（ *.d.ts）的类型检查 */
+    /** Watch Options 监听选项 */
+    "assumeChangesOnlyAffectDirectDependencies": false, /** 是否避免重新检查/重建所有真正可能受影响的文件，而只会重新检查/重建已更改的文件以及直接导入它们的文件 */
+  },
+  /** 编译器需要编译的单个文件类表 */
+  "files": [],
+  /** 编译器需要编译的文件或者目录 */
+  "include": [
+    "src/**/*"
+  ],
+  /** 编译器需要排除的文件或者文件夹 默认请看下已经排除了 node_modules */
+  "exclude": [
+    "src/assets"
+  ],
+  /** 引入其他配置文件, 继承配置, 如 ./ts.base.config.json */
+  "extends": "",
+  /** 设置保存文件的时候自动编译,需要编译器支持 */
+  "compileOnSave": false,
+  /** 指定依赖的工程 */
+  "references": [],
+  /** 配置 TypeScript --watch如何工作 */
+  "watchOptions": {
+    "watchFile": "useFsEvents", /** 监视单个文件的策略 */
+    "watchDirectory": "useFsEvents", /** 在缺乏递归文件监视功能的系统下如何监视整个目录树的策略 */
+    "fallbackPolling": "dynamicPriorityPolling", /** 使用文件系统事件时，此选项指定当系统用完本机文件观察器和/或不支持本机文件观察器时使用的轮询策略 */
+    "excludeDirectories": [], /** 使用排除目录来大幅减少 --watch 期间被监视的文件数量. */
+    "excludeFiles": [], /** 使用excludeFiles从被监视的文件中删除一组特定的文件。 */
+    "synchronousWatchDirectory": false, /** 在本机不支持递归观看的平台上同步调用回调，并更新目录观察者的状态 */
+  },
+  /** 设置自动引入库类型文件(.d.ts)相关 */
+  "typeAcquisition": {
+    "enable": false, /** 提供在 JavaScript 项目中禁用类型获取的配置 */
+    "include": [], /** 使用 include 来指定应从绝对类型中使用哪些类型 */
+    "exclude": [], /** 提供用于禁用 JavaScript 项目中某个模块的类型获取的配置 */
+    "disableFilenameBasedTypeAcquisition": false, /** 是否禁用基于文件名的类型获取，TypeScript 的类型获取可以根据项目中的文件名推断应该添加哪些类型 */
+  }
+}

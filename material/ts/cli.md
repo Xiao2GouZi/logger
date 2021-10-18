@@ -5,7 +5,7 @@
 * [CLI Commands](#CLI-Commands) 
 * [Build Options](#Build-Options) 
 * [Watch Options](/material/ts/tsconfig/README.md#watchOptions) 
-* [Compiler Flags](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/tsconfig/README.md) 
+* [Compiler Flags](/material/ts/tsconfig/README.md) 
 
 
 ### <a id="npm-i-typescript"></a> `npm 全局安装 typescript`
@@ -13,7 +13,7 @@
 >$npm install typescript -g
 >```
 >
-> 注: 可以通过[ts-node](https://github.com/Xiao2GouZi/logger/tree/ts/material/ts/ts-node)直接编译执行ts,而不需要先编译成js文件在执行
+> 注: 可以通过[ts-node](/material/ts/ts-node)直接编译执行ts,而不需要先编译成js文件在执行
 
 
 ## <a id="CLI-Commands"></a> `CLI Commands`

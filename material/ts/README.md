@@ -1,6 +1,6 @@
 # 开启 Typescript  
 
-如何安装运行[typescript](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/cli.md), 如何创建自己的声明文件[declaration](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/declaration.md),如何配置好[tsconfig](https://github.com/Xiao2GouZi/logger/blob/ts/material/ts/tsconfig/README.md)
+如何安装运行[typescript](/material/ts/cli.md), 如何创建自己的声明文件[declaration](/material/ts/declaration.md),如何配置好[tsconfig](/material/ts/tsconfig/README.md)
 
 从入门到放弃,只差那么一点点.
 

@@ -206,7 +206,7 @@ type ModuleItem = ImportDeclaration | ExportDeclaration | StatementListItem;
 ## 五. 工具
 1. recast
 2. [jscodeshift](https://github.com/Xiao2GouZi/logger/tree/git/ast/jscodeshift)
-3. [Babylon](https://github.com/Xiao2GouZi/logger/tree/git/ast/babylon)
+3. [Babylon](/babel/ast/babylon)
 4. [babel-parse](https://github.com/Xiao2GouZi/logger/tree/git/ast/babel-parse)
 
 

@@ -146,7 +146,7 @@
   ],
   /** 编译器需要排除的文件或者文件夹 默认请看下已经排除了 node_modules */
   "exclude": [
-    "src/assets"
+    // "src/assets"
   ],
   /** 引入其他配置文件, 继承配置, 如 ./ts.base.config.json */
   // "extends": "",

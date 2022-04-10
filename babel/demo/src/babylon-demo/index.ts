@@ -1,11 +1,12 @@
-import FsExtra from 'fs-extra'
+import * as FsExtra from 'fs-extra'
 import * as Babaylon from 'babylon'
-import Path from 'path'
+// import Path from 'path'
+const Path = require("path")
 
 
 const codeParsePath = Path.resolve('./src/babylon-demo/code-parse.json')
 
-const codeStr = "const a = 1"
+const codeStr = "const a = 11"
 
 const codeParse = Babaylon.parse(codeStr, {
   allowImportExportEverywhere: true,

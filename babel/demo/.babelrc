@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage"
+      }
+    ]
+  ],
+  "plugins": [],
+  "sourceMaps": true
+  // "babelrcRoots": [
+  //   "./src"
+  // ]
+}
